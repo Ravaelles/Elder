@@ -4,9 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "87f88eb1452edfb1fcb74d9c58500be2",
-    "content-hash": "14294b7f10b922ce273f92d7e601d76c",
+    "hash": "2e9184e8b103f26cc1f9101c6c6a9121",
+    "content-hash": "c7f557bcfd4c60b992523557eb453372",
     "packages": [
+        {
+            "name": "acacha/admin-lte-template-laravel",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/acacha/adminlte-laravel.git",
+                "reference": "aaa0dd5c80e07721487729cade1f6e850a5faf77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/acacha/adminlte-laravel/zipball/aaa0dd5c80e07721487729cade1f6e850a5faf77",
+                "reference": "aaa0dd5c80e07721487729cade1f6e850a5faf77",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Acacha\\AdminLTETemplateLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergi Tur Badenas",
+                    "email": "sergiturbadenas@gmail.com",
+                    "homepage": "http://acacha.org"
+                }
+            ],
+            "description": "AdminLTE template applied to Laravel Scaffolding",
+            "keywords": [
+                "AdminLTE",
+                "admin",
+                "admin-lte",
+                "administrator",
+                "bootstrap",
+                "laravel",
+                "template",
+                "theme"
+            ],
+            "time": "2015-10-19 08:08:45"
+        },
         {
             "name": "bosnadev/repositories",
             "version": "dev-master",
