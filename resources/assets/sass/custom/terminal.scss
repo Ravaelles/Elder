@@ -17,6 +17,21 @@ $terminal-font-color: #30da77;
     color: $terminal-font-color;
 }
 
+.fallout-terminal-content {
+    min-height: 320px;
+    max-height: 320px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.fallout-terminal-desk {
+    margin: 430px auto;
+    margin-bottom: -915px;
+    height: 500px;
+    background: url(/img/terminal/desk.png) center center no-repeat;
+    background-size: 550px;
+}
+
 /**.fallout-terminal {
     background: url(/img/terminal/frame_corner_top_left.png) no-repeat top left, 
         url(/img/terminal/frame_corner_bottom_left.png) no-repeat bottom left, 

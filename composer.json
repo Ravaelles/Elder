@@ -4,24 +4,25 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
-	"repositories": [
-		{
-			"type": "git",
-			"url": "https://github.com/mitulgolakiya/laracast-flash"
-		}
-	],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/mitulgolakiya/laracast-flash"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-		"laracasts/flash": "dev-master",
-		"laravelcollective/html": "5.1.*@dev",
-		"bosnadev/repositories": "dev-master",
-		"mitulgolakiya/laravel-api-generator": "dev-master",
-		"jenssegers/mongodb": "^2.2",
-		"gaaarfild/laravel-notifications": "~1.0",
+        "laracasts/flash": "dev-master",
+        "laravelcollective/html": "5.1.*@dev",
+        "watson/bootstrap-form": "~1.0",
+        "bosnadev/repositories": "dev-master",
+        "mitulgolakiya/laravel-api-generator": "dev-master",
+        "jenssegers/mongodb": "^2.2",
+        "gaaarfild/laravel-notifications": "~1.0",
         "fzaninotto/faker": "^1.5",
-		"kyslik/column-sortable": "~3.0.0",
-		"rap2hpoutre/laravel-log-viewer": "^0.4.3",
+        "kyslik/column-sortable": "~3.0.0",
+        "rap2hpoutre/laravel-log-viewer": "^0.4.3",
         "acacha/admin-lte-template-laravel": "1.*"
     },
     "require-dev": {

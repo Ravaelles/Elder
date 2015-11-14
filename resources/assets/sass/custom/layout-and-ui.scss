@@ -10,16 +10,57 @@ body {
     overflow-x: auto;
 }
 
-.content-wrapper .content-header {
-    margin-left: 10px;
+.content-wrapper {
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#439343+0,367836+17,2b5f2b+33,004a00+67,002e00+83,001400+100 */
+background: #439343; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #439343 0%, #367836 17%, #2b5f2b 33%, #004a00 67%, #002e00 83%, #001400 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #439343 0%,#367836 17%,#2b5f2b 33%,#004a00 67%,#002e00 83%,#001400 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #439343 0%,#367836 17%,#2b5f2b 33%,#004a00 67%,#002e00 83%,#001400 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#439343', endColorstr='#001400',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    
+    .content-header {
+        
+        margin-left: 10px;
+        
+        h1 {
+            font-size: 18px !important;
+        }
+        
+        a {
+            color: darken(lime, 35%);
+        }
+        
+        .navigation-arrow {
+            color: darken(lime, 17%);
+            text-shadow: 1px 1px darken(yellow, 30%);
+        }
+        
+        a:hover {
+            color: darken(lime, 10%);
+            text-decoration: underline;
+        }
+        
+    }
+
+    .content {
+        margin-left: 5px;
+    }
+
+    .box {
+        padding: 20px;
+    }
+    
 }
 
-.content-wrapper .content {
-    margin-left: 5px;
-}
+/*==== Box =====================================================*/
 
-.content-wrapper .box {
-    padding: 20px;
+.box-fallout {
+    color: lime;
+    border: 2px solid lime;
+    border-radius: 15px;
+    background-color: rgba(50,50,50,0.9);
 }
 
 /*==== Global UI =====================================================*/

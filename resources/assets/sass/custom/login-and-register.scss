@@ -3,17 +3,21 @@
     Author     : Rav
 */
 
+$login-page-height: 950px;
 $terminal-font-color: #30da77;
 $terminal-dark-font-color: #06220f;
 
 /*==== Login page =====================================================*/
 
 .login-page, .register-page {
-    background: #144;
+    min-height: $login-page-height;
+    background-color: #444;
     background-image: url("/img/login/background.jpg");
-    background-size: 100% 100%;
+    background-size: 100% $login-page-height;
     background-repeat: no-repeat;
     background-position: center; 
+    background-attachment: fixed;
+    overflow-y: hidden;
 }
 
 .login-box {
@@ -32,12 +36,23 @@ $terminal-dark-font-color: #06220f;
 }
 
 .login-logo {
-    margin-top: 2%;
+    margin-top: 20px;
+    margin-bottom: -5px;
+    text-align: center;
 }
 
 .login-logo img {
-    width: 80px;
-    max-width: 128px;
+    height: 60px;
+    background-color: transparentize($terminal-font-color, 0.5);
+    border: 3px solid transparent;
+    border-radius: 20px;
+    transition: all 1s;
+}
+
+.login-logo img:hover {
+    background-color: transparent !important;
+    border: 3px dashed $terminal-font-color !important;
+    transition: all .5s;
 }
 
 .login-box {
@@ -131,90 +146,18 @@ $terminal-dark-font-color: #06220f;
     .alert {
         margin: 20px;
         margin-top: 15px;
+        padding-top: 30px;
+        padding-bottom: 30px;
         background-color: rgba(255,0,0,.3) !important;
         border: none;
         border-radius: 30px;
-        color: $terminal-dark-font-color !important;
+        font-size: 16px;
+        /**color: $terminal-dark-font-color !important;*/
+        color: white;
+    }
+    
+    .login-big-font {
+        font-size: 20px !important;
     }
 
 }
-
-/*==== Register page =====================================================*/
-
-.register-page .register-container {
-    width: 400px;
-    margin: 0 auto;
-}
-
-.register-page .register-buttons {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.register-page .input-group {
-    margin-top: 10px;
-}
-
-/*.register-page, .register-page {
-    background: #144;
-}
-
-.register-box-body {
-    border-radius: 20px;
-    border: 5px solid rgba(0, 170, 190, 0.8);
-    box-shadow: 0 0 10px 6px rgba(0, 170, 190, 1);
-    transition: all .6s;
-    transition: box-shadow .8s;
-}
-
-.register-box .register-logo img {
-    max-width: 128px;
-}
-
-.register-box .register-box-buttons {
-    margin-top: 20px;
-    margin-bottom: -5px;
-}
-
-.register-box .input-group i {
-    width: 12px;
-}
-
-.register-box .btn {
-    border-radius: 5px;
-}
-
-.register-box .checkbox * {
-    border-radius: 3px;
-}
-
-.register-box .btn {
-    border:1px solid #58c9ef;
-    background: #87e0fd;  Old browsers 
-    background: -moz-linear-gradient(top, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);  FF3.6+ 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e0fd), color-stop(40%,#53cbf1), color-stop(100%,#05abe0));  Chrome,Safari4+ 
-    background: -webkit-linear-gradient(top, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);  Chrome10+,Safari5.1+ 
-    background: -o-linear-gradient(top, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);  Opera 11.10+ 
-    background: -ms-linear-gradient(top, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);  IE10+ 
-    background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);  W3C 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 );  IE6-9 
-}
-
-.register-box .btn:hover{
-    border:1px solid #68e9ff;
-    background-color: #9bf1ff; background-image: -webkit-gradient(linear, left top, left bottom, from(#9bf1ff), to(#4fd4f5));
-    background-image: -webkit-linear-gradient(top, #9bf1ff, #4fd4f5);
-    background-image: -moz-linear-gradient(top, #9bf1ff, #4fd4f5);
-    background-image: -ms-linear-gradient(top, #9bf1ff, #4fd4f5);
-    background-image: -o-linear-gradient(top, #9bf1ff, #4fd4f5);
-    background-image: linear-gradient(to bottom, #9bf1ff, #4fd4f5);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#9bf1ff, endColorstr=#4fd4f5);
-}
-
-.register-box i {
-    margin-top: 3%;
-}
-
-.register-box input {
-    letter-spacing: 0.04em;
-}*/
-

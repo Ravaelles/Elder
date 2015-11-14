@@ -15,15 +15,14 @@ var elixir = require('laravel-elixir');
 
 elixir(function (mix) {
 
-    /**
-     // Merge AdminLTE into one css file
-     mix.styles([
-     'admin-lte/bootstrap.css',
-     'admin-lte/admin-lte.css',
-     'admin-lte/skin-blue.css',
-     'admin-lte/square-blue.css'
-     ], 'public/css/admin-lte.css');
-     */
+    // Merge AdminLTE into one css file
+//    mix.styles([
+//     'admin-lte/bootstrap.css',
+//     'admin-lte/admin-lte.css',
+//     'admin-lte/skin-blue.css',
+//     'admin-lte/square-blue.css'
+//        'admin-lte/**'
+//    ], 'public/css/admin-lte.css');
 
     /** // Fonts
      mix.styles([

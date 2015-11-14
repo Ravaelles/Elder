@@ -153,7 +153,9 @@ return [
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Mitul\Generator\GeneratorServiceProvider::class,
+        Gaaarfild\LaravelNotifications\LaravelNotificationsServiceProvider::class,
     ],
 
     /*
@@ -207,7 +209,10 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Flash' => Laracasts\Flash\Flash::class
+        'HTML' => Collective\Html\HtmlFacade::class,
+        'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
+        'Flash' => Laracasts\Flash\Flash::class,
+        'Notifications' => Gaaarfild\LaravelNotifications\NotificationsFacade::class,
     ],
 
 ];

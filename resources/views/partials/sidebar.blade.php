@@ -6,30 +6,30 @@
 
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
+            <div class="pull-left image" style='margin-left: 20px;'>
+                <img src="{{ Auth::user()->critter_image }}" class="img-responsive" alt="User Image" />
             </div>
-            <div class="pull-left info">
+            <div class="pull-left info" style="padding-top: 10px;">
                 <p>{{ Auth::user()->name }}</p>
                 <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> Would fuck a bit</a>
             </div>
         </div>
 
         <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
+        <!--        <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
             </div>
-        </form>
-        <!-- /.search form -->
+                </form>-->
+<!-- /.search form -->
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
+            <li class="header">Command, oh, mighty Elder!</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
             <li><a href="#"><i class='fa fa-link'></i> <span>Another Link</span></a></li>

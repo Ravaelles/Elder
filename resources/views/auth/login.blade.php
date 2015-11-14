@@ -8,31 +8,46 @@ Get in!
 <body class="login-page">
 
     <!--<div class="login-box">-->
-    <div class="login-logo">
+    <div class="login-logo" style="opacity: 0; transition: all 1s;">
         <a href="{{ url('/home') }}"><img src="/img/logo/logo.png" /></a>
     </div><!-- /.login-logo -->
 
+    <div class="fallout-terminal-desk"></div>
+
     <div class="login-box fallout-terminal">
 
-        @if (count($errors) > 0)
-        <div class="alert alert-danger" id="validation-errors">
-            <strong>Whoops!</strong> There were problems with your input. Are you radiated perhaps?<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-
-        <script type="text/javascript">
-            setTimeout(function() {
-                $("#validation-errors").remove();
-            }, 4000);
-        </script>
-        @endif
-
         <!--<div class="login-box-body">-->
-        <div>
+        <div class="fallout-terminal-content" style="display: none">
+
+            @if (count($errors) > 0)
+            <div class="alert alert-danger" id="validation-errors">
+                <strong>Whoops!</strong> There were problems with your input. Are you radiated perhaps?<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                setTimeout(function() {
+                    $("#validation-errors").remove();
+                }, 5000);
+            </script>
+            @endif
+
+            <script type="text/javascript">
+                window.initQueue.push(function() {
+                    setTimeout(function() {
+                        $(".fallout-terminal-content").fadeIn(2000);
+                        $("#email").focus();
+                    }, 1000);
+
+                    setTimeout(function() {
+                        $(".login-logo").fadeTo("slow", 1);
+                    }, 2500);
+                });
+            </script>
             <p class="login-box-msg">
                 ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL<br />
                 ENTER PASSWORD NOW
@@ -49,7 +64,7 @@ Get in!
                         </div>-->
                 <div class="input-group">
                     <input type="email" class="form-control main-input" placeholder="Email" name="email"
-                           required="required" value="{{ old('email') }}" />
+                           required="required" value="{{ old('email') }}" id="email" />
                 </div>
                 <div class="input-group">
                     <input type="password" class="form-control main-input" placeholder="Password" name="password"
@@ -57,23 +72,24 @@ Get in!
                 </div>
                 <div class="row login-box-buttons">
                     <div class="col-xs-8">
-                        <div class="checkbox icheck">
+                        <div class="checkbox icheck login-big-font">
                             <label>
                                 <input type="checkbox"> Remember Me
                             </label>
                         </div>
                     </div><!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" id="submit" class="btn btn-primary btn-block btn-flat">
+                        <button type="submit" id="submit" class="btn btn-primary btn-block btn-flat login-big-font">
                             Sign In
                         </button>
                     </div><!-- /.col -->
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 forgot-password-wrapper">
-                        <a class="forgot-password" href="{{ url('password/email') }}">Forgot your password?</a> 
+                    <div class="col-xs-12 forgot-password-wrapper login-big-font">
+                        <!--                        <a class="forgot-password" href="{{ url('password/email') }}">Forgot your password?</a> 
+                                                <br />-->
                         <br />
-                        <a class="create-account-button" href="{{ url('auth/register') }}">Make account and start</a>
+                        <a class="create-account-button" href="{{ url('auth/register') }}">Create new account!</a>
                     </div>
                 </div>
             </form>
