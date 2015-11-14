@@ -1,0 +1,150 @@
+/* 
+    Created on : 2015-11-13, 17:38:03
+    Author     : Rav
+*/
+
+/*==== Layout =====================================================*/
+
+body {
+    min-width: 1064px;
+    overflow-x: auto;
+}
+
+.content-wrapper .content-header {
+    margin-left: 10px;
+}
+
+.content-wrapper .content {
+    margin-left: 5px;
+}
+
+.content-wrapper .box {
+    padding: 20px;
+}
+
+/*==== Global UI =====================================================*/
+
+/* Filtering */
+
+.filter-options {
+    width: 300px;
+    padding: 3px !important;
+}
+
+.filter-options button[data-widget="collapse"] {
+    float: right; 
+    width: 270px;
+    text-align: right;
+}
+
+/* Text editor */
+
+.text-editor-toolbar {
+}
+
+.ql-toolbar select {
+/*    margin-right: 10px;
+    background: url('nicer-bootstrap/modal/buttons.png') no-repeat;*/
+    display: inline-block;
+    margin-top: 5px;
+    background: url('nicer-bootstrap/modal/buttons.png') no-repeat;
+    color: white;
+    position: relative;
+    height: 33px;
+    font: 17px/33px 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    margin-right: 15px;
+    padding: 0 35px 0 40px;
+    text-decoration: none;
+    border: none;
+    transition: none;
+}
+
+.ql-toolbar option {
+    background-color: #469;
+}
+
+.text-editor-extra-desc {
+    margin-bottom: 20px;
+}
+
+.text-editor-content {
+    min-height: 124px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    background-color: white;
+    padding: 5px;
+    color: #555;
+    text-align: justify;
+    border: 1px solid #999;
+}
+
+/*==== Messages =====================================================*/
+
+.notifications {
+    max-width: 600px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    /*    margin-left: 20px;
+        margin-right: 20px;*/
+    font-size: 110%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.notifications .callout {
+    margin: 20px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.notifications .close {
+    color: white;
+    opacity: 0.7;
+}
+
+.validation-errors {
+    font-size: 110%;
+    font-weight: bold;
+    box-shadow: 0 0 5px red;
+}
+
+.validation-errors i {
+    padding-right: 5px;
+}
+
+/*==== Nice box =====================================================*/
+
+//$nice-box-green-color: 
+
+.nice-box {
+    /**width: 250px */
+    width: 100%;
+}
+
+.nice-box .small-box {
+}
+
+.nice-box .small-box {
+    
+    h3 {
+        margin-top: 5px;
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    p {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+}
+
+.nice-box-green {
+    
+    h3, p {
+        color: white;
+    }
+
+}

@@ -1,0 +1,51 @@
+/*==== Top bar (mainheader)) =====================================================*/
+
+.main-header .logo-lg {
+    margin-left: -10px;
+}
+
+.main-header .logo-lg img {
+    max-height: 36px;
+}
+
+.main-header .logo-mini img {
+    width: 42px;
+}
+
+.main-header .user-footer {
+    background-color: #4070a0 !important;
+}
+
+.main-header .user-header img {
+    width: 100px;
+}
+
+.main-header .user-header a:hover {
+    background-color: transparent;
+}
+
+.content-header .navigation-arrow {
+    font-size: 70%;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #999;
+}
+
+/*==== Sidebar =====================================================*/
+
+.sidebar-menu a span {
+    padding-left: 5px;
+}
+
+.sidebar-menu ul li {
+    padding-left: 8px;
+}
+
+.sidebar-menu ul li span {
+    padding-left: 3px;
+}
+
+.sidebar .user-panel span {
+    padding-left: 3px;
+    font-size: 95%;
+}

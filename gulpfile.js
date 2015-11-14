@@ -1,6 +1,8 @@
 var elixir = require('laravel-elixir');
 
+
 /*
+ //elixir.config.sourcemaps = false;
  |--------------------------------------------------------------------------
  | Elixir Asset Management
  |--------------------------------------------------------------------------
@@ -11,8 +13,25 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.less('app.less');
-    mix.less('admin-lte/AdminLTE.less');
-    mix.less('bootstrap/bootstrap.less');
+elixir(function (mix) {
+
+    /**
+     // Merge AdminLTE into one css file
+     mix.styles([
+     'admin-lte/bootstrap.css',
+     'admin-lte/admin-lte.css',
+     'admin-lte/skin-blue.css',
+     'admin-lte/square-blue.css'
+     ], 'public/css/admin-lte.css');
+     */
+
+    /** // Fonts
+     mix.styles([
+     '**'
+     ], 'public/css/fonts.css'); */
+
+    mix.sass([
+        'custom/**'
+    ], 'public/css/all.css');
+
 });

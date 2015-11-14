@@ -1,0 +1,350 @@
+/* 
+    Created on : 2015-09-28, 16:28:19
+    Author     : Rafal Poniatowski <ravaelles@gmail.com>
+*/
+
+/*==== Start of MODAL WINDOW =====================================================*/
+
+.modal {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.fade {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background: url('nicer-bootstrap/modal/body_bg.jpg') repeat-x left bottom #e5e5e5;
+    width: 100%;
+    border: 1px solid rgba(33, 33, 33, 0.4);
+    box-shadow: 10px 20px 40px 15px rgba(11, 11, 11, 0.3) !important;
+}
+
+.modal-header {
+    padding: 0;
+    letter-spacing: 0.3px;
+    color: #999;
+    border-bottom: none;
+}
+
+.modal-header .modal-title {
+    font: 24px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    background: url('nicer-bootstrap/modal/header_bg.jpg') repeat-x left bottom #f5f5f5;
+    padding: 18px 25px;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+    color: #888;
+}
+
+.modal-header .close {
+    margin: 15px;
+    font-size: 32px;
+}
+
+.modal-body {
+    padding-top: 25px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: none;
+    line-height: 1.4;
+    font-size: 16px;
+    font: 16px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    font-weight: normal;
+    color: #666;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.modal-footer {
+    border-top: none;
+    text-align: center;
+}
+
+.modal-content button {
+    display: inline-block;
+    margin-top: 5px;
+    background: url('nicer-bootstrap/modal/buttons.png') no-repeat;
+    color: white;
+    position: relative;
+    height: 33px;
+    font: 17px/33px 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    margin-right: 15px;
+    padding: 0 35px 0 40px;
+    text-decoration: none;
+    border: none;
+    transition: none;
+}
+
+.modal-content button:hover {
+    color: white;
+    outline: none;
+    border-radius: 3px;
+    background-size: 200% 200%;
+    transition: none;
+}
+
+.modal-content button:active,
+.modal-content button:focus {
+    outline: none !important;
+    color: white;
+}
+
+.modal-content .blue {
+    background-position: left top;
+    text-shadow: 1px 1px 0 #5889a2;
+}
+
+.modal-content .blue:hover {
+    background-position: left bottom;
+}
+
+.modal-content .gray {
+    background-position: right top;
+    text-shadow: 1px 1px 0 #707070;
+}
+
+.modal-content .gray:hover {
+    background-position: right bottom;
+}
+
+/*==== End of MODAL WINDOW =====================================================*/
+
+/*==== Start of TABLES =====================================================*/
+
+.table-header-borderless > thead > tr > th, 
+.table-header-borderless > tbody > tr > th, 
+.table-header-borderless > thead > tr > td {
+    border: 0px solid transparent;
+}
+
+.table-header-borderless > tbody > tr > td {
+    border: 1px solid #eee;
+}
+
+/*==== End of TABLES =====================================================*/
+
+/*==== Start of PAGINATION =====================================================*/
+
+ul.pagination {
+    list-style: none;
+}
+
+.pagination {
+    display: block;
+    overflow: hidden;
+    padding: 0 5px 5px 0;
+    margin: 0;
+}
+
+.pagination ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+.pagination a, .pagination span {
+    float: left;
+    color: #333;
+    font-size:14px;
+    line-height:24px;
+    font-weight: normal;
+    text-align: center;
+    border: 1px solid #AAA;
+    border-right: none;
+    min-width: 14px;
+    padding: 0 7px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.pagination > li > a {
+    padding: 6px 14px;
+    color: white;
+    border: 1px solid rgba(85, 162, 223, 0.4);
+    border-top-color: rgba(55, 100, 160, 0.02);
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dfecf9+0,9ec9ee+24,42a2f6+50,88bcea+79,add1f1+100 */
+    background: rgb(223,236,249); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(223,236,249,1) 0%, rgba(158,201,238,1) 24%, rgba(66,162,246,1) 50%, rgba(136,188,234,1) 79%, rgba(173,209,241,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(223,236,249,1)), color-stop(24%,rgba(158,201,238,1)), color-stop(50%,rgba(66,162,246,1)), color-stop(79%,rgba(136,188,234,1)), color-stop(100%,rgba(173,209,241,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(223,236,249,1) 0%,rgba(158,201,238,1) 24%,rgba(66,162,246,1) 50%,rgba(136,188,234,1) 79%,rgba(173,209,241,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(223,236,249,1) 0%,rgba(158,201,238,1) 24%,rgba(66,162,246,1) 50%,rgba(136,188,234,1) 79%,rgba(173,209,241,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(223,236,249,1) 0%,rgba(158,201,238,1) 24%,rgba(66,162,246,1) 50%,rgba(136,188,234,1) 79%,rgba(173,209,241,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(223,236,249,1) 0%,rgba(158,201,238,1) 24%,rgba(66,162,246,1) 50%,rgba(136,188,234,1) 79%,rgba(173,209,241,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dfecf9', endColorstr='#add1f1',GradientType=0 ); /* IE6-9 */
+}
+
+/*.pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {*/
+.pagination > li > a:focus {
+    color: white;
+    /*background: linear-gradient(to bottom,  #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%);  W3C */
+    background: linear-gradient(to bottom,  #def 0%,#49a 24%,#04a 50%,#36a 79%,#59a 100%); /* W3C */
+}
+
+.pagination span:hover,
+.pagination a:hover {
+    color: white !important;
+    text-decoration: none;
+    border: 1px solid rgba(120, 195, 255, 0.5) !important;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e7f2fd+0,b6dafa+24,78befc+50,a6d2f8+79,c0dffa+100 */
+    background: rgb(231,242,253); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(231,242,253,1) 0%, rgba(182,218,250,1) 24%, rgba(120,190,252,1) 50%, rgba(166,210,248,1) 79%, rgba(192,223,250,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(231,242,253,1)), color-stop(24%,rgba(182,218,250,1)), color-stop(50%,rgba(120,190,252,1)), color-stop(79%,rgba(166,210,248,1)), color-stop(100%,rgba(192,223,250,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(231,242,253,1) 0%,rgba(182,218,250,1) 24%,rgba(120,190,252,1) 50%,rgba(166,210,248,1) 79%,rgba(192,223,250,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(231,242,253,1) 0%,rgba(182,218,250,1) 24%,rgba(120,190,252,1) 50%,rgba(166,210,248,1) 79%,rgba(192,223,250,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(231,242,253,1) 0%,rgba(182,218,250,1) 24%,rgba(120,190,252,1) 50%,rgba(166,210,248,1) 79%,rgba(192,223,250,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(231,242,253,1) 0%,rgba(182,218,250,1) 24%,rgba(120,190,252,1) 50%,rgba(166,210,248,1) 79%,rgba(192,223,250,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7f2fd', endColorstr='#c0dffa',GradientType=0 ); /* IE6-9 */
+}
+
+.pagination span:active,
+.pagination a:active {
+    color: white !important;
+}
+
+.pagination .prev {
+    border-radius: 3px 0 0 3px;
+}
+
+.pagination > li > a[rel="next"] {
+    border-bottom-right-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+}
+
+.pagination .current {
+    cursor: default;
+}
+
+.pagination .disabled a,
+.pagination .disabled span {
+    color: rgb(119, 119, 119) !important;
+    border: 1px solid #aaa !important;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#aeaeae+0,b4b4b4+12,bababa+25,acacac+39,a0a0a0+50,8c8c8c+51,949494+60,a0a0a0+76,999999+91,959595+100 */
+    background: rgb(174,174,174); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(174,174,174,1) 0%, rgba(180,180,180,1) 12%, rgba(186,186,186,1) 25%, rgba(172,172,172,1) 39%, rgba(160,160,160,1) 50%, rgba(140,140,140,1) 51%, rgba(148,148,148,1) 60%, rgba(160,160,160,1) 76%, rgba(153,153,153,1) 91%, rgba(149,149,149,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(174,174,174,1)), color-stop(12%,rgba(180,180,180,1)), color-stop(25%,rgba(186,186,186,1)), color-stop(39%,rgba(172,172,172,1)), color-stop(50%,rgba(160,160,160,1)), color-stop(51%,rgba(140,140,140,1)), color-stop(60%,rgba(148,148,148,1)), color-stop(76%,rgba(160,160,160,1)), color-stop(91%,rgba(153,153,153,1)), color-stop(100%,rgba(149,149,149,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(174,174,174,1) 0%,rgba(180,180,180,1) 12%,rgba(186,186,186,1) 25%,rgba(172,172,172,1) 39%,rgba(160,160,160,1) 50%,rgba(140,140,140,1) 51%,rgba(148,148,148,1) 60%,rgba(160,160,160,1) 76%,rgba(153,153,153,1) 91%,rgba(149,149,149,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(174,174,174,1) 0%,rgba(180,180,180,1) 12%,rgba(186,186,186,1) 25%,rgba(172,172,172,1) 39%,rgba(160,160,160,1) 50%,rgba(140,140,140,1) 51%,rgba(148,148,148,1) 60%,rgba(160,160,160,1) 76%,rgba(153,153,153,1) 91%,rgba(149,149,149,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(174,174,174,1) 0%,rgba(180,180,180,1) 12%,rgba(186,186,186,1) 25%,rgba(172,172,172,1) 39%,rgba(160,160,160,1) 50%,rgba(140,140,140,1) 51%,rgba(148,148,148,1) 60%,rgba(160,160,160,1) 76%,rgba(153,153,153,1) 91%,rgba(149,149,149,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(174,174,174,1) 0%,rgba(180,180,180,1) 12%,rgba(186,186,186,1) 25%,rgba(172,172,172,1) 39%,rgba(160,160,160,1) 50%,rgba(140,140,140,1) 51%,rgba(148,148,148,1) 60%,rgba(160,160,160,1) 76%,rgba(153,153,153,1) 91%,rgba(149,149,149,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aeaeae', endColorstr='#959595',GradientType=0 ); /* IE6-9 */
+}
+
+.pagination .disabled a:hover,
+.pagination .disabled span:hover {
+    border: 1px solid #aaa;
+}
+
+.pagination .active {
+    background: linear-gradient(top, #4488cc 0%,#efefef 100%);
+}
+
+.pagination .ellipse {
+    background: #EAEAEA;
+    padding: 0 10px;
+    cursor: default;
+}
+
+.pagination > .active > a, 
+.pagination > .active > span, 
+.pagination > .active > a:hover, 
+.pagination > .active > span:hover, 
+.pagination > .active > a:focus, 
+.pagination > .active > span:focus {
+    z-index: 2;
+    color: #ffffff;
+    cursor: default;
+    border: 1px solid rgba(85, 162, 223, 0.5) !important;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d0e4f7+0,73b1e7+24,0a77d5+50,539fe1+79,87bcea+100;Blue+Pipe+%231 */
+    background: #d0e4f7; /* Old browsers */
+    background: -moz-linear-gradient(top,  #d0e4f7 0%, #73b1e7 24%, #0a77d5 50%, #539fe1 79%, #87bcea 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d0e4f7), color-stop(24%,#73b1e7), color-stop(50%,#0a77d5), color-stop(79%,#539fe1), color-stop(100%,#87bcea)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0e4f7', endColorstr='#87bcea',GradientType=0 ); /* IE6-9 */
+}
+
+.pagination span:focus, 
+.pagination span:active,
+.pagination a:focus, 
+.pagination a:active {
+    cursor: wait !important;
+}
+
+/*==== End of PAGINATION =====================================================*/
+
+/*==== Start of TOOLTIP =====================================================*/
+
+.tooltip {
+    background-color: transparent;
+    text-shadow: none;
+}
+
+.tooltip.in {
+    opacity: 1 !important;
+}
+
+.tooltip-inner {
+    padding: 6px;
+    background-color: #00a0f0;
+    border: 2px dashed #0cf;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    border-bottom-color: #0af;
+}
+.tooltip.right .tooltip-arrow {
+    border-right-color: #0af;
+}
+
+.tooltip-inner ul {
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+.tooltip-inner ul li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.tooltip-inner ul li b {
+    font-size: 105%;
+}
+
+/*==== End of TOOLTIP =====================================================*/
+
+/*==== Start of UI SPECIAL ELEMENTS =====================================================*/
+
+/* Nice yellow question mark that can be used to display tooltips next to some element */
+.question-mark {
+    min-width: 16px;
+    text-align: center;
+    color: #ee3;
+    text-shadow: 0 0 4px black;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 18px;
+    cursor: help;
+}
+
+/*==== End of UI SPECIAL ELEMENTS =====================================================*/

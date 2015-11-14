@@ -1,0 +1,50 @@
+$terminal-font-color: #30da77;
+
+.fallout-terminal {
+    overflow: hidden;
+    width: 600px;
+    height: 500px;
+    background: url(/img/terminal/terminal.png) no-repeat center center;
+    background-size: 100% 100%;
+    padding: 60px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: VT323;
+    font-size: 30px;
+    color: $terminal-font-color;
+}
+
+/**.fallout-terminal {
+    background: url(/img/terminal/frame_corner_top_left.png) no-repeat top left, 
+        url(/img/terminal/frame_corner_bottom_left.png) no-repeat bottom left, 
+        url(/img/terminal/frame_corner_bottom_right.png) no-repeat bottom right, 
+        url(/img/terminal/frame_corner_top_right.png) no-repeat top right, 
+        url(/img/terminal/frame_top.png) repeat-x top, 
+        url(/img/terminal/frame_left.png) repeat-y left, 
+        url(/img/terminal/frame_right.png) repeat-y right, 
+        url(/img/terminal/frame_bottom.png) repeat-x bottom, 
+        url(/img/terminal/terminal_background.png) no-repeat center center fixed;
+    background: url(/img/terminal/frame_corner_top_left.png) no-repeat top left, 
+        url(/img/terminal/frame_corner_bottom_left.png) no-repeat bottom left, 
+        url(/img/terminal/frame_corner_bottom_right.png) no-repeat bottom right, 
+        url(/img/terminal/frame_corner_top_right.png) no-repeat top right, 
+        url(/img/terminal/frame_top.png) repeat-x top, 
+        url(/img/terminal/frame_left.png) repeat-y left, 
+        url(/img/terminal/frame_right.png) repeat-y right, 
+        url(/img/terminal/frame_bottom.png) repeat-x bottom,
+        url(/img/terminal/terminal_background.png) no-repeat center center fixed;
+    background-size: auto, auto, auto, auto, auto, auto, auto, auto,cover;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: VT323;
+    color: $terminal-font-color;
+    font-size: 30px;
+    overflow: hidden;
+    padding: 20px;
+    margin-top: 5px;
+    border-radius: 50px;
+    box-shadow: 20px 30px 20px 10px rgba(0, 0, 0, 0.7);
+}*/
