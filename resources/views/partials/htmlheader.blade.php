@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title> FElder: @yield('htmlheader_title', 'Wasteland belongs to you') </title>
+    <title> FElder @yield('htmlheader_title', 'Wasteland belongs to you') </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link rel="shortcut icon" href="/img/favicon.ico" />
 

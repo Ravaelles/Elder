@@ -3,6 +3,12 @@
     Author     : Rav
 */
 
+/*==== Theme modifications =====================================================*/
+
+.skin-green .main-header .navbar {
+    background-color: darken(#00a65a, 10%);
+}
+
 /*==== Layout =====================================================*/
 
 body {
@@ -13,12 +19,11 @@ body {
 .content-wrapper {
 
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#439343+0,367836+17,2b5f2b+33,004a00+67,002e00+83,001400+100 */
-background: #439343; /* Old browsers */
-background: -moz-linear-gradient(-45deg,  #439343 0%, #367836 17%, #2b5f2b 33%, #004a00 67%, #002e00 83%, #001400 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(-45deg,  #439343 0%,#367836 17%,#2b5f2b 33%,#004a00 67%,#002e00 83%,#001400 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(135deg,  #439343 0%,#367836 17%,#2b5f2b 33%,#004a00 67%,#002e00 83%,#001400 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#439343', endColorstr='#001400',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+    background: #439343; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #439343 0%, #367836 17%, #2b5f2b 33%, #004a00 67%, #002e00 83%, #001400 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #439343 0%,#367836 17%,#2b5f2b 33%,#004a00 67%,#002e00 83%,#001400 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #439343 0%,#367836 17%,#2b5f2b 33%,#004a00 67%,#002e00 83%,#001400 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#439343', endColorstr='#001400',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     
     .content-header {
         
@@ -188,4 +193,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#439343', end
         color: white;
     }
 
+}
+
+/*==== Emoticons =====================================================*/
+
+.emoticon {
+    height: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
 }

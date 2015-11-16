@@ -60,7 +60,7 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
      *
      * @var string
      */
-    protected $dateFormat = 'd M Y';
+    protected $dateFormat = 'Y-m-d';
 
     // =========================================================================
     // Custom functions
@@ -122,8 +122,8 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
     // =========================================================================
     // Relations
 
-    public function agreements() {
-        return $this->hasMany(\App\Agreement::class);
+    public function persons() {
+        return $this->hasMany(\App\Person::class);
     }
 
 }

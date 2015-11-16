@@ -156,6 +156,9 @@ return [
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Mitul\Generator\GeneratorServiceProvider::class,
         Gaaarfild\LaravelNotifications\LaravelNotificationsServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
     ],
 
     /*

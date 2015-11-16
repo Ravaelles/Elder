@@ -5,3 +5,6 @@ Homestead.json
 .env
 /nbproject/private/
 nbproject/
+public/img/critter/
+UPLOAD+PUBLIC.bat
+UPLOAD.bat

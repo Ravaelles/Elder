@@ -5,6 +5,15 @@ Get in!
 @endsection
 
 @section('content')
+<audio controls autoplay style="display: none">
+    <source src="/sound/music/main-theme-40.mp3" type="audio/mpeg">
+</audio>
+<audio controls autoplay style="display: none">
+    <source src="/sound/terminal/comp-turn-on.mp3" type="audio/mpeg">
+</audio>
+<div style="display: none" id="audio"></div>
+
+
 <body class="login-page">
 
     <!--<div class="login-box">-->
@@ -119,6 +128,28 @@ $(function () {
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',
         increaseArea: '20%' // optional
+    });
+    
+    function typeSound() {
+        soundIndex = Math.floor((Math.random() * 5) + 1);
+        $("#audio").html('<audio controls autoplay style="display: none" id="audio"><source src="/sound/terminal/type' + soundIndex + '.mp3" type="audio/mpeg"></audio>');
+    }
+    
+//    $("input").keypress(function() {
+//        console.log('ok');
+//        typeSound();
+//    });
+    $('input').keyup(function(e) {
+        typeSound();
+    });
+    $("label").click(function() {
+        typeSound();
+    });
+    $("button").click(function() {
+        typeSound();
+    });
+    $(".create-account-button").click(function() {
+        typeSound();
     });
 });
 

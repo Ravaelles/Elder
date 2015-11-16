@@ -58,21 +58,38 @@ Route::get('wasteland', [
 ]);
 
 // =========================================================================
-// Village
-
-Route::get('village', [
-    'middleware' => 'auth',
-    'uses' => 'HomeController@index',
-    'as' => 'village'
-]);
-
-// =========================================================================
 // Home
 
 Route::get('home', [
     'middleware' => 'auth',
-    'uses' => 'HomeController@index',
+    'uses' => 'PersonController@index',
     'as' => 'home'
+]);
+
+Route::get('php', [
+    'uses' => 'HomeController@php',
+    'as' => 'php'
+]);
+
+// =========================================================================
+// Person
+
+Route::get('village', [
+    'middleware' => 'auth',
+    'uses' => 'PersonController@index',
+    'as' => 'village'
+]);
+
+Route::get('person/show/{id}', [
+    'middleware' => 'auth',
+    'uses' => 'PersonController@show',
+    'as' => 'person.show'
+]);
+
+Route::get('person/destroy/{id}', [
+    'middleware' => 'auth',
+    'uses' => 'PersonController@destroy',
+    'as' => 'person.destroy'
 ]);
 
 // =========================================================================
@@ -126,6 +143,15 @@ Route::get('user/show/{id}/{name}', [
     'middleware' => 'auth',
     'uses' => 'UserController@show',
     'as' => 'user.show'
+]);
+
+// =========================================================================
+// Admin utils
+
+Route::get('logs', [
+    'middleware' => 'auth',
+    'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index',
+    'as' => 'logs'
 ]);
 
 // =========================================================================

@@ -20,4 +20,8 @@ class HomeController extends Controller
         return view('home')->with(compact('test'));
     }
 
+    public function php() {
+        phpinfo();
+    }
+
 }

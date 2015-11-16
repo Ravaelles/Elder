@@ -8,6 +8,8 @@
 
 <body class="login-page">
 
+    <div style="display: none" id="audio"></div>
+
     <!--<div class="login-box">-->
     <div class="login-logo">
         <a href="{{ url('/home') }}"><img src="/img/logo/logo.png" /></a>
@@ -104,6 +106,29 @@
                         checkboxClass: 'icheckbox_square-blue',
                         radioClass: 'iradio_square-blue',
                         increaseArea: '20%' // optional
+                    });
+                });
+                
+                window.initQueue.push(function() {
+                    function typeSound() {
+                        soundIndex = Math.floor((Math.random() * 5) + 1);
+                        $("#audio").html('<audio controls autoplay style="display: none" id="audio"><source src="/sound/terminal/type' + soundIndex + '.mp3" type="audio/mpeg"></audio>');
+                    }
+
+                    $("input").keypress(function() {
+                        typeSound();
+                    });
+                    $("label").click(function() {
+                        typeSound();
+                    });
+                    $("button").click(function() {
+                        typeSound();
+                    });
+                    $(".create-account-button").click(function() {
+                        typeSound();
+                    });
+                    $(".forgot-password").click(function() {
+                        typeSound();
                     });
                 });
 
