@@ -8,7 +8,7 @@
     {!! BootForm::text('email', 'Email', null, ['disabled' => 'disabled']) !!}
 </div><!-- /.box-body -->
 <div class="box-footer">
-    <a href="/home" class="btn btn-default">Go back</a>
+    <a href="/home" class="btn btn-green-dark">Go back</a>
 </div><!-- /.box-footer -->
 
 {!! BootForm::close() !!}

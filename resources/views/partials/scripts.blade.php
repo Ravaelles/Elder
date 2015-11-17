@@ -6,8 +6,17 @@
 <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
+<!-- Project specific scripts -->
+<script src="{{ asset('/js/project.js') }}" type="text/javascript"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-      Both of these plugins are recommended to enhance the
-      user experience. Slimscroll is required when using the
-      fixed layout. -->
+<script>
+    //<!-- Pass CSRF token to every ajax request -->
+    $.ajaxSetup({
+       headers: { 'X-CSRF-Token': $('meta[name=_token]').attr('content')}
+    });
+
+    //<!-- Process all listeners to be run after window is loaded -->
+    $.each(window.initQueue, function (i, fn) {
+        fn();
+    });
+</script>

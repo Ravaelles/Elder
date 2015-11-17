@@ -125,8 +125,12 @@ $terminal-dark-font-color: #06220f;
         text-decoration: underline;
     }
     
-    .create-account-button:hover {
-        text-decoration: underline;
+    .create-account-button {
+        margin-left: 20px;
+        
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     i {

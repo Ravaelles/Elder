@@ -154,6 +154,11 @@ Route::get('logs', [
     'as' => 'logs'
 ]);
 
+//Route::get('php', [
+//    'middleware' => 'auth',
+//    'uses' => 'HomeController@php',
+//    'as' => 'php'
+//]);
 // =========================================================================
 // Main page
 

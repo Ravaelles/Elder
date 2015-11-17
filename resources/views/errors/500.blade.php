@@ -22,7 +22,7 @@ if (!empty($message)) {
 }
 ?>
 
-<div class="error-page" style="width: 800px; background-color: rgba(230, 230, 230, 0.5); padding: 10px;">
+<div class="error-page" style="width: 800px; background-color: rgba(230, 230, 230, 0.1); padding: 10px;">
     <h2 class="headline text-red">{{ $errorCode or "500" }}</h2>
     <div class="error-content">
         <h3><i class="fa fa-warning text-red"></i> Oops! Something went wrong.</h3>

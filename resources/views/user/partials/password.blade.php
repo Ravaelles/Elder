@@ -12,8 +12,8 @@
     {!! BootForm::password('password_confirmation', 'Repeat password', ['autocomplete' => 'false']) !!}
 </div><!-- /.box-body -->
 <div class="box-footer">
-    <a href="/home" class="btn btn-default">Cancel</a>
-    <button type="submit" class="btn btn-info pull-right">Change password</button>
+    <a href="/home" class="btn btn-green-dark">Cancel</a>
+    <button type="submit" class="btn btn-green pull-right">Change password</button>
 </div><!-- /.box-footer -->
 
 {!! BootForm::close() !!}
