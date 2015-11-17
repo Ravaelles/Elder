@@ -11,3 +11,6 @@ UPLOAD.bat
 UPLOAD-PUBLIC.bat
 UPLOAD-ZIP.bat
 UPLOAD/
+Fallout.zip
+unzip.sh
+UPLOAD*.bat

@@ -23,7 +23,8 @@
         "fzaninotto/faker": "^1.5",
         "kyslik/column-sortable": "~3.0.0",
         "rap2hpoutre/laravel-log-viewer": "^0.4.3",
-        "acacha/admin-lte-template-laravel": "1.*"
+        "acacha/admin-lte-template-laravel": "1.*",
+		"cloudinary/cloudinary_php": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
