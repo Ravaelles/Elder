@@ -1,0 +1,28 @@
+$border-color: darken(#0f0, 10%);
+
+.table-fallout  {
+    
+    margin-top: 20px;
+
+    td, th {
+        border: 1px solid $border-color !important;
+        border-top: 1px solid $border-color;
+    }
+    
+    th {
+        color: white;
+    }
+    
+}
+
+.table-borderless-header {
+    
+    th {
+        border: none !important;
+    }
+    
+}
+
+.borderless-cell {
+    border: none !important;
+}

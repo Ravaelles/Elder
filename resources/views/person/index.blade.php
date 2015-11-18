@@ -12,46 +12,53 @@
 <div class="row">
     <div class="col-md-12">
         <div class="box box-fallout">
-            {!! \App\Helpers\Image::gifFor(\App\Critter::WARRIOR_M, \App\Critter::ACTION_WALK, \App\Critter::DIR_E) !!}
-            {!! \App\Helpers\Image::gifFor(\App\Critter::WARRIOR_M, \App\Critter::ACTION_HAND_COMBAT, \App\Critter::DIR_W) !!}
 
             @if (count($persons) > 0)
-            <table class="table table-header-borderless agreements">
+            <table class="table table-borderless-header table-fallout persons">
                 <thead>
-                <th>Name</th>
-                <th>Strength</th>
-                <th>Perception</th>
                 <th></th>
+                <th>Name</th>
+                <th class="th-special-stat">S</th>
+                <th class="th-special-stat">P</th>
+                <th class="th-special-stat">E</th>
+                <th class="th-special-stat">C</th>
+                <th class="th-special-stat">I</th>
+                <th class="th-special-stat">A</th>
+                <th class="th-special-stat">L</th>
             </thead>
 
                 <tbody>
                     @foreach ($persons as $person)
                     <tr class="">
-                        <td class="text-center" style="width: 120px;">
-                            <a class="btn btn-sm btn-custom" href="{{ route('person.show', ['name' => str_slug($person->client_company), 'id' => $person->id]) }}">Show</a>
+                        <td class="text-center borderless-cell" style="width: 120px;">
+                            <a class="btn btn-sm btn-green" href="{{ route('person.show', ['name' => str_slug($person->client_company), 'id' => $person->id]) }}">Show</a>
                         </td>
-                        <td>
+                        <td class="" style="">
+                            {{ $person->image }}
+                        </td>
+                        <td class="">
+                            {{ $person->name }}
+                        </td>
+                        <td class="td-special-stat">
                             {{ $person->SPECIAL->strength }}
                         </td>
-                        <td>
+                        <td class="td-special-stat">
                             {{ $person->SPECIAL->perception }}
                         </td>
-                        <td>
+                        <td class="td-special-stat">
                             {{ $person->SPECIAL->endurance }}
                         </td>
-                        <td>
+                        <td class="td-special-stat">
                             {{ $person->SPECIAL->charisma }}
                         </td>
-                        <td>
+                        <td class="td-special-stat">
                             {{ $person->SPECIAL->intelligence }}
                         </td>
-                        <td>
+                        <td class="td-special-stat">
                             {{ $person->SPECIAL->agility }}
                         </td>
-                        <td>
+                        <td class="td-special-stat">
                             {{ $person->SPECIAL->luck }}
-                        </td>
-                        <td>
                         </td>
                     </tr>
                     @endforeach

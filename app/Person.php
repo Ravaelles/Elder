@@ -35,6 +35,13 @@ class Person extends Eloquent {
     }
 
     // =========================================================================
+    // Accessors & Mutators
+
+    public function getImageAttribute($value) {
+        
+    }
+
+    // =========================================================================
     // Relations
 
     public function user() {

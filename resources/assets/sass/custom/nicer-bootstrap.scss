@@ -132,7 +132,7 @@
 }
 
 .table-header-borderless > tbody > tr > td {
-    border: 1px solid #eee;
+    border: 1px solid; //#eee
 }
 
 /*==== End of TABLES =====================================================*/

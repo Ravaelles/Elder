@@ -13,10 +13,15 @@ if (!Auth::check()) {
                 Please <a href='{{ \URL::previous() }}'>go back</a>
                 <br />
                 or <a href='{{ url('/home') }}'>return to home page</a>
-            </p>
-        </div>
-    </div><!-- /.error-page -->
-    <?php
+                    </p>
+            </div>
+        <p>
+            <center>
+                <img src="http://thestarryeye.typepad.com/.a/6a00d8341cdd0d53ef014e86b9b561970d-800wi" class="" />
+            </center>
+        </p>
+        </div><!-- /.error-page -->
+        <?php
     die;
 }
 ?>

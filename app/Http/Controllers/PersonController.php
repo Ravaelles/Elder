@@ -17,15 +17,19 @@ class PersonController extends Controller {
      */
     public function index()
     {
+//        \App\Helpers\Helper::timeStart();
+        $persons = Person::truncate();
         $persons = Person::our()->get();
 
         if ($persons->isEmpty()) {
-            for ($i = 0; $i < 15; $i++) {
+            for ($i = 0; $i < 4; $i++) {
                 Person::generateAndSave();
             }
             $persons = Person::our()->get();
         }
 
+//        \App\Helpers\Helper::timeEnd();
+//        exit;
         return view('person.index')->with(compact('persons'));
     }
 

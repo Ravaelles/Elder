@@ -6,8 +6,11 @@ Get in!
 
 @section('content')
 <audio controls autoplay style="display: none">
-    <!--<source src="/sound/music/main-theme-40.mp3" type="audio/mpeg">-->
+    @if (env("APP_ENV") === 'local')
+    <source src="/sound/music/main-theme-40.mp3" type="audio/mpeg">
+    @else
     <source src="http://picosong.com/cdn/77710e4fb076aecf7f5ba7a17ee61b69.mp3" type="audio/mpeg">
+    @endif
 </audio>
 <audio controls autoplay style="display: none">
     <source src="/sound/terminal/comp-turn-on.mp3" type="audio/mpeg">

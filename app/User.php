@@ -16,7 +16,8 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
 
     use Authenticatable,
         Authorizable,
-        CanResetPassword;
+        CanResetPassword,
+        \Kyslik\ColumnSortable\Sortable;
 
     const ROLE_ADMIN = "Admin";
     const ROLE_USER = "User";

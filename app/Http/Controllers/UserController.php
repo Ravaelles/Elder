@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
+use Gate;
 
 class UserController extends Controller {
 
@@ -18,12 +19,12 @@ class UserController extends Controller {
      */
     public function index()
     {
-        $user = new User;
-        $user->name = "Rafał";
-        $user->save();
+        if (Gate::denies('is-admin')) {
+            abort(500, "Must have admin privilige for this action.");
+        }
 
-        $users = User::get();
-        return $users;
+        $users = User::sortable(['created_at' => 'desc'])->paginate(15);
+        return view('user.index')->with(compact('users'));
     }
 
     /**
