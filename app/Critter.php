@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Critter extends Eloquent {
 
     // Actions
-    const ACTION_BASE = "a";
     const ACTION_IDLE = "aa";
     const ACTION_WALK = "ab";
     const ACTION_CLIMB_UP = "ae";
@@ -20,6 +19,7 @@ class Critter extends Eloquent {
     const ACTION_KICK = "ar";
     const ACTION_THROW = "as";
     const ACTION_RUN = "at";
+    const ACTION_RANDOM_STATIC = "RANDOM_STATIC";
     // =========================================================================
     // Direction
     const DIR_W = "_w";
@@ -30,7 +30,11 @@ class Critter extends Eloquent {
     const DIR_SE = "_se";
     // =========================================================================
     // People
-    const WARRIOR_M = "nmwarr";
-    const WARRIOR_F = "nfwarr";
+    const WARRIOR_MALE = "warr";
+    const WARRIOR_FEMALE = "prim";
+    // =========================================================================
+    // Sex
+    const MALE = "nm";
+    const FEMALE = "nf";
 
 }

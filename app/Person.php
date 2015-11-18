@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Helpers\Image as Image;
+use App\Critter as Critter;
 use App\SPECIAL;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,7 +40,10 @@ class Person extends Eloquent {
     // Accessors & Mutators
 
     public function getImageAttribute($value) {
-        
+        return Image::create()->warrior()->actionRandomStatic();
+//        return Image::gifFor(
+//                Critter::WARRIOR, Critter::ACTION_RANDOM_STATIC, Critter::DIR_SE
+//        );
     }
 
     // =========================================================================

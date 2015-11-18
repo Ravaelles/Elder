@@ -17,6 +17,7 @@
             <table class="table table-borderless-header table-fallout persons">
                 <thead>
                 <th></th>
+                <th></th>
                 <th>Name</th>
                 <th class="th-special-stat">S</th>
                 <th class="th-special-stat">P</th>
@@ -30,13 +31,13 @@
                 <tbody>
                     @foreach ($persons as $person)
                     <tr class="">
-                        <td class="text-center borderless-cell" style="width: 120px;">
+                        <td class="centered borderless-cell" style="width: 120px;">
                             <a class="btn btn-sm btn-green" href="{{ route('person.show', ['name' => str_slug($person->client_company), 'id' => $person->id]) }}">Show</a>
                         </td>
-                        <td class="" style="">
-                            {{ $person->image }}
+                        <td class="left borderless-cell" style="width: 50px;">
+                            {!! $person->image !!}
                         </td>
-                        <td class="">
+                        <td class="left">
                             {{ $person->name }}
                         </td>
                         <td class="td-special-stat">
