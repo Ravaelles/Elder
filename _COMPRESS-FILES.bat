@@ -1,0 +1,3 @@
+:: Compresses specified directories/files
+IF DEFINED DIRECTORIES_TO_ZIP ECHO Compressing "%DIRECTORIES_TO_ZIP%"... && ECHO.
+IF DEFINED DIRECTORIES_TO_ZIP jar -cMf %PROJECT%%ZIPFILE% %DIRECTORIES_TO_ZIP%

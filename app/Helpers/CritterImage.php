@@ -21,11 +21,35 @@ class CritterImage {
         return $this;
     }
 
+    public function warriorSpear() {
+        $this->sex = Critter::MALE;
+        $this->critter = Critter::WARRIOR_MALE;
+        $this->action = Critter::SPEAR_IDLE;
+        return $this;
+    }
+
+    public function warriorFemaleSpear() {
+        $this->sex = Critter::FEMALE;
+        $this->critter = Critter::WARRIOR_FEMALE;
+        $this->action = Critter::SPEAR_IDLE;
+        return $this;
+    }
+
     // =========================================================================
     // ACTION
 
     public function actionRandomStatic() {
         $this->action = Critter::ACTION_RANDOM_STATIC;
+        return $this;
+    }
+
+    public function actionRandomSpear() {
+        $this->action = Critter::SPEAR_RANDOM;
+        return $this;
+    }
+
+    public function action($action) {
+        $this->action = $action;
         return $this;
     }
 

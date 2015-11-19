@@ -56,22 +56,22 @@ $terminal-dark-font-color: #06220f;
 }
 
 .login-box {
-    
+
     .login-box-msg {
         font-size: 20px;
     }
-    
+
     .login-box-buttons {
         width: 460px;
         margin: 20px auto;
         margin-bottom: -5px;
     }
-    
+
     input {
         background: transparent;
         color: $terminal-font-color;
     }
-    
+
     .main-input {
         width: 100%;
         margin-top: 5px;
@@ -81,10 +81,10 @@ $terminal-dark-font-color: #06220f;
         letter-spacing: .3em;
         font-size: 18px;
     }
-    
+
     input:focus, 
-    input:active, 
-    input:hover {
+        input:active, 
+        input:hover {
         border-color: $terminal-font-color;
         outline: none;
     }
@@ -93,7 +93,7 @@ $terminal-dark-font-color: #06220f;
         width: 90%;
         margin: 0 auto;
     }
-        
+
     .input-group i {
         width: 12px;
     }
@@ -120,14 +120,14 @@ $terminal-dark-font-color: #06220f;
         border-color: lighten($terminal-font-color, 15%);
         background-color: transparentize($terminal-font-color, 0.5);
     }
-    
+
     .forgot-password:hover {
         text-decoration: underline;
     }
-    
+
     .create-account-button {
         margin-left: 20px;
-        
+
         &:hover {
             text-decoration: underline;
         }
@@ -142,11 +142,11 @@ $terminal-dark-font-color: #06220f;
         margin-bottom: -10px;
         margin-left: 23px;
     }
-    
+
     .forgot-password-wrapper a {
         color: $terminal-font-color !important;
     }
-    
+
     .alert {
         margin: 20px;
         margin-top: 15px;
@@ -159,7 +159,7 @@ $terminal-dark-font-color: #06220f;
         /**color: $terminal-dark-font-color !important;*/
         color: white;
     }
-    
+
     .login-big-font {
         font-size: 20px !important;
     }

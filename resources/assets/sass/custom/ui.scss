@@ -1,0 +1,88 @@
+/* 
+    Created on : 2015-11-19, 02:20:47
+    Author     : Rav
+*/
+
+/*==== Theme modifications =====================================================*/
+
+.skin-green .main-header .navbar {
+    background-color: darken(#00a65a, 10%);
+}
+
+/*==== Box =====================================================*/
+
+.box-fallout {
+    color: lime;
+    border: 2px solid lime;
+    border-radius: 15px;
+    background-color: rgba(50,50,50,0.9);
+}
+
+.box-shadow {
+    box-shadow: 15px 25px 15px rgba(0, 0, 0, 0.3);
+}
+
+/*==== Global UI =====================================================*/
+
+/* Filtering */
+
+.filter-options {
+    width: 300px;
+    padding: 3px !important;
+}
+
+.filter-options button[data-widget="collapse"] {
+    float: right; 
+    width: 270px;
+    text-align: right;
+}
+
+/* Text editor */
+
+.text-editor-toolbar {
+}
+
+.ql-toolbar select {
+/*    margin-right: 10px;
+    background: url('nicer-bootstrap/modal/buttons.png') no-repeat;*/
+    display: inline-block;
+    margin-top: 5px;
+    background: url('nicer-bootstrap/modal/buttons.png') no-repeat;
+    color: white;
+    position: relative;
+    height: 33px;
+    font: 17px/33px 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    margin-right: 15px;
+    padding: 0 35px 0 40px;
+    text-decoration: none;
+    border: none;
+    transition: none;
+}
+
+.ql-toolbar option {
+    background-color: #469;
+}
+
+.text-editor-extra-desc {
+    margin-bottom: 20px;
+}
+
+.text-editor-content {
+    min-height: 124px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    background-color: white;
+    padding: 5px;
+    color: #555;
+    text-align: justify;
+    border: 1px solid #999;
+}
+
+/*==== Emoticons =====================================================*/
+
+.emoticon {
+    height: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+

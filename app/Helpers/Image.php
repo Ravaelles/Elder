@@ -33,6 +33,17 @@ class Image {
                 Critter::ACTION_USE,
             ];
             $action = $randomStaticActions[mt_rand(0, count($randomStaticActions) - 1)];
+        } else if ($action === Critter::SPEAR_RANDOM) {
+            $randomStaticActions = [
+                Critter::SPEAR_DODGE,
+                Critter::SPEAR_EQUIP,
+                Critter::SPEAR_IDLE,
+                Critter::SPEAR_WALK,
+                Critter::SPEAR_UNEQUIP,
+                Critter::SPEAR_THRUST,
+                Critter::SPEAR_THROW,
+            ];
+            $action = $randomStaticActions[mt_rand(0, count($randomStaticActions) - 1)];
         }
 
         // DIRECTION

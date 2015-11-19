@@ -1,5 +1,19 @@
+$trait-good: #292;
+
 .td-special-stat,
 .th-special-stat {
     width: 50px;
     text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.person-trait-best {
+    color: lighten($trait-good, 20%);
+    font-weight: bold;
+}
+
+.person-trait-good {
+    color: $trait-good;
+    font-weight: bold;
 }

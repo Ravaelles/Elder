@@ -11,7 +11,7 @@
 @section('main-content')
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-fallout">
+        <div class="box box-fallout box-shadow">
 
             @if (count($persons) > 0)
             <table class="table table-borderless-header table-fallout persons">
@@ -19,6 +19,7 @@
                 <th></th>
                 <th></th>
                 <th>Name</th>
+                <th>Description</th>
                 <th class="th-special-stat">S</th>
                 <th class="th-special-stat">P</th>
                 <th class="th-special-stat">E</th>
@@ -40,26 +41,29 @@
                         <td class="left">
                             {{ $person->name }}
                         </td>
-                        <td class="td-special-stat">
-                            {{ $person->SPECIAL->strength }}
+                        <td class="left">
+                            {!! $person->descriptionAmong($persons) !!}
                         </td>
                         <td class="td-special-stat">
-                            {{ $person->SPECIAL->perception }}
+                            {!! $person->SPECIAL->S !!}
                         </td>
                         <td class="td-special-stat">
-                            {{ $person->SPECIAL->endurance }}
+                            {!! $person->SPECIAL->P !!}
                         </td>
                         <td class="td-special-stat">
-                            {{ $person->SPECIAL->charisma }}
+                            {!! $person->SPECIAL->E !!}
                         </td>
                         <td class="td-special-stat">
-                            {{ $person->SPECIAL->intelligence }}
+                            {!! $person->SPECIAL->C !!}
                         </td>
                         <td class="td-special-stat">
-                            {{ $person->SPECIAL->agility }}
+                            {!! $person->SPECIAL->I !!}
                         </td>
                         <td class="td-special-stat">
-                            {{ $person->SPECIAL->luck }}
+                            {!! $person->SPECIAL->A !!}
+                        </td>
+                        <td class="td-special-stat">
+                            {!! $person->SPECIAL->L !!}
                         </td>
                     </tr>
                     @endforeach

@@ -21,6 +21,16 @@ class Critter extends Eloquent {
     const ACTION_RUN = "at";
     const ACTION_RANDOM_STATIC = "RANDOM_STATIC";
     // =========================================================================
+    // Spear
+    const SPEAR_IDLE = "ga";
+    const SPEAR_WALK = "gb";
+    const SPEAR_EQUIP = "gc";
+    const SPEAR_UNEQUIP = "gd";
+    const SPEAR_DODGE = "ge";
+    const SPEAR_THRUST = "gf";
+    const SPEAR_THROW = "gm";
+    const SPEAR_RANDOM = "RANDOM_SPEAR";
+    // =========================================================================
     // Direction
     const DIR_W = "_w";
     const DIR_E = "_e";
