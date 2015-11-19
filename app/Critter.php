@@ -32,12 +32,13 @@ class Critter extends Eloquent {
     const SPEAR_RANDOM = "RANDOM_SPEAR";
     // =========================================================================
     // Direction
-    const DIR_W = "_w";
-    const DIR_E = "_e";
-    const DIR_NW = "_nw";
-    const DIR_NE = "_ne";
-    const DIR_SW = "_sw";
-    const DIR_SE = "_se";
+    const DIR_W = "w";
+    const DIR_E = "e";
+    const DIR_NW = "nw";
+    const DIR_NE = "ne";
+    const DIR_SW = "sw";
+    const DIR_SE = "se";
+    const DIR_ALL = [self::DIR_W, self::DIR_E, self::DIR_NW, self::DIR_NE, self::DIR_SW, self::DIR_SE];
     // =========================================================================
     // People
     const WARRIOR_MALE = "warr";

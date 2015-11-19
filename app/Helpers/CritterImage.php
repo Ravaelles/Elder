@@ -6,6 +6,10 @@ use App\Critter;
 
 class CritterImage {
     
+    public static function create() {
+        return new CritterImage;
+    }
+
     // =========================================================================
     // CRITTER
 

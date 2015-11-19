@@ -88,6 +88,14 @@ function getCookie(cookieName) {
     return "";
 }
 
+function rand(min, max) {
+    return Math.floor((Math.random() * max) + min);
+}
+
+function randArray(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
 // =========================================================
 // ===== SPECIFIC ==========================================
 // =========================================================

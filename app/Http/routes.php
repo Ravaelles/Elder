@@ -53,7 +53,7 @@ Route::get('itemTypes/{id}/delete', [
 
 Route::get('wasteland', [
     'middleware' => 'auth',
-    'uses' => 'HomeController@index',
+    'uses' => 'WorldController@map',
     'as' => 'wasteland'
 ]);
 

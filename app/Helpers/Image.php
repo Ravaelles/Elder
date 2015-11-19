@@ -56,8 +56,8 @@ class Image {
             $sex = Critter::MALE;
         }
 
-        $imgName = self::CRITTERS_DIR . $sex . $critter . $action . $direction;
-        return "<img src='$imgName.gif' class='' />";
+        $imgName = self::CRITTERS_DIR . $sex . $critter . $action . "_" . $direction;
+        return "<img src='$imgName.gif' />";
     }
 
 }
