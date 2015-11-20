@@ -43,6 +43,10 @@ class Critter extends Eloquent {
     // People
     const WARRIOR_MALE = "warr";
     const WARRIOR_FEMALE = "prim";
+    const SEX_GIRL = "/img/special/sex-girl.png";
+    // =========================================================================
+    // Nature
+    const TREE = "";
     // =========================================================================
     // Sex
     const MALE = "nm";

@@ -5,7 +5,7 @@ namespace App\Helpers;
 use App\Critter;
 
 class CritterImage {
-    
+
     public static function create() {
         return new CritterImage;
     }

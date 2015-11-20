@@ -96,6 +96,10 @@ function randArray(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function randElem(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
 // =========================================================
 // ===== SPECIFIC ==========================================
 // =========================================================
