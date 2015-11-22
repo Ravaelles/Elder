@@ -12,38 +12,19 @@ class Image {
     // =========================================================================
     // Auxiliary factory
 
-    public static function create() {
-        return new CritterImage;
-    }
-
+//    public static function create($id) {
+//        $critterImage = new CritterImage;
+//        $critterImage->id = $id;
+//        return $critterImage;
+//    }
     // =========================================================================
     // Main functionality
 
-    public static function gifFor($critter, $action = null, $direction = null, $sex = null) {
+    public static function gifFor($id, $critter, $action = null, $direction = null, $sex = null) {
 
         // ACTION
         if ($action == null) {
             $action = Critter::ACTION_IDLE;
-        } else if ($action === Critter::ACTION_RANDOM_STATIC) {
-            $randomStaticActions = [
-                Critter::ACTION_DODGE,
-                Critter::ACTION_HAND_COMBAT,
-                Critter::ACTION_IDLE,
-                Critter::ACTION_PICK_UP,
-                Critter::ACTION_USE,
-            ];
-            $action = $randomStaticActions[mt_rand(0, count($randomStaticActions) - 1)];
-        } else if ($action === Critter::SPEAR_RANDOM) {
-            $randomStaticActions = [
-                Critter::SPEAR_DODGE,
-                Critter::SPEAR_EQUIP,
-                Critter::SPEAR_IDLE,
-                Critter::SPEAR_WALK,
-                Critter::SPEAR_UNEQUIP,
-                Critter::SPEAR_THRUST,
-                Critter::SPEAR_THROW,
-            ];
-            $action = $randomStaticActions[mt_rand(0, count($randomStaticActions) - 1)];
         }
 
         // DIRECTION
@@ -56,8 +37,12 @@ class Image {
             $sex = Critter::MALE;
         }
 
+        // =========================================================================
+
+        $idString = !empty($id) ? "id='unit-id-$id'" : "";
         $imgName = self::CRITTERS_DIR . $sex . $critter . $action . "_" . $direction;
-        return "<img src='$imgName.gif' />";
+
+        return "<img $idString src='$imgName.gif' />";
     }
 
 }

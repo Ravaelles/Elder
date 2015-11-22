@@ -16,7 +16,7 @@ class WorldController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function map() {
-        return view('world.map');
+        return view('engine.map');
     }
 
 }

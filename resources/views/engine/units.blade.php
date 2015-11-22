@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
             function addGrass() {
-            for (i = 0; i < 15; i++) {
+            for (i = 0; i < 50; i++) {
             addGrass();
             }
             }
@@ -30,26 +30,30 @@
     // =========================================================================
 
     var _firstFreeId = 1;
-            function addUnit(critter, repaint) {
-            var ID = _firstFreeId++;
-                    // Create gif based on img string
-                    var element = critter;
-                    element = addAttr(element, "id", "unit-" + ID);
-                    element = addAttr(element, "class", "engine-unit");
-                    element = addAttrForce(element, "loop=infinite");
-                    canvas().append(element);
-                    // Set unit position
-                    var x = rand(0, mapWidth);
-                    var y = rand(0, mapHeight);
-                    var unit = unitPosition(ID, x, y);
-                    unit.css("z-index", y);
-                    // Repeat gif animation from time to time
-                    if (repaint) {
-            setTimeout(repaintUnitGif, 4000, ID);
-            }
+    function addUnit(critter, isAlive) {
+        var ID = _firstFreeId++;
+        // Create gif based on img string
+                            var element = critter;
+                            element = addAttr(element, "id", "unit-" + ID);
+                                                var elemClass = "engine-unit";
+                                                if (isAlive) {
+                                        elemClass += " unit-alive";
+                                        }
+                            element = addAttr(element, "class", elemClass);
+//                    element = addAttrForce(element, "loop=infinite");
+                            canvas().append(element);
+                            // Set unit position
+                            var x = rand(0, mapWidth);
+                            var y = rand(0, mapHeight);
+                            var unit = unitPosition(ID, x, y);
+                            unit.css("z-index", y);
+                            // Repeat gif animation from time to time
+                            if (isAlive) {
+                    setTimeout(repaintUnitGif, 4000, ID);
+                    }
 
-            return ID;
-            }
+        return ID;
+    }
 
     function repaintUnitGif(ID) {
 
@@ -68,7 +72,6 @@
         var tree = randElem([
             {!! App\Helpers\Nature::treeImages() !!}
         ]);
-        console.log(tree);
         addUnit(tree);
     }
 
@@ -115,6 +118,6 @@
 
     // WARRIOR
     @foreach (App\Critter::DIR_ALL as $dir)
-            var warrior_{{ $dir }} = "{!! App\Helpers\CritterImage::create()->warrior()->dir($dir) !!}";
+            var warrior_{{ $dir }} = "{!! App\Helpers\CritterImage::create('')->warrior()->dir($dir) !!}";
             @endforeach
 </script>

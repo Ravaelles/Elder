@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Helpers\Image as Image;
+use App\Helpers\CritterImage as CritterImage;
 use App\Critter as Critter;
 use App\SPECIAL;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +21,8 @@ class Person extends Eloquent {
 
         $person = new Person;
         $person->user = \Auth::user()->id;
+        $person->sex = rand(0, 64) <= 31 ? "M" : "F";
+        $person->name = Helpers\Names::randomName($person->sex);
         $person->save();
         $person->SPECIAL()->save($special);
 
@@ -29,6 +31,27 @@ class Person extends Eloquent {
 
     // =========================================================================
     // Custom functions
+
+    public function unitJson() {
+        $critterImage = $this->critterImage();
+
+        $critterImage->action = Critter::SPEAR_EQUIP;
+
+        $json = json_encode([
+            "id" => $critterImage->id,
+            "sex" => $critterImage->sex,
+            "action" => $critterImage->action,
+            "dir" => $critterImage->dir,
+            "critter" => $critterImage->critter,
+        ]);
+        return $json;
+    }
+
+    public function critterImage() {
+        return CritterImage::create($this->id)->warriorSpear()->sex($this->sex);
+    }
+
+    // =========================================================================
 
     public function descriptionAmong($persons) {
         $bestTraits = [];
@@ -68,7 +91,8 @@ class Person extends Eloquent {
             if (count($bestTraits) + count($goodTraits) > 3) {
                 $goodTraits = [];
             }
-            return implode(", ", $bestTraits) . (count($goodTraits) ? ", " : "") . implode(", ", $goodTraits);
+            return implode(", ", $bestTraits) . (count($goodTraits) && count($bestTraits) ? ", " : "")
+                . implode(", ", $goodTraits);
         } else {
             return "Balanced personality";
         }
@@ -80,6 +104,14 @@ class Person extends Eloquent {
         } else if ($numOfBetterPeople <= $numOfPeople / 4) {
             $goodTraits[] = "<span class='person-trait-good'>$stringIfGood</span>";
         }
+    }
+
+    public function critterImageId() {
+        return "unit-id-" . $this->id;
+    }
+
+    public function critterImageWrapper() {
+        return "<div class='critter-image-wrapper' id='" . $this->critterImageId() . "'></div>";
     }
 
     // =========================================================================
@@ -94,10 +126,17 @@ class Person extends Eloquent {
 
     public function getImageAttribute($value) {
 //        return Image::create()->warrior()->action(Critter::SPEAR_IDLE);
-        return Image::create()->warriorFemaleSpear()->actionRandomSpear();
+        return $this->critterImage()->action(Critter::SPEAR_EQUIP);
 //        return Image::gifFor(
 //                Critter::WARRIOR, Critter::ACTION_RANDOM_STATIC, Critter::DIR_SE
 //        );
+    }
+
+    public function getJobAttribute($value) {
+        if (empty($value)) {
+            return "";
+        }
+        return $value;
     }
 
     public function getSAttribute($value) {

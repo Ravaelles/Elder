@@ -65,6 +65,33 @@
     padding-left: 8px;
 }
 
+.sidebar-menu li {
+    a {
+        height: 100%;
+        padding-left: 10px;
+        vertical-align: middle;
+        
+        i {
+            font-size: 170%;
+            vertical-align: middle;
+            text-align: left;
+        }
+
+        div:nth-child(1) {
+            display: inline-block;
+            width: 35px;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        div:nth-child(2) {
+            padding-left: 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}
+
 .sidebar-menu ul li span {
     padding-left: 3px;
 }

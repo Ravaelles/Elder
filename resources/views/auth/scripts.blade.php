@@ -10,7 +10,7 @@
     $.ajaxSetup({
        headers: { 'X-CSRF-Token': $('meta[name=_token]').attr('content')}
     });
-
+    
     //<!-- Process all listeners to be run after window is loaded -->
     $.each(window.initQueue, function (i, fn) {
         fn();

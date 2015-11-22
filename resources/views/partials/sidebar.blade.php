@@ -12,7 +12,7 @@
             <div class="pull-left info" style="padding-top: 10px;">
                 <p>{{ Auth::user()->name }}</p>
                 <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Would fuck a bit</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> Village Elder</a>
             </div>
         </div>
 
@@ -29,17 +29,27 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
+
             <li class="header">Command, oh, mighty Elder!</li>
-            <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Another Link</span></a></li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+
+            <li class="active"><a href="/village">
+                    <div><i class='ion-bonfire'></i></div> <div>Village</div>
+                </a></li>
+
+            <li><a href="/world">
+                    <div><i class='ion-planet'></i></div> <div>World</div>
+                </a></li>
+
+<!--<li><a href="/world"><i class='fa fa-'></i> <span>World</span></a></li>-->
+
+<!--            <li><a href="/village"><i class='fa fa-link'></i> <span>Village</span></a></li>-->
+            <!--            <li class="treeview">
+                            <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="#">Link in level 2</a></li>
                     <li><a href="#">Link in level 2</a></li>
                 </ul>
-            </li>
+                        </li>-->
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

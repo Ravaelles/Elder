@@ -7,7 +7,7 @@ class Nature {
     const GRASS_DIR = "/img/nature/grass/";
     const NUM_OF_GRASS_IMAGES = 1;
     const TREE_DIR = "/img/nature/tree/";
-    const NUM_OF_TREE_IMAGES = 4;
+    const NUM_OF_TREE_IMAGES = 6;
 
     // =========================================================================
 

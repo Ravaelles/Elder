@@ -12,10 +12,31 @@
 /*==== Box =====================================================*/
 
 .box-fallout {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
     color: lime;
     border: 2px solid lime;
     border-radius: 15px;
     background-color: rgba(50,50,50,0.9);
+    font-size: 12px;
+
+    .box-header {
+        width: 110%;
+        margin-top: -20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-bottom: 15px;
+        padding: 5px 5px 4px 20px;
+        border-radius: 12px 12px 0 0;
+        font-size: 16px;
+        color: #0b0;
+        background-color: rgba(5,255,5,.15);
+        font-weight: bold;
+        border-bottom: 2px solid grey;
+        letter-spacing: 0.04em;
+    }
 }
 
 .box-shadow {

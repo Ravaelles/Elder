@@ -49,12 +49,12 @@ Route::get('itemTypes/{id}/delete', [
 ]);
 
 // =========================================================================
-// Wasteland
+// World
 
-Route::get('wasteland', [
+Route::get('world', [
     'middleware' => 'auth',
     'uses' => 'WorldController@map',
-    'as' => 'wasteland'
+    'as' => 'world'
 ]);
 
 // =========================================================================
@@ -66,17 +66,12 @@ Route::get('home', [
     'as' => 'home'
 ]);
 
-Route::get('php', [
-    'uses' => 'HomeController@php',
-    'as' => 'php'
-]);
-
 // =========================================================================
 // Person
 
 Route::get('village', [
     'middleware' => 'auth',
-    'uses' => 'PersonController@index',
+    'uses' => 'VillageController@index',
     'as' => 'village'
 ]);
 

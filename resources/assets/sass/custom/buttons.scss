@@ -5,6 +5,10 @@
 
 /*==== Button global settings =====================================================*/
 
+.btn:focus {
+    outline: none !important;
+}
+
 .btn-custom {
     background-color: hsl(201, 100%, 38%) !important;
     background-repeat: repeat-x;

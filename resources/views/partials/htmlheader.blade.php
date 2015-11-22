@@ -12,9 +12,8 @@
     <!-- Fallout terminal font -->
     <link href="http://fonts.googleapis.com/css?family=VT323" rel="stylesheet" type="text/css" />
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!--<link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">-->
+    <!-- Ion Icons -->
+    <link rel="stylesheet" type="text/css" media="screen" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     <!-- --- CSS ---------------- -->
 

@@ -1,19 +1,59 @@
 $trait-good: #292;
 
-.td-special-stat,
-.th-special-stat {
-    width: 50px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-}
+.persons {
+    
+    .column-buttons {
+        text-align: left !important;
+        
+        a {
+            opacity: 0.7;
+            letter-spacing: 0.05em;
 
-.person-trait-best {
-    color: lighten($trait-good, 20%);
-    font-weight: bold;
-}
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    
+    .column-name {
+        width: 70px;
+        font-weight: bold;
+        letter-spacing: 0.06em;
+    }
+    
+    .column-image {
+        padding: 0px;
+    }
+    
+    // ===========
 
-.person-trait-good {
-    color: $trait-good;
-    font-weight: bold;
+    .td-special-stat,
+    .th-special-stat {
+        width: 50px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .person-trait-best {
+        color: lighten($trait-good, 20%);
+    }
+
+    .person-trait-good {
+        color: $trait-good;
+    }
+
+    .critter-image-wrapper {
+        width: 120px;
+        height: 90px;
+        max-width: 120px;
+        max-height: 90px;
+        vertical-align: middle;
+        
+        img {
+            margin-top: -20px;
+            vertical-align: middle;
+        }
+    }
+
 }

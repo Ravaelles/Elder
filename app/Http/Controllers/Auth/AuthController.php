@@ -30,6 +30,12 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+//        http://fallout.dev/home?autologin
+        $user = User::where('email', 'test@example.com')->get();
+        if (!empty($user[0])) {
+            \Auth::login($user[0]);
+        }
+
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 

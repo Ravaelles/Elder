@@ -294,46 +294,6 @@ ul.pagination {
 
 /*==== End of PAGINATION =====================================================*/
 
-/*==== Start of TOOLTIP =====================================================*/
-
-.tooltip {
-    background-color: transparent;
-    text-shadow: none;
-}
-
-.tooltip.in {
-    opacity: 1 !important;
-}
-
-.tooltip-inner {
-    padding: 6px;
-    background-color: #00a0f0;
-    border: 2px dashed #0cf;
-}
-
-.tooltip.bottom .tooltip-arrow {
-    border-bottom-color: #0af;
-}
-.tooltip.right .tooltip-arrow {
-    border-right-color: #0af;
-}
-
-.tooltip-inner ul {
-    padding-left: 15px;
-    padding-top: 5px;
-}
-
-.tooltip-inner ul li {
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-.tooltip-inner ul li b {
-    font-size: 105%;
-}
-
-/*==== End of TOOLTIP =====================================================*/
-
 /*==== Start of UI SPECIAL ELEMENTS =====================================================*/
 
 /* Nice yellow question mark that can be used to display tooltips next to some element */

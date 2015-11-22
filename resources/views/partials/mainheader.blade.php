@@ -147,6 +147,7 @@ if (!Auth::check()) {
                         <!-- The user image in the navbar-->
                         <!--<img src="{ { Auth::user()->critter_image } }" class="user-image" alt="That's you"/>-->
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <i class="fa fa-user"></i> <span></span>
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
@@ -186,10 +187,10 @@ if (!Auth::check()) {
                     </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->
-                <li>
-                    <a href="/settings" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    <!--<a href="/user/settings"><i class="fa fa-gears"></i></a>-->
-                </li>
+                <!--                <li>
+                                    <a href="/settings" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <a href="/user/settings"><i class="fa fa-gears"></i></a>
+                                </li>-->
             </ul>
         </div>
     </nav>
