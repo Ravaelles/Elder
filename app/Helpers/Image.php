@@ -39,7 +39,7 @@ class Image {
 
         // =========================================================================
 
-        $idString = !empty($id) ? "id='unit-id-$id'" : "";
+        $idString = !empty($id) ? "id='unit-img-$id'" : "";
         $imgName = self::CRITTERS_DIR . $sex . $critter . $action . "_" . $direction;
 
         return "<img $idString src='$imgName.gif' />";

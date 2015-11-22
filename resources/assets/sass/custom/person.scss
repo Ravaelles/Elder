@@ -23,6 +23,9 @@ $trait-good: #292;
     
     .column-image {
         padding: 0px;
+        
+        img {
+        }
     }
     
     // ===========
@@ -49,9 +52,9 @@ $trait-good: #292;
         max-width: 120px;
         max-height: 90px;
         vertical-align: middle;
+        //vertical-align: bottom;
         
         img {
-            margin-top: -20px;
             vertical-align: middle;
         }
     }

@@ -13,7 +13,8 @@
     <link href="http://fonts.googleapis.com/css?family=VT323" rel="stylesheet" type="text/css" />
 
     <!-- Ion Icons -->
-    <link rel="stylesheet" type="text/css" media="screen" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
+    <link href="{{ asset('/css/ionicons.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- --- CSS ---------------- -->
 

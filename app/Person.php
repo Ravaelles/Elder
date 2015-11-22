@@ -106,12 +106,8 @@ class Person extends Eloquent {
         }
     }
 
-    public function critterImageId() {
-        return "unit-id-" . $this->id;
-    }
-
     public function critterImageWrapper() {
-        return "<div class='critter-image-wrapper' id='" . $this->critterImageId() . "'></div>";
+        return "<div class='critter-image-wrapper' id='unit-wrapper-" . $this->id . "'></div>";
     }
 
     // =========================================================================

@@ -1,6 +1,10 @@
 <div class="popover-title">Choose job for this person</div>
 
 <div class="" style="width: 300px;">
+    <div style="margin-bottom: 20px; text-align: center;">
+        Choose job:
+    </div>
+
     <div class="container-fluid">
         <div class="row">
 

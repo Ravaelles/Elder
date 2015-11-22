@@ -37,7 +37,10 @@
                     <script type="text/javascript">
                         window.initQueue.push(function () {
                             var unit = new Unit('{!! $person->unitJson() !!}');
-                            unit.dir(DIR_RANDOM_SOUTH());
+//                            unit.dir(DIR_RANDOM_SOUTH());
+                            unit.dir(DIR_RANDOM_NORTH());
+//                            unit.dir(DIR_SE);
+                            unit.action(ACTION_IDLE);
 //                                    unit.nextAnimate(
 //                                            {action: SPEAR_UNEQUIP, dir: DIR_RANDOM_SOUTH()}, 
 //                                            rand(1500, 2000)
@@ -46,13 +49,26 @@
 //                                            {action: SPEAR_EQUIP, dir: DIR_RANDOM_SOUTH()}, 
 //                                            rand(500, 1500)
 //                                    );
-                            for (i = 0; i < 10; i++) {
-                                unit.nextAnimate(
-                                        {action: SPEAR_EQUIP, dir: DIR_RANDOM_SOUTH()},
-                                800
-                                        )
-                            }
-                            unit.display();
+                            unit.display(true);
+                            
+                            // Turn around
+                            unit.nextAnimate(
+                                {dir: DIR_SE},
+                                1100 + rand(1, 500)
+                            );
+//                            
+//                            // Kneel to your master
+                            unit.nextAnimate(
+                                {action: ACTION_PICK_UP},
+                                200 + rand(1, 500)
+                            );
+                    
+                            // Equip spear
+                            unit.nextAnimate(
+                                {action: SPEAR_EQUIP},
+                                rand(1, 200)
+//                                rand(400, 500)
+                            );
                         });
                     </script>
                 </td>

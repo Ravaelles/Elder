@@ -62,7 +62,7 @@ Route::get('world', [
 
 Route::get('home', [
     'middleware' => 'auth',
-    'uses' => 'PersonController@index',
+    'uses' => 'VillageController@index',
     'as' => 'home'
 ]);
 
