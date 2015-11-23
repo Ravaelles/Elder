@@ -24,7 +24,7 @@
         "kyslik/column-sortable": "~3.0.0",
         "rap2hpoutre/laravel-log-viewer": "^0.4.3",
         "acacha/admin-lte-template-laravel": "1.*",
-		"cloudinary/cloudinary_php": "dev-master"
+        "ravaelles/filterable": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

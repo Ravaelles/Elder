@@ -67,8 +67,13 @@
                             unit.nextAnimate(
                                 {action: SPEAR_EQUIP},
                                 rand(1, 200)
-//                                rand(400, 500)
                             );
+                    
+                            // Idle spear
+//                            unit.nextAnimate(
+//                                {action: SPEAR_IDLE},
+//                                rand(600, 1000)
+//                            );
                         });
                     </script>
                 </td>

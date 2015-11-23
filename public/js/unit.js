@@ -32,7 +32,13 @@ function Unit(json) {
     // Constructor
 
     this.constructor = function (json) {
-        var parameters = JSON.parse(json);
+        var parameters;
+        if (typeof json === 'string') {
+            parameters = JSON.parse(json);
+        }
+        else {
+            alert('oh')
+        }
         this.id = parameters['id'];
         this.sex = parameters['sex'];
         this._action = parameters['action'];
@@ -83,10 +89,10 @@ function Unit(json) {
                 // Assign current image dimensions to the image element
                 var imageSelector = $("#unit-img-" + this.unitId);
                 imageSelector.attr({"imgwidth": width, "imgheight": height});
-                imageSelector.click(function () {
-                    console.log(this);
-                    alert(imageSelector.attr("imgwidth") + "/" + imageSelector.attr("imgheight"))
-                });
+//                imageSelector.click(function () {
+//                    console.log(this);
+//                    alert(imageSelector.attr("imgwidth") + "/" + imageSelector.attr("imgheight"))
+//                });
 
                 // =========================================================================
                 // Add extra STYLE to wrapping div if needed
