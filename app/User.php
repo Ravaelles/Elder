@@ -112,7 +112,7 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
         }
     }
 
-    public function getCritterImageAttribute($value) {
+    public function getUnitImageAttribute($value) {
         if (empty($value)) {
             return self::DEFAULT_IMAGE;
         } else {

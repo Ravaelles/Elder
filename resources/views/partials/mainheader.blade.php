@@ -145,7 +145,7 @@ if (!Auth::check()) {
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <!--<img src="{ { Auth::user()->critter_image } }" class="user-image" alt="That's you"/>-->
+                        <!--<img src="{ { Auth::user()->unit_image } }" class="user-image" alt="That's you"/>-->
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <i class="fa fa-user"></i> <span></span>
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
@@ -154,7 +154,7 @@ if (!Auth::check()) {
                         <!-- The user image in the menu -->
                         <li class="user-header">
                             <a href="/user/settings">
-                                <img src="{{ Auth::user()->critter_image }}" class="user-image-mainmenu" alt="User Image" />
+                                <img src="{{ Auth::user()->unit_image }}" class="user-image-mainmenu" alt="User Image" />
                             </a>
                             <p>
                                 {{ Auth::user()->name }}

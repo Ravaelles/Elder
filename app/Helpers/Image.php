@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use App\Critter as Critter;
-use App\Helpers\CritterImage as CritterImage;
+use App\Unit as Unit;
+use App\Helpers\UnitImage as UnitImage;
 
 class Image {
 
@@ -13,34 +13,34 @@ class Image {
     // Auxiliary factory
 
 //    public static function create($id) {
-//        $critterImage = new CritterImage;
-//        $critterImage->id = $id;
-//        return $critterImage;
+//        $unitImage = new UnitImage;
+//        $unitImage->id = $id;
+//        return $unitImage;
 //    }
     // =========================================================================
     // Main functionality
 
-    public static function gifFor($id, $critter, $action = null, $direction = null, $sex = null) {
+    public static function gifFor($id, $type, $action = null, $direction = null, $sex = null) {
 
         // ACTION
         if ($action == null) {
-            $action = Critter::ACTION_IDLE;
+            $action = Unit::ACTION_IDLE;
         }
 
         // DIRECTION
         if ($direction == null) {
-            $direction = Critter::DIR_SE;
+            $direction = Unit::DIR_SE;
         }
 
         // SEX
         if ($sex == null) {
-            $sex = Critter::MALE;
+            $sex = Unit::MALE;
         }
 
         // =========================================================================
 
         $idString = !empty($id) ? "id='unit-img-$id'" : "";
-        $imgName = self::CRITTERS_DIR . $sex . $critter . $action . "_" . $direction;
+        $imgName = self::CRITTERS_DIR . $sex . $type . $action . "_" . $direction;
 
         return "<img $idString src='$imgName.gif' />";
     }

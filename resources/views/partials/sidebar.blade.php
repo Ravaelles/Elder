@@ -7,7 +7,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image" style='margin-left: 20px;'>
-                <img src="{{ Auth::user()->critter_image }}" class="img-responsive" alt="User Image" />
+                <img src="{{ Auth::user()->unit_image }}" class="img-responsive" alt="User Image" />
             </div>
             <div class="pull-left info" style="padding-top: 10px;">
                 <p>{{ Auth::user()->name }}</p>

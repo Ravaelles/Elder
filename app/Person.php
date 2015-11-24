@@ -2,17 +2,16 @@
 
 namespace App;
 
-use App\Helpers\CritterImage as CritterImage;
-use App\Critter as Critter;
+use App\Helpers\UnitImage as UnitImage;
+use App\Unit as Unit;
 use App\SPECIAL;
-use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
 
 class Person extends Eloquent {
 
-    protected $sortable = [
-        'strength'
-    ];
-
+//    protected $sortable = [
+//        'strength'
+//    ];
     // =========================================================================
     // Generator
 
@@ -33,24 +32,41 @@ class Person extends Eloquent {
     // Custom functions
 
     public function unitJson() {
-        $critterImage = $this->critterImage();
 
-        $critterImage->action = Critter::SPEAR_EQUIP;
+        // SEX
+        $sex = $this->sex ? $this->sex : "M";
+
+        // UNIT TYPE
+        $type = $sex === "F" ? Unit::WARRIOR_FEMALE : Unit::WARRIOR_MALE;
+
+        // =========================================================================
 
         $json = json_encode([
-            "id" => $critterImage->id,
-            "sex" => $critterImage->sex,
-            "action" => $critterImage->action,
-            "dir" => $critterImage->dir,
-            "critter" => $critterImage->critter,
+            "id" => $this->id,
+            "sex" => $sex,
+            "action" => null,
+            "dir" => null,
+            "type" => $type,
         ]);
         return $json;
+
+//        $unitImage = $this->getUnitImageParams();
+//
+//        $unitImage->action = Unit::SPEAR_EQUIP;
+//
+//        $json = json_encode([
+//            "id" => $unitImage->id,
+//            "sex" => $unitImage->sex,
+//            "action" => $unitImage->action,
+//            "dir" => $unitImage->dir,
+//            "type" => $unitImage->type,
+//        ]);
+//        return $json;
     }
 
-    public function critterImage() {
-        return CritterImage::create($this->id)->warriorSpear()->sex($this->sex);
-    }
-
+//    public function getUnitImageParams() {
+//        return UnitImage::create($this->id)->warriorSpear()->sex($this->sex);
+//    }
     // =========================================================================
 
     public function descriptionAmong($persons) {
@@ -106,8 +122,8 @@ class Person extends Eloquent {
         }
     }
 
-    public function critterImageWrapper() {
-        return "<div class='critter-image-wrapper' id='unit-wrapper-" . $this->id . "'></div>";
+    public function unitImageWrapper() {
+        return "<div class='unit-image-wrapper' id='unit-wrapper-" . $this->id . "'></div>";
     }
 
     // =========================================================================
@@ -121,10 +137,10 @@ class Person extends Eloquent {
     // Accessors & Mutators
 
     public function getImageAttribute($value) {
-//        return Image::create()->warrior()->action(Critter::SPEAR_IDLE);
-        return $this->critterImage()->action(Critter::SPEAR_EQUIP);
+//        return Image::create()->warrior()->action(Unit::SPEAR_IDLE);
+        return $this->getUnitImageParams()->action(Unit::SPEAR_EQUIP);
 //        return Image::gifFor(
-//                Critter::WARRIOR, Critter::ACTION_RANDOM_STATIC, Critter::DIR_SE
+//                Unit::WARRIOR, Unit::ACTION_RANDOM_STATIC, Unit::DIR_SE
 //        );
     }
 

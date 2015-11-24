@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Critter extends Eloquent {
+class Unit extends Eloquent {
 
     // Actions
     const ACTION_IDLE = "aa";

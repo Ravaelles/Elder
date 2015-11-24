@@ -19,11 +19,6 @@
             @foreach ($persons as $person)
             <tr class="">
                 <td class="centered borderless-cell column-buttons" style="width: 120px;">
-                    <!--                            <a class="btn btn-sm btn-green" href="{{ route('person.show', ['name' => str_slug($person->client_company), 'id' => $person->id]) }}">Show</a>-->
-                    <!--                            <a type="button" class="btn btn-green-dark" @include('ui/popover', [
-                                                   'title' => 'Choose job for this person',
-                       'message' => @include("person.missions")
-                                                   ])>{!! empty($person->job) ? "In village" : $person->job !!}</a>-->
                     <a type="button" class="btn btn-green-dark" 
                        tabindex="0" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right"
                        data-content='@include("person.missions")'>{!! empty($person->job) ? "In village" : $person->job !!}</a>
@@ -32,7 +27,7 @@
                     {{ $person->name }}
                 </td>
                 <td class="left borderless-cell column-image">
-                    {!! $person->critterImageWrapper() !!}
+                    {!! $person->unitImageWrapper() !!}
 
                     <script type="text/javascript">
                         window.initQueue.push(function () {

@@ -7,8 +7,11 @@
 //            addTrees();
 //            addWarriors();
 
-        var unit = new CreateUnit(UNIT_TREE);
-        console.log(unit);
+//        var unit = new CreateUnit(UNIT_TREE);
+            var unit = new Unit({'type': NATURE_TREE});
+            unit.display();
+            console.log("UNIT:");
+            console.log(unit);
     });
 </script>
 
@@ -40,10 +43,10 @@
 
     // =========================================================================
 
-//    function addUnit(critter, isAlive) {
+//    function addUnit(unit, isAlive) {
 //        var ID = _firstFreeId++;
 //        // Create gif based on img string
-//                            var element = critter;
+//                            var element = unit;
 //                            element = addAttr(element, "id", "unit-" + ID);
 //                                                var elemClass = "engine-unit";
 //                                                if (isAlive) {

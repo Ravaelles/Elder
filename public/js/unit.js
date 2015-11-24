@@ -1,7 +1,12 @@
 var allUnits = [];
 
+var numOfImages = [];
+numOfImages['grass'] = 5;
+numOfImages['misc'] = 5;
+numOfImages['tree'] = 6;
+
 /**
- * This class represents animated unit/sprite/critter to be displayed in the browser.
+ * This class represents animated unit/sprite/type to be displayed in the browser.
  * It's possible to change unit and animate it using animate() function. Commands can be chained like:
  * <p>var unit = new Unit(json).create()</p>
  *
@@ -9,23 +14,24 @@ var allUnits = [];
  * - sex - MALE/FEMALE
  * - dir - direction unit is facing - DIR_E, DIR_W, DIR_SE, DIR_SW, DIR_NE, DIR_NW 0
  * - action - currently executed action - choose one of many constans prefixed ACTION_, SPEAR_ etc
- * - critter - Fallout identifier of the critter in the gif, use constants lik WARRIOR_MALE, WARRIOR_FEMALE etc
+ * - type - Fallout identifier of the type in the gif, use constants lik WARRIOR_MALE, WARRIOR_FEMALE etc
  *
  * @param string json json string that will be used to create object
  * @returns Unit
  */
 function Unit(json) {
 
-    this.id = null; // Unique identifier for the unit
-    this.sex = null; // Sex of this unit, use MALE or FEMALE
+    this._id = null; // Unique identifier for the unit
+    this._sex = null; // Sex of this unit, use MALE or FEMALE
     this._action = null; // Curenntly executed action, use ACTION_* and others
     this._dir = null; // Direction unit is facing, use DIR_*
-    this.critter = null; // Type of this unit e.g. WARRIOR_MALE, WARRIOR_FEMALE
+    this._type = null; // Type of this unit e.g. WARRIOR_MALE, WARRIOR_FEMALE
 
-    this.disallowNegativeMargin = false;
+    this.staticImageDisplayMode = false;
     this.marginLeft = 0;
     this.marginTop = 0;
 
+    this._firstFreeId = 100;
     this._lastAnimationStarted = 0;
 
     // =========================================================================
@@ -37,38 +43,51 @@ function Unit(json) {
             parameters = JSON.parse(json);
         }
         else {
-            alert('oh')
+            parameters = json;
         }
-        this.id = parameters['id'];
-        this.sex = parameters['sex'];
+
+        this._id = parameters['id'] ? parameters['id'] : this._firstFreeId++;
+        this._sex = parameters['sex'] ? ("n" + parameters['sex'].toLowerCase()) : MALE;
         this._action = parameters['action'];
-        this._dir = parameters['dir'] ? parameters['dir'] : "se";
-        this.critter = parameters['critter'];
-        allUnits[this.id] = this;
+        this._dir = parameters['dir'] ? parameters['dir'] : DIR_SE;
+        this._type = parameters['type'];
+
+        if (!this._type) {
+            console.log("Empty unit type for unit:");
+            console.log(this);
+            alert("Empty unit type passed for new unit");
+        }
+
+        allUnits[this._id] = this;
     };
     this.constructor(json);
 
     // =========================================================================
     // Methods
 
-    this.display = function (disallowNegativeMargin) {
-//        var img = this.createImageElement(function () {
-//            $("#unit-id-" + this.id).html(img);
-//        });
-        this.disallowNegativeMargin = disallowNegativeMargin;
+    this.display = function (staticImageDisplayMode) {
+        this.staticImageDisplayMode = staticImageDisplayMode;
 
         var imgObject = this.createImageElement();
         var imageElement = imgObject['imageElement'];
         var imagePath = imgObject['imagePath'];
 
         // =========================================================================
+        // Create wrapper for the image if needed
 
-        var myImage = new Image();
-        myImage.unitId = this.id;
-        myImage.unit = this;
-//        myImage.styleForWrapper = imgObject['style'];
-        myImage.imageIsLoaded = false;
-        myImage.onload = function (event) {
+        if (!this.staticImageDisplayMode) {
+            this.createImageWrapper();
+        }
+
+        // =========================================================================
+
+        var imageObject = new Image();
+        imageObject.unitId = this._id;
+        imageObject.unit = this;
+        imageObject.imageIsLoaded = false;
+
+        // Define image onload callback
+        imageObject.onload = function (event) {
             if (this.imageIsLoaded) {
                 return;
             }
@@ -76,8 +95,6 @@ function Unit(json) {
                 var unit = this.unit;
                 this.imageIsLoaded = true;
                 this.src = imagePath;
-//                allUnits[this.unitId]['imgWidth'] = this.width;
-//                allUnits[this.unitId]['imgHeight'] = this.height;
                 var width = this.width;
                 var height = this.height;
 
@@ -89,26 +106,22 @@ function Unit(json) {
                 // Assign current image dimensions to the image element
                 var imageSelector = $("#unit-img-" + this.unitId);
                 imageSelector.attr({"imgwidth": width, "imgheight": height});
-//                imageSelector.click(function () {
-//                    console.log(this);
-//                    alert(imageSelector.attr("imgwidth") + "/" + imageSelector.attr("imgheight"))
-//                });
 
                 // =========================================================================
                 // Add extra STYLE to wrapping div if needed
 
                 var styleString = buildStyleStringForImg(
-                        this, unit, disallowNegativeMargin, imageWrapperSelector, width, height
+                        this, unit, staticImageDisplayMode, imageWrapperSelector, width, height
                         );
                 if (styleString) {
                     imageSelector.attr("style", styleString);
                 }
 
-                // End of STYLE
-                // =========================================================================
             }
         };
-        myImage.src = imagePath;
+
+        // Assign image url
+        imageObject.src = imagePath;
     };
 
     this.animate = function (options, afterTime) {
@@ -122,15 +135,15 @@ function Unit(json) {
                 unit._action = options.action;
             }
             if (options && typeof options.sex != 'undefined') {
-                unit.sex = options.sex;
+                unit._sex = options.sex;
             }
             if (options && typeof options.dir != 'undefined') {
                 unit._dir = options.dir;
             }
-            if (options && typeof options.critter != 'undefined') {
-                unit.critter = options.critter;
+            if (options && typeof options.type != 'undefined') {
+                unit._type = options.type;
             }
-            unit.display(unit.disallowNegativeMargin);
+            unit.display(unit.staticImageDisplayMode);
         }, afterTime);
 
         this._lastAnimationStarted += afterTime;
@@ -146,11 +159,22 @@ function Unit(json) {
     // Low-level methods
 
     this.createImageElement = function () {
-        var id = "unit-img-" + this.id;
-        var idString = this.id ? "id='" + id + "'" : "";
-        var imgName = "/img/critter/all/" + this.sex + this.critter + this._action + "_" + this._dir;
-        var randomString = "?" + rand(100000, 999999);
-        var imagePath = imgName + ".gif" + randomString;
+        var id = "unit-img-" + this._id;
+
+        // Animated image
+        if (!this.isStaticImage()) {
+            var idString = this._id ? "id='" + id + "'" : "";
+            var imgName = "/img/critter/all/" + this._sex + this._type + this._action + "_" + this._dir;
+            var randomString = "?" + rand(100000, 999999);
+            var imagePath = imgName + ".gif" + randomString;
+        }
+
+        // Static image
+        else {
+            var natureGroupName = this._type.substring(7);
+            var imgName = "/img/nature/" + natureGroupName + "/" + rand(1, numOfImages[natureGroupName]);
+            var imagePath = imgName + ".png";
+        }
 
         // =========================================================================
         // Direction issues
@@ -165,23 +189,17 @@ function Unit(json) {
 //        this.marginTop = 60 + $("#" + id).height() * -1;
 //        this.marginTop = 15;
 //        if (this.dirTowardNorth()) {
-//        }
+        //        }
 
         // =========================================================================
-        // Style
-//        var styleString = "";
-//        if (this.marginLeft) {
-//            styleString += "margin-left:" + this.marginLeft + "px; "
-//        }
-//        if (this.marginTop) {
-//            styleString += "margin-top:" + this.marginTop + "px; "
-//        }
+        // Response contains various elements that can be needed, include them all
 
-//        return "<img " + idString + " src='" + imgName + ".gif" + randomString + "' style='" + style + "' />";
-//        var imageElement = "<img " + idString + " src='" + imagePath + "' style='" + style + "' />";
         var imageElement = "<img " + idString + " src='" + imagePath + "' />";
         return {"imageElement": imageElement, "imagePath": imagePath};
-//        return {"imageElement": imageElement, "imagePath": imagePath, "style": styleString};
+    };
+
+    this.createImageWrapper = function () {
+        $("#canvas").append("<div class='unit-image-wrapper' id='unit-wrapper-" + this._id + "'></div>");
     };
 
     this.dirTowardEast = function () {
@@ -203,7 +221,11 @@ function Unit(json) {
 //    this.isActionStatic = function () {
 //        return [ACTION_IDLE, SPEAR_IDLE].indexOf(this._dir) != -1;
 //        return false;
-//    };
+    //    };
+
+    this.isStaticImage = function () {
+        return this._type != null && stringStartsWith(this._type, "nature_");
+    };
 
     // =========================================================================
     // Getters and Setters
@@ -250,7 +272,7 @@ function buildStyleStringForImg(image, unit, disallowNegativeMargin, imageWrappe
 
     if (unit._action === SPEAR_EQUIP || unit._action === SPEAR_UNEQUIP) {
 //        image.marginTop -= 18;
-//        image.marginLeft += 15;
+        //        image.marginLeft += 15;
         image.marginTop -= 18;
         image.marginLeft -= 17;
     }
@@ -261,7 +283,7 @@ function buildStyleStringForImg(image, unit, disallowNegativeMargin, imageWrappe
     if (image.marginTop) {
         styleString += "margin-top:" + image.marginTop + "px; "
     }
-//                styleString += "border: 1px solid red !important; ";
+    //                styleString += "border: 1px solid red !important; ";
 
     return styleString;
 }
@@ -315,7 +337,8 @@ WARRIOR_FEMALE = "prim";
 SEX_GIRL = "/img/special/sex-girl.png";
 // =========================================================================
 // Nature
-TREE = "";
+NATURE_TREE = "nature_tree";
+NATURE_GRASS = "nature_grass";
 // =========================================================================
 // Sex
 MALE = "nm";

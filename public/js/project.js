@@ -100,6 +100,10 @@ function randElem(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function stringStartsWith(string, prefix) {
+    return string.lastIndexOf(prefix, 0) === 0;
+}
+
 // =========================================================
 // ===== SPECIFIC ==========================================
 // =========================================================

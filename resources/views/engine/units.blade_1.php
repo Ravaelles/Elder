@@ -37,10 +37,10 @@
     // =========================================================================
 
     var _firstFreeId = 1;
-    function addUnit(critter, isAlive) {
+    function addUnit(unit, isAlive) {
         var ID = _firstFreeId++;
         // Create gif based on img string
-                            var element = critter;
+                            var element = unit;
                             element = addAttr(element, "id", "unit-" + ID);
                                                 var elemClass = "engine-unit";
                                                 if (isAlive) {
@@ -131,7 +131,7 @@
 <script type="text/javascript">
 
     // WARRIOR
-    @foreach (App\Critter::DIR_ALL as $dir)
-            var warrior_{{ $dir }} = "{!! App\Helpers\CritterImage::create('')->warrior()->dir($dir) !!}";
+    @foreach (App\Unit::DIR_ALL as $dir)
+            var warrior_{{ $dir }} = "{!! App\Helpers\UnitImage::create('')->warrior()->dir($dir) !!}";
             @endforeach
 </script>
