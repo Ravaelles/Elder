@@ -31,7 +31,9 @@ function Unit(json) {
     this.marginLeft = 0;
     this.marginTop = 0;
 
-    this._firstFreeId = 100;
+    this.positionPX = 0; // Position X in pixels
+    this.positionPY = 0; // Position Y in pixels
+
     this._lastAnimationStarted = 0;
 
     // =========================================================================
@@ -46,9 +48,9 @@ function Unit(json) {
             parameters = json;
         }
 
-        this._id = parameters['id'] ? parameters['id'] : this._firstFreeId++;
+        this._id = parameters['id'] ? parameters['id'] : __firstFreeUnitId++;
         this._sex = parameters['sex'] ? ("n" + parameters['sex'].toLowerCase()) : MALE;
-        this._action = parameters['action'];
+        this._action = parameters['action'] ? parameters['action'] : ACTION_IDLE;
         this._dir = parameters['dir'] ? parameters['dir'] : DIR_SE;
         this._type = parameters['type'];
 
@@ -63,7 +65,7 @@ function Unit(json) {
     this.constructor(json);
 
     // =========================================================================
-    // Methods
+    // Display
 
     this.display = function (staticImageDisplayMode) {
         this.staticImageDisplayMode = staticImageDisplayMode;
@@ -122,7 +124,12 @@ function Unit(json) {
 
         // Assign image url
         imageObject.src = imagePath;
+
+        return this;
     };
+
+    // =========================================================================
+    // Animation
 
     this.animate = function (options, afterTime) {
         if (!afterTime) {
@@ -131,18 +138,7 @@ function Unit(json) {
 
         var unit = this;
         setTimeout(function () {
-            if (options && typeof options.action != 'undefined') {
-                unit._action = options.action;
-            }
-            if (options && typeof options.sex != 'undefined') {
-                unit._sex = options.sex;
-            }
-            if (options && typeof options.dir != 'undefined') {
-                unit._dir = options.dir;
-            }
-            if (options && typeof options.type != 'undefined') {
-                unit._type = options.type;
-            }
+            unit.handleOptions(options);
             unit.display(unit.staticImageDisplayMode);
         }, afterTime);
 
@@ -155,15 +151,91 @@ function Unit(json) {
         return this.animate(options, this._lastAnimationStarted + afterTime);
     };
 
+    // Walk
+
+    this.walk = function (options, afterTime) {
+//        if (!afterTime) {
+//            afterTime = 800;
+//        }
+        var walkTime = 800;
+
+        // =========================================================================
+
+        var unit = this;
+
+        setTimeout(function () {
+            unit.handleOptions(options);
+            unit.animate({action: ACTION_WALK}, 0);
+
+            setTimeout(function () {
+//                unit.positionPX += dx;
+//                unit.positionPY += dy;
+                unit.handleWalkPositionChange();
+                unit._action = ACTION_IDLE;
+                unit.display();
+            }, walkTime, unit);
+        }, afterTime);
+
+        return this;
+    };
+
+    this.handleWalkPositionChange = function () {
+        var fullStep = 82;
+        var halfStep = 38;
+
+        var dx = 0;
+        var dy = 0;
+
+        if (this._dir === DIR_E) {
+            dx += fullStep;
+        }
+        else if (this._dir === DIR_W) {
+            dx -= fullStep;
+        }
+        else if (this._dir === DIR_SE) {
+            dx += halfStep;
+            dy += halfStep;
+        }
+        else if (this._dir === DIR_NW) {
+            dx -= halfStep;
+            dy -= halfStep;
+        }
+
+        this.positionPX += dx;
+        this.positionPY += dy;
+
+        return this;
+    };
+
     // =========================================================================
-    // Low-level methods
+    // Positioning
+
+    this.positionRandomly = function () {
+        this.positionPX = rand(0, engineView.width);
+        this.positionPY = rand(0, engineView.height);
+        return this;
+    };
+
+    this.position = function (x, y) {
+        if (!x && !y) {
+            return {x: this.positionPX, y: this.positionPY};
+        }
+        else {
+            this.positionPX = x;
+            this.positionPY = y;
+            return this;
+        }
+    };
+
+    // =========================================================================
+    // HTML creation
 
     this.createImageElement = function () {
         var id = "unit-img-" + this._id;
+        var idString = this._id ? "id='" + id + "'" : "";
 
         // Animated image
         if (!this.isStaticImage()) {
-            var idString = this._id ? "id='" + id + "'" : "";
             var imgName = "/img/critter/all/" + this._sex + this._type + this._action + "_" + this._dir;
             var randomString = "?" + rand(100000, 999999);
             var imagePath = imgName + ".gif" + randomString;
@@ -198,8 +270,29 @@ function Unit(json) {
         return {"imageElement": imageElement, "imagePath": imagePath};
     };
 
+    // =========================================================================
+    // Low-level methods
+
     this.createImageWrapper = function () {
-        $("#canvas").append("<div class='unit-image-wrapper' id='unit-wrapper-" + this._id + "'></div>");
+        $("#canvas").append("<div class='engine-unit' id='unit-wrapper-" + this._id + "'></div>");
+    };
+
+    this.handleOptions = function (options) {
+        if (options) {
+            if (typeof options.action != 'undefined') {
+                this._action = options.action;
+            }
+            if (typeof options.sex != 'undefined') {
+                this._sex = options.sex;
+            }
+            if (typeof options.dir != 'undefined') {
+                this._dir = options.dir;
+            }
+            if (typeof options.type != 'undefined') {
+                this._type = options.type;
+            }
+        }
+        return this;
     };
 
     this.dirTowardEast = function () {
@@ -258,16 +351,43 @@ function Unit(json) {
 
 // =========================================================================
 
-function buildStyleStringForImg(image, unit, disallowNegativeMargin, imageWrapperSelector, width, height) {
+__firstFreeUnitId = 100;
+
+// =========================================================================
+
+function buildStyleStringForImg(image, unit, staticImageMode, imageWrapperSelector, width, height) {
     var styleString = "";
 
-    if (!disallowNegativeMargin) {
-        image.marginLeft = -width / 2;
-        image.marginTop = -height / 2;
-    }
-    else {
+    // =========================================================================
+    // Handle static mode (just ui animation) or regular, engine mode
+    if (staticImageMode) {
         image.marginLeft = imageWrapperSelector.width() / 2 - width / 2;
         image.marginTop = imageWrapperSelector.height() / 2 - height / 2;
+    }
+    else {
+        image.marginLeft = -width / 2;
+        image.marginTop = -height;
+
+        // =========================================================================
+        // Include direction factor
+        if (unit._action === ACTION_WALK) {
+            var walkFactor = 0.4;
+            var diagonalWalkFactor = 0.32;
+            if (unit._dir === DIR_E) {
+                image.marginLeft += width * walkFactor;
+            }
+            else if (unit._dir === DIR_W) {
+                image.marginLeft -= width * walkFactor;
+            }
+            else if (unit._dir === DIR_SE) {
+                image.marginLeft += width * diagonalWalkFactor;
+                image.marginTop += height * diagonalWalkFactor;
+            }
+            else if (unit._dir === DIR_NW) {
+                image.marginLeft -= width * diagonalWalkFactor;
+                image.marginTop -= height * diagonalWalkFactor;
+            }
+        }
     }
 
     if (unit._action === SPEAR_EQUIP || unit._action === SPEAR_UNEQUIP) {
@@ -277,11 +397,19 @@ function buildStyleStringForImg(image, unit, disallowNegativeMargin, imageWrappe
         image.marginLeft -= 17;
     }
 
+    // =========================================================================
+    // Include position factor
+    image.marginLeft += unit.positionPX;
+    image.marginTop += unit.positionPY;
+
+    // =========================================================================
+    // Handle margin
     if (image.marginLeft) {
         styleString += "margin-left:" + image.marginLeft + "px; "
     }
     if (image.marginTop) {
         styleString += "margin-top:" + image.marginTop + "px; "
+        styleString += "z-index: " + image.marginTop + "; "
     }
     //                styleString += "border: 1px solid red !important; ";
 

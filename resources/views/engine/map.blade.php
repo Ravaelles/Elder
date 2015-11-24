@@ -9,9 +9,12 @@
 @section('main-content')
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-shadow engine-canvas" id="canvas">
-            @include ('engine.units')
-        </div>
+        <script type="text/javascript">
+            window.initQueue.push(function() {
+                engineView = new EngineView(2000, 1500);
+            });
+        </script>
+        @include ('engine.engine')
     </div>
 </div>
 @endsection

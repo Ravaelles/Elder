@@ -10,6 +10,7 @@
 <script src="{{ asset('/js/project.js') }}" type="text/javascript"></script>
 <!-- Unit rendering -->
 <script src="{{ asset('/js/unit.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/js/engine-view.js') }}" type="text/javascript"></script>
 
 <script>
     //<!-- Pass CSRF token to every ajax request -->

@@ -24,7 +24,25 @@ and open the template in the editor.
     /*background-size: 100% 100%;*/
     background-size: 60%;
     border-radius: 0 !important;
+    
+    //&:active {
+    //    cursor: move;
+    //}
 
+    .unit-image-wrapper {
+        width: 120px;
+        height: 90px;
+        max-width: 120px;
+        max-height: 90px;
+        vertical-align: middle;
+        user-select: none;
+        //vertical-align: bottom;
+        
+        img {
+            vertical-align: middle;
+        }
+    }
+    
     .engine-unit {
         position: absolute;
 

@@ -46,18 +46,4 @@ $trait-good: #292;
         color: $trait-good;
     }
 
-    .unit-image-wrapper {
-        width: 120px;
-        height: 90px;
-        max-width: 120px;
-        max-height: 90px;
-        vertical-align: middle;
-        user-select: none;
-        //vertical-align: bottom;
-        
-        img {
-            vertical-align: middle;
-        }
-    }
-
 }
