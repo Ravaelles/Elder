@@ -233,12 +233,14 @@ function Unit(json) {
     this.createImageElement = function () {
         var id = "unit-img-" + this._id;
         var idString = this._id ? "id='" + id + "'" : "";
+        var imgClass = "";
 
         // Animated image
         if (!this.isStaticImage()) {
             var imgName = "/img/critter/all/" + this._sex + this._type + this._action + "_" + this._dir;
             var randomString = "?" + rand(100000, 999999);
             var imagePath = imgName + ".gif" + randomString;
+            imgClass = "unit-alive";
         }
 
         // Static image
@@ -266,7 +268,7 @@ function Unit(json) {
         // =========================================================================
         // Response contains various elements that can be needed, include them all
 
-        var imageElement = "<img " + idString + " src='" + imagePath + "' />";
+        var imageElement = "<img " + idString + " class='" + imgClass + "' src='" + imagePath + "' />";
         return {"imageElement": imageElement, "imagePath": imagePath};
     };
 
@@ -373,19 +375,20 @@ function buildStyleStringForImg(image, unit, staticImageMode, imageWrapperSelect
         if (unit._action === ACTION_WALK) {
             var walkFactor = 0.4;
             var diagonalWalkFactor = 0.32;
+            var walkToNorthMarginTopBonus = height / 5;
             if (unit._dir === DIR_E) {
                 image.marginLeft += width * walkFactor;
             }
             else if (unit._dir === DIR_W) {
-                image.marginLeft -= width * walkFactor;
+                image.marginLeft += (-width * walkFactor);
             }
             else if (unit._dir === DIR_SE) {
                 image.marginLeft += width * diagonalWalkFactor;
                 image.marginTop += height * diagonalWalkFactor;
             }
             else if (unit._dir === DIR_NW) {
-                image.marginLeft -= width * diagonalWalkFactor;
-                image.marginTop -= height * diagonalWalkFactor;
+                image.marginLeft += (-width * diagonalWalkFactor);
+                image.marginTop += (-height * diagonalWalkFactor + walkToNorthMarginTopBonus);
             }
         }
     }

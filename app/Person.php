@@ -123,7 +123,7 @@ class Person extends Eloquent {
     }
 
     public function unitImageWrapper() {
-        return "<div class='unit-image-wrapper' id='unit-wrapper-" . $this->id . "'></div>";
+        return "<div class='static-unit-image-wrapper' id='unit-wrapper-" . $this->id . "'></div>";
     }
 
     // =========================================================================

@@ -7,14 +7,6 @@
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
-{
-	Route::group(['prefix' => 'v1'], function ()
-	{
-        require Config::get('generator.path_api_routes');
-	});
-});
-
 Route::get('users', [
 //    'middleware' => 'auth',
     'uses' => 'UsersController@index',
@@ -65,7 +57,6 @@ Route::get('home', [
     'uses' => 'VillageController@index',
     'as' => 'home'
 ]);
-
 // =========================================================================
 // Person
 

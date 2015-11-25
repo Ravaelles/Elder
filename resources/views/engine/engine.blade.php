@@ -25,13 +25,13 @@
                 function generatePeople() {
 //                    for (var i = 0; i < 4; i++) {
 var i = 1;
-                        var unit = new Unit({'type': WARRIOR_MALE, 'dir': DIR_SE})
+                        var unit = new Unit({'type': WARRIOR_MALE, 'dir': DIR_E})
 //                                .positionRandomly()
                                 .position(100, 100 + 100 * i)
                                 .display();
 
-//                        unit.walk({}, 300);
-//                        unit.walk({}, 1500);
+                        unit.walk({}, 300);
+                        unit.walk({}, 1500);
 //                        unit.walk({dir: DIR_W}, 2700);
 //                        unit.walk({}, 3900);
 
@@ -41,8 +41,8 @@ var i = 1;
 //                        unit.walk({}, 3900);
                         
 //                        unit.animate({action: ACTION_WALK});
-//                        unit.walk({dir: DIR_NW}, 500);
-                        unit.walk({}, 500);
+                        unit.walk({dir: DIR_NW}, 2500);
+                        unit.walk({}, 3500);
                 }
 
         function generateTrees() {
