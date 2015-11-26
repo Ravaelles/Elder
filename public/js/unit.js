@@ -34,7 +34,8 @@ function Unit(json) {
     this.positionPX = 0; // Position X in pixels
     this.positionPY = 0; // Position Y in pixels
 
-    this._lastAnimationStarted = 0;
+//    this._lastAnimationStarted = 0;
+    this._lastAnimationEndsAt = 0;
 
     // =========================================================================
     // Constructor
@@ -119,6 +120,11 @@ function Unit(json) {
                     imageSelector.attr("style", styleString);
                 }
 
+                // =========================================================================
+                // CALLBACK
+//                if (finishedCallback != undefined) {
+//                    finishedCallback();
+//                }
             }
         };
 
@@ -131,10 +137,101 @@ function Unit(json) {
     // =========================================================================
     // Animation
 
-    this.animate = function (options, afterTime) {
+    this._queueAnimations = [];
+
+    this.queueAnimation = function (options, delay, animationLength) {
+        var startAnimatingUnitAfterTime;
+        var lastAnimationEndedAgo = this.timeSinceLastAnimationEndedAgo();
+        var canStartAnimationNow = lastAnimationEndedAgo >= 0;
+
+        if (!animationLength) {
+            animationLength = 800;
+        }
+        if (!delay) {
+            delay = 0;
+        }
+
+        // =========================================================================
+        // Define time when next animation could be potentially executed
+
+        if (canStartAnimationNow) {
+            startAnimatingUnitAfterTime = 0;
+            this._lastAnimationEndsAt = this.timeNow() + delay + animationLength;
+        }
+        else {
+            startAnimatingUnitAfterTime = -lastAnimationEndedAgo;
+            this._lastAnimationEndsAt += delay + startAnimatingUnitAfterTime + animationLength;
+        }
+
+        // =========================================================================
+        // Either run an animation now or queue it
+
+        // Run now
+        if (canStartAnimationNow && this._queueAnimations.length == 0) {
+            this._runAnimationNow(options, delay, animationLength);
+        }
+
+        // Doing something else now, so queue it
+        else {
+            var animationObject = {
+                'options': options,
+                'animationLength': animationLength,
+                'delay': delay,
+            };
+            this._queueAnimations.push(animationObject);
+        }
+
+        return this;
+    };
+
+    this._runAnimationNow = function (options, delay, animationLength) {
+        var unit = this;
+
+        setTimeout(function () {
+            unit._animate(options);
+        }, delay);
+
+        setTimeout(function () {
+
+            // Run callback at the end of animation
+            var callbackAnimationEnded = options['callbackAnimationEnded'];
+            if (callbackAnimationEnded) {
+                callbackAnimationEnded(unit);
+            }
+
+            // Run next animation in enqueued
+            unit.runNextQueuedAnimationIfNeeded();
+
+        }, delay + animationLength, unit);
+
+        return this;
+    };
+
+    this.runNextQueuedAnimationIfNeeded = function () {
+        var nextAnimation = this._queueAnimations.shift();
+
+        if (nextAnimation !== undefined) {
+            var options = nextAnimation['options'];
+            var animationLength = nextAnimation['animationLength'];
+            var delay = nextAnimation['delay'];
+            this._runAnimationNow(options, delay, animationLength);
+        }
+    };
+
+    this._animate = function (options, afterTime) {
         if (!afterTime) {
             afterTime = 0;
         }
+
+        // =========================================================================
+        // Animation started callback
+
+        var callbackAnimationStarted = options['callbackAnimationStarted'];
+        if (callbackAnimationStarted) {
+            callbackAnimationStarted(this);
+        }
+
+        // =========================================================================
 
         var unit = this;
         setTimeout(function () {
@@ -147,41 +244,59 @@ function Unit(json) {
         return this;
     };
 
-    this.nextAnimate = function (options, afterTime) {
-        return this.animate(options, this._lastAnimationStarted + afterTime);
+    this.timeSinceLastAnimationEndedAgo = function () {
+        return this.timeNow() - this._lastAnimationEndsAt;
+    };
+
+    this.timeNow = function () {
+        return (new Date()).getTime();
+    };
+
+    // Animation generic
+
+    this.animation = function (options, delay, animationLength) {
+        if (!animationLength) {
+            animationLength = 1700;
+        }
+        if (!delay || delay < 0) {
+            delay = 0;
+        }
+
+        this.queueAnimation(options, delay, animationLength);
+
+        return this;
     };
 
     // Walk
 
-    this.walk = function (options, afterTime) {
-//        if (!afterTime) {
-//            afterTime = 800;
-//        }
-        var walkTime = 800;
+    this.walk = function (options, delay) {
+        var walkAnimationTimespan = 800;
+        var lastAnimationEnded = this.timeSinceLastAnimationEndedAgo();
+        var startAnimatingUnitAfterTime;
+
+        if (!delay) {
+            delay = 0;
+        }
+        if (!options) {
+            options = [];
+        }
 
         // =========================================================================
 
-        var unit = this;
-
-        setTimeout(function () {
-            unit.handleOptions(options);
-            unit.animate({action: ACTION_WALK}, 0);
-
-            setTimeout(function () {
-//                unit.positionPX += dx;
-//                unit.positionPY += dy;
-                unit.handleWalkPositionChange();
-                unit._action = ACTION_IDLE;
-                unit.display();
-            }, walkTime, unit);
-        }, afterTime);
+        options['action'] = ACTION_WALK;
+        options['callbackAnimationEnded'] = function (unit) {
+            unit.handleWalkPositionChange();
+            unit._animate({action: ACTION_IDLE});
+        };
+        this.queueAnimation(options, delay, walkAnimationTimespan);
 
         return this;
     };
 
     this.handleWalkPositionChange = function () {
         var fullStep = 82;
-        var halfStep = 38;
+//        var halfStep = 38;
+        var halfStep = 36;
 
         var dx = 0;
         var dy = 0;
@@ -196,8 +311,16 @@ function Unit(json) {
             dx += halfStep;
             dy += halfStep;
         }
+        else if (this._dir === DIR_SW) {
+            dx -= halfStep;
+            dy += halfStep;
+        }
         else if (this._dir === DIR_NW) {
             dx -= halfStep;
+            dy -= halfStep;
+        }
+        else if (this._dir === DIR_NE) {
+            dx += halfStep;
             dy -= halfStep;
         }
 
@@ -365,17 +488,23 @@ function buildStyleStringForImg(image, unit, staticImageMode, imageWrapperSelect
     if (staticImageMode) {
         image.marginLeft = imageWrapperSelector.width() / 2 - width / 2;
         image.marginTop = imageWrapperSelector.height() / 2 - height / 2;
+
+        if (unit._action === SPEAR_EQUIP || unit._action === SPEAR_UNEQUIP) {
+            image.marginTop -= 18;
+            image.marginLeft -= 17;
+        }
     }
     else {
         image.marginLeft = -width / 2;
         image.marginTop = -height;
 
         // =========================================================================
-        // Include direction factor
+        // Alter WALK animations
         if (unit._action === ACTION_WALK) {
             var walkFactor = 0.4;
             var diagonalWalkFactor = 0.32;
             var walkToNorthMarginTopBonus = height / 5;
+
             if (unit._dir === DIR_E) {
                 image.marginLeft += width * walkFactor;
             }
@@ -391,13 +520,32 @@ function buildStyleStringForImg(image, unit, staticImageMode, imageWrapperSelect
                 image.marginTop += (-height * diagonalWalkFactor + walkToNorthMarginTopBonus);
             }
         }
-    }
 
-    if (unit._action === SPEAR_EQUIP || unit._action === SPEAR_UNEQUIP) {
-//        image.marginTop -= 18;
-        //        image.marginLeft += 15;
-        image.marginTop -= 18;
-        image.marginLeft -= 17;
+        // =========================================================================
+        // Alter SPEAR
+        if (unit._action === SPEAR_EQUIP || unit._action === SPEAR_UNEQUIP) {
+            if (unit._dir === DIR_SE) {
+                image.marginLeft -= 14;
+                image.marginTop += 8;
+            }
+            else if (unit._dir === DIR_SW) {
+                image.marginLeft -= 18.5;
+            }
+            else if (unit._dir === DIR_NE) {
+                image.marginLeft += 18;
+                image.marginTop += 3.5;
+            }
+            else if (unit._dir === DIR_NW) {
+                image.marginLeft += 15;
+            }
+            else if (unit._dir === DIR_E) {
+                image.marginLeft -= 5;
+                image.marginTop += 12;
+            }
+            else if (unit._dir === DIR_W) {
+                image.marginLeft += 4;
+            }
+        }
     }
 
     // =========================================================================

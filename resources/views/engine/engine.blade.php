@@ -3,8 +3,8 @@
 </style>
 
 <div class="box box-shadow engine-canvas" id="canvas">
-    <div class="" style="position: absolute; margin-top: 200px; margin-left: 100px; width: 82px; border-bottom: 1px solid red;"></div>
-    <div class="" style="position: absolute; margin-top: 200px; margin-left: 182px; width: 82px; border-bottom: 1px solid blue;"></div>
+    <div class="" style="position: absolute; margin-top: 200px; margin-left: 400px; width: 82px; border-bottom: 1px solid red;"></div>
+    <div class="" style="position: absolute; margin-top: 200px; margin-left: 482px; width: 82px; border-bottom: 1px solid blue;"></div>
 
     <script type="text/javascript">
         window.initQueue.push(function () {
@@ -27,23 +27,37 @@
 var i = 1;
                         var unit = new Unit({'type': WARRIOR_MALE, 'dir': DIR_E})
 //                                .positionRandomly()
-                                .position(100, 100 + 100 * i)
+                                .position(400, 100 + 100 * i)
                                 .display();
 
-                        unit.walk({}, 300);
-                        unit.walk({}, 1500);
-//                        unit.walk({dir: DIR_W}, 2700);
-//                        unit.walk({}, 3900);
-
-//                        unit.walk({}, 300);
-//                        unit.walk({}, 1500);
-//                        unit.walk({dir: DIR_NW}, 2700);
-//                        unit.walk({}, 3900);
-                        
-//                        unit.animate({action: ACTION_WALK});
-                        unit.walk({dir: DIR_NW}, 2500);
-                        unit.walk({}, 3500);
-                }
+//                        unit.walk({dir: DIR_SW}, 700);
+//                        unit.walk({dir: DIR_NE});
+                        unit.walk({dir: DIR_E}, 700);
+                        unit.walk({dir: DIR_SE});
+                        unit.walk({dir: DIR_SW});
+                        unit.animation({dir: DIR_E, action: ACTION_IDLE});
+                        unit.animation({action: SPEAR_EQUIP}, 600);
+                        unit.animation({dir: DIR_SE, action: ACTION_IDLE});
+                        unit.animation({action: SPEAR_EQUIP}, 500);
+                        unit.animation({dir: DIR_SW, action: ACTION_IDLE});
+                        unit.animation({dir: DIR_SW, action: SPEAR_EQUIP});
+                        unit.animation({dir: DIR_W, action: ACTION_IDLE});
+                        unit.animation({dir: DIR_W, action: SPEAR_EQUIP}, 600);
+                        unit.animation({dir: DIR_NW, action: ACTION_IDLE});
+                        unit.animation({dir: DIR_NW, action: SPEAR_EQUIP}, 600);
+                        unit.animation({dir: DIR_NE, action: ACTION_IDLE});
+                        unit.animation({dir: DIR_NE, action: SPEAR_EQUIP}, 600);
+                        for (var i = 1; i < 0; i++) {
+                            unit.animation({dir: DIR_E});
+                            unit.animation({dir: DIR_W});
+//                            unit.animation({dir: DIR_E});
+//                            unit.animation({dir: DIR_SE});
+//                            unit.animation({dir: DIR_SW});
+//                            unit.animation({dir: DIR_W});
+//                            unit.animation({dir: DIR_NW});
+//                            unit.animation({dir: DIR_NE});
+                        }
+            }
 
         function generateTrees() {
             for (var i = 0; i < 30; i++) {

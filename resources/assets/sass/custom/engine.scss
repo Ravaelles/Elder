@@ -37,6 +37,7 @@ and open the template in the editor.
     .unit-alive {
         cursor: pointer;
         border-bottom: 2px solid transparent;
+        /*border: 1px solid red;*/
 
         &:hover {
             transition: all .4s linear;
