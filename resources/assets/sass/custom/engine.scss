@@ -32,6 +32,11 @@ and open the template in the editor.
     
     .engine-unit {
         position: absolute;
+        user-select: none;
+        
+        * {
+            user-select: none;
+        }
     }
 
     .unit-alive {
@@ -54,6 +59,11 @@ and open the template in the editor.
     max-width: 120px;
     max-height: 90px;
     vertical-align: middle;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     //vertical-align: bottom;
 

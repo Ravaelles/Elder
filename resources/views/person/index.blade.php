@@ -32,43 +32,29 @@
                     <script type="text/javascript">
                         window.initQueue.push(function () {
                             var unit = new Unit('{!! $person->unitJson() !!}');
-//                            unit.dir(DIR_RANDOM_SOUTH());
                             unit.dir(DIR_RANDOM_NORTH());
-//                            unit.dir(DIR_SE);
                             unit.action(ACTION_IDLE);
-//                                    unit.nextAnimate(
-//                                            {action: SPEAR_UNEQUIP, dir: DIR_RANDOM_SOUTH()}, 
-//                                            rand(1500, 2000)
-//                                    );
-//                                    unit.nextAnimate(
-//                                            {action: SPEAR_EQUIP, dir: DIR_RANDOM_SOUTH()}, 
-//                                            rand(500, 1500)
-//                                    );
                             unit.display(true);
                             
                             // Turn around
-                            unit.nextAnimate(
+                            var turnBackDelay = rand(390, 800);
+                            unit.animation(
                                 {dir: DIR_SE},
-                                1100 + rand(1, 500)
+                                turnBackDelay
                             );
-//                            
-//                            // Kneel to your master
-                            unit.nextAnimate(
+                            
+                            // Kneel before yo' masta'
+                            var kneelDelay = rand(10, 100);
+                            unit.animation(
                                 {action: ACTION_PICK_UP},
-                                200 + rand(1, 500)
+                                kneelDelay
                             );
                     
                             // Equip spear
-                            unit.nextAnimate(
+                            unit.animation(
                                 {action: SPEAR_EQUIP},
-                                rand(1, 200)
+                                rand(1, 300 - kneelDelay)
                             );
-                    
-                            // Idle spear
-//                            unit.nextAnimate(
-//                                {action: SPEAR_IDLE},
-//                                rand(600, 1000)
-//                            );
                         });
                     </script>
                 </td>

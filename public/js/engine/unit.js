@@ -34,8 +34,8 @@ function Unit(json) {
     this.positionPX = 0; // Position X in pixels
     this.positionPY = 0; // Position Y in pixels
 
-//    this._lastAnimationStarted = 0;
     this._lastAnimationEndsAt = 0;
+    this._imageSelector = null;
 
     // =========================================================================
     // Constructor
@@ -108,7 +108,9 @@ function Unit(json) {
 
                 // Assign current image dimensions to the image element
                 var imageSelector = $("#unit-img-" + this.unitId);
+                unit._imageSelector = imageSelector;
                 imageSelector.attr({"imgwidth": width, "imgheight": height});
+                imageSelector.css('z-index', unit.positionPY);
 
                 // =========================================================================
                 // Add extra STYLE to wrapping div if needed
@@ -119,12 +121,6 @@ function Unit(json) {
                 if (styleString) {
                     imageSelector.attr("style", styleString);
                 }
-
-                // =========================================================================
-                // CALLBACK
-//                if (finishedCallback != undefined) {
-//                    finishedCallback();
-//                }
             }
         };
 
@@ -188,21 +184,30 @@ function Unit(json) {
         var unit = this;
 
         setTimeout(function () {
-            unit._animate(options);
-        }, delay);
 
-        setTimeout(function () {
-
-            // Run callback at the end of animation
-            var callbackAnimationEnded = options['callbackAnimationEnded'];
-            if (callbackAnimationEnded) {
-                callbackAnimationEnded(unit);
+            // Run callback before the start of animation
+            var callbackAnimationAfterStart = options['callbackAnimationAfterStart'];
+            if (callbackAnimationAfterStart) {
+                callbackAnimationAfterStart(unit, options);
             }
 
-            // Run next animation in enqueued
-            unit.runNextQueuedAnimationIfNeeded();
+            unit._animate(options);
 
-        }, delay + animationLength, unit);
+            // =========================================================================
+
+            setTimeout(function () {
+
+                // Run callback at the end of animation
+                var callbackAnimationEnded = options['callbackAnimationEnded'];
+                if (callbackAnimationEnded) {
+                    callbackAnimationEnded(unit);
+                }
+
+                // Run next animation in enqueued
+                unit.runNextQueuedAnimationIfNeeded();
+
+            }, animationLength, unit);
+        }, delay);
 
         return this;
     };
@@ -222,13 +227,16 @@ function Unit(json) {
         if (!afterTime) {
             afterTime = 0;
         }
+        if (!options) {
+            options = [];
+        }
 
         // =========================================================================
         // Animation started callback
 
-        var callbackAnimationStarted = options['callbackAnimationStarted'];
-        if (callbackAnimationStarted) {
-            callbackAnimationStarted(this);
+        var callbackAnimationBeforeStart = options['callbackAnimationBeforeStart'];
+        if (callbackAnimationBeforeStart) {
+            callbackAnimationBeforeStart(this);
         }
 
         // =========================================================================
@@ -252,9 +260,13 @@ function Unit(json) {
         return (new Date()).getTime();
     };
 
+    // =========================================================================
     // Animation generic
 
     this.animation = function (options, delay, animationLength) {
+        if (!options) {
+            options = {};
+        }
         if (!animationLength) {
             animationLength = 1700;
         }
@@ -283,19 +295,33 @@ function Unit(json) {
 
         // =========================================================================
 
-        options['action'] = ACTION_WALK;
+        options['callbackAnimationAfterStart'] = function (unit, options) {
+            unit.convertActionToWalk();
+        };
+
         options['callbackAnimationEnded'] = function (unit) {
             unit.handleWalkPositionChange();
-            unit._animate({action: ACTION_IDLE});
+            unit.convertActionToIdle();
+            unit._animate();
         };
+
         this.queueAnimation(options, delay, walkAnimationTimespan);
 
         return this;
     };
 
+    this.convertActionToWalk = function () {
+        this._action = this._action.replaceAt(1, "b");
+        return this;
+    };
+
+    this.convertActionToIdle = function () {
+        this._action = this._action.replaceAt(1, "a");
+        return this;
+    };
+
     this.handleWalkPositionChange = function () {
         var fullStep = 82;
-//        var halfStep = 38;
         var halfStep = 36;
 
         var dx = 0;
@@ -327,6 +353,25 @@ function Unit(json) {
         this.positionPX += dx;
         this.positionPY += dy;
 
+        return this;
+    };
+
+    // Equip weapons
+
+    this.equipWeapon = function (weaponName, delay) {
+        var options = {action: window[weaponName + "_EQUIP"]};
+        options['callbackAnimationEnded'] = function (unit) {
+            unit._action = window[weaponName + "_IDLE"];
+        };
+
+        if (weaponName === WEAPON_SPEAR) {
+            var animationLength = 1300;
+        }
+        else {
+            var animationLength = 1300;
+        }
+
+        this.queueAnimation(options, delay, animationLength);
         return this;
     };
 
@@ -445,6 +490,20 @@ function Unit(json) {
         return this._type != null && stringStartsWith(this._type, "nature_");
     };
 
+    this.isActionWalk = function () {
+        return this._action.charAt(1) === "b";
+    };
+
+    this.isActionWithWeapon = function (weaponName) {
+        if (weaponName === WEAPON_SPEAR) {
+            weaponLetter = "g";
+        }
+        else {
+            weaponLetter = "a"; // Generic actions
+        }
+        return this._action.charAt(0) === weaponLetter.charAt(0);
+    };
+
     // =========================================================================
     // Getters and Setters
 
@@ -477,148 +536,3 @@ function Unit(json) {
 // =========================================================================
 
 __firstFreeUnitId = 100;
-
-// =========================================================================
-
-function buildStyleStringForImg(image, unit, staticImageMode, imageWrapperSelector, width, height) {
-    var styleString = "";
-
-    // =========================================================================
-    // Handle static mode (just ui animation) or regular, engine mode
-    if (staticImageMode) {
-        image.marginLeft = imageWrapperSelector.width() / 2 - width / 2;
-        image.marginTop = imageWrapperSelector.height() / 2 - height / 2;
-
-        if (unit._action === SPEAR_EQUIP || unit._action === SPEAR_UNEQUIP) {
-            image.marginTop -= 18;
-            image.marginLeft -= 17;
-        }
-    }
-    else {
-        image.marginLeft = -width / 2;
-        image.marginTop = -height;
-
-        // =========================================================================
-        // Alter WALK animations
-        if (unit._action === ACTION_WALK) {
-            var walkFactor = 0.4;
-            var diagonalWalkFactor = 0.32;
-            var walkToNorthMarginTopBonus = height / 5;
-
-            if (unit._dir === DIR_E) {
-                image.marginLeft += width * walkFactor;
-            }
-            else if (unit._dir === DIR_W) {
-                image.marginLeft += (-width * walkFactor);
-            }
-            else if (unit._dir === DIR_SE) {
-                image.marginLeft += width * diagonalWalkFactor;
-                image.marginTop += height * diagonalWalkFactor;
-            }
-            else if (unit._dir === DIR_NW) {
-                image.marginLeft += (-width * diagonalWalkFactor);
-                image.marginTop += (-height * diagonalWalkFactor + walkToNorthMarginTopBonus);
-            }
-        }
-
-        // =========================================================================
-        // Alter SPEAR
-        if (unit._action === SPEAR_EQUIP || unit._action === SPEAR_UNEQUIP) {
-            if (unit._dir === DIR_SE) {
-                image.marginLeft -= 14;
-                image.marginTop += 8;
-            }
-            else if (unit._dir === DIR_SW) {
-                image.marginLeft -= 18.5;
-            }
-            else if (unit._dir === DIR_NE) {
-                image.marginLeft += 18;
-                image.marginTop += 3.5;
-            }
-            else if (unit._dir === DIR_NW) {
-                image.marginLeft += 15;
-            }
-            else if (unit._dir === DIR_E) {
-                image.marginLeft -= 5;
-                image.marginTop += 12;
-            }
-            else if (unit._dir === DIR_W) {
-                image.marginLeft += 4;
-            }
-        }
-    }
-
-    // =========================================================================
-    // Include position factor
-    image.marginLeft += unit.positionPX;
-    image.marginTop += unit.positionPY;
-
-    // =========================================================================
-    // Handle margin
-    if (image.marginLeft) {
-        styleString += "margin-left:" + image.marginLeft + "px; "
-    }
-    if (image.marginTop) {
-        styleString += "margin-top:" + image.marginTop + "px; "
-        styleString += "z-index: " + image.marginTop + "; "
-    }
-    //                styleString += "border: 1px solid red !important; ";
-
-    return styleString;
-}
-
-// =========================================================================
-
-// Actions
-ACTION_IDLE = "aa";
-ACTION_WALK = "ab";
-ACTION_CLIMB_UP = "ae";
-ACTION_PICK_UP = "ak";
-ACTION_USE = "al";
-ACTION_DODGE = "an";
-ACTION_HIT = "ao";
-ACTION_HIT2 = "ap";
-ACTION_HAND_COMBAT = "aq";
-ACTION_KICK = "ar";
-ACTION_THROW = "as";
-ACTION_RUN = "at";
-ACTION_RANDOM_STATIC = "RANDOM_STATIC";
-// =========================================================================
-// Spear
-SPEAR_IDLE = "ga";
-SPEAR_WALK = "gb";
-SPEAR_EQUIP = "gc";
-SPEAR_UNEQUIP = "gd";
-SPEAR_DODGE = "ge";
-SPEAR_THRUST = "gf";
-SPEAR_THROW = "gm";
-SPEAR_RANDOM = "RANDOM_SPEAR";
-// =========================================================================
-// Direction
-DIR_W = "w";
-DIR_E = "e";
-DIR_NW = "nw";
-DIR_NE = "ne";
-DIR_SW = "sw";
-DIR_SE = "se";
-DIR_ALL = [DIR_W, DIR_E, DIR_NW, DIR_NE, DIR_SW, DIR_SE];
-function DIR_RANDOM_SOUTH() {
-    return randElem([DIR_SW, DIR_SE]);
-}
-function DIR_RANDOM_NORTH() {
-    return randElem([DIR_NW, DIR_NE]);
-}
-
-// =========================================================================
-// People
-WARRIOR_MALE = "warr";
-WARRIOR_FEMALE = "prim";
-SEX_GIRL = "/img/special/sex-girl.png";
-// =========================================================================
-// Nature
-NATURE_TREE = "nature_tree";
-NATURE_GRASS = "nature_grass";
-// =========================================================================
-// Sex
-MALE = "nm";
-FEMALE = "nf";
