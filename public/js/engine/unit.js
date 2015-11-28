@@ -301,8 +301,11 @@ function Unit(json) {
 
         options['callbackAnimationEnded'] = function (unit) {
             unit.handleWalkPositionChange();
-            unit.convertActionToIdle();
-            unit._animate();
+
+            if (unit._queueAnimations.length == 0) {
+                unit.convertActionToIdle();
+                unit._animate();
+            }
         };
 
         this.queueAnimation(options, delay, walkAnimationTimespan);
