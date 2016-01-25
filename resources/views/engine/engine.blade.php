@@ -2,15 +2,15 @@
 
 </style>
 
-<div class="box box-shadow engine-canvas" id="canvas">
+<div class="box box-shadow engine-canvas" id="engine-canvas">
     <!--    <div class="" style="position: absolute; margin-top: 200px; margin-left: 400px; width: 82px; border-bottom: 1px solid red;"></div>
         <div class="" style="position: absolute; margin-top: 200px; margin-left: 482px; width: 82px; border-bottom: 1px solid blue;"></div>-->
 
     <script type="text/javascript">
         window.initQueue.push(function () {
             initMap();
-            generateMisc();
-            generateTrees();
+//            generateMisc();
+//            generateTrees();
             generatePeople();
         });</script>
 
@@ -61,7 +61,7 @@ var i = 1;
         }
 
         function initMap() {
-            canvas = $("#canvas");
+            canvas = $("#engine-canvas");
             mapWidth = canvas.width() - 40;
             mapHeight = canvas.height() - 70;
         }

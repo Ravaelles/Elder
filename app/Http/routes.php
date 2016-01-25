@@ -132,6 +132,13 @@ Route::get('user/show/{id}/{name}', [
 ]);
 
 // =========================================================================
+// Images
+
+Route::get('image/critter/{file}', [
+    'middleware' => 'auth', 'uses' => 'ImageController@dataUri', 'as' => 'image.critter'
+]);
+
+// =========================================================================
 // Admin utils
 
 Route::get('logs', [

@@ -36,6 +36,7 @@ function Unit(json) {
 
     this._lastAnimationEndsAt = 0;
     this._imageSelector = null;
+    this._imageWrapperCreated = false;
 
     // =========================================================================
     // Constructor
@@ -44,8 +45,7 @@ function Unit(json) {
         var parameters;
         if (typeof json === 'string') {
             parameters = JSON.parse(json);
-        }
-        else {
+        } else {
             parameters = json;
         }
 
@@ -71,63 +71,109 @@ function Unit(json) {
     this.display = function (staticImageDisplayMode) {
         this.staticImageDisplayMode = staticImageDisplayMode;
 
-        var imgObject = this.createImageElement();
+        var imgObject = this.createImageElementBase();
+        var imageName = imgObject['imageName'];
         var imageElement = imgObject['imageElement'];
         var imagePath = imgObject['imagePath'];
 
         // =========================================================================
         // Create wrapper for the image if needed
 
-        if (!this.staticImageDisplayMode) {
+        if (!this._imageWrapperCreated && !this.staticImageDisplayMode) {
             this.createImageWrapper();
+            this._imageWrapperCreated = true;
         }
 
         // =========================================================================
 
-        var imageObject = new Image();
-        imageObject.unitId = this._id;
-        imageObject.unit = this;
-        imageObject.imageIsLoaded = false;
+        var image = new Image();
+        image.unitId = this._id;
+        image.unit = this;
+        image.imageIsLoaded = false;
 
-        // Define image onload callback
-        imageObject.onload = function (event) {
+        image.onUriLoaded = function (imageDataURI) {
+//            console.log("URI IS LAODED ###########");
+            this.src = imageDataURI;
+            imageElement = imageElement + "src='" + imageDataURI + "' ";
+        };
+
+        image.onload = function (imageDataURI) {
+//            console.log("LOADED");
             if (this.imageIsLoaded) {
                 return;
-            }
-            else {
-                var unit = this.unit;
+            } else {
                 this.imageIsLoaded = true;
-                this.src = imagePath;
+                var unit = this.unit;
                 var width = this.width;
                 var height = this.height;
+
+                // =========================================================================
+                // Define image src as data uri from original image, thus gif's won't stop from being played
+//                imageElement = imageElement + "src='" + unit.convertImageObjectToDataURI(this) + "' />";
+
+
+                // Add extra STYLE to wrapping div if needed
+                var styleString = buildStyleStringForImg(
+                        this, unit, staticImageDisplayMode, imageWrapperSelector, width, height
+                        );
+
+                imageElement = imageElement + "style='" + styleString + " z-index: " + unit.positionPY
+                        + "' imgwidth=" + width + " imgheight=" + height + " />";
+
+                // =========================================================================
+                // Create image html elements, wrapped with div for convenience.
 
                 var imageWrapperSelector = $("#unit-wrapper-" + this.unitId);
 
                 // Add ready <img src=> element to the div wrapper, thus displaying the animation
+//                console.log(imageElement);
+//                if (rand(0, 10) <= 4) {
                 imageWrapperSelector.html(imageElement);
+//                }
+//                else {
+//                    console.log("CLEAR");
+//                    imageWrapperSelector.html();
+//                }
 
                 // Assign current image dimensions to the image element
-                var imageSelector = $("#unit-img-" + this.unitId);
-                unit._imageSelector = imageSelector;
-                imageSelector.attr({"imgwidth": width, "imgheight": height});
-                imageSelector.css('z-index', unit.positionPY);
-
-                // =========================================================================
-                // Add extra STYLE to wrapping div if needed
-
-                var styleString = buildStyleStringForImg(
-                        this, unit, staticImageDisplayMode, imageWrapperSelector, width, height
-                        );
-                if (styleString) {
-                    imageSelector.attr("style", styleString);
-                }
+//                var imageSelector = $("#unit-img-" + this.unitId);
+//                unit._imageSelector = imageSelector;
+//                imageSelector.attr({"imgwidth": width, "imgheight": height});
+//                imageSelector.css('z-index', unit.positionPY);
             }
         };
 
         // Assign image url
-        imageObject.src = imagePath;
+//        image.src = imagePath;
+//        image.src = "image/critter/asd.gif";
+//        console.log(image);
+
+        console.log(imageName);
+        var randomString = Math.random();
+        var url = "image/critter/asd.gif?" + randomString;
+        $.ajax(url)
+                .done(function (data) {
+                    image.onUriLoaded(data);
+                });
 
         return this;
+    };
+
+    this.convertImageObjectToDataURI = function (image) {
+        var canvasTemp = document.createElement('canvas');
+        canvasTemp.width = image.naturalWidth; // or 'width' if you want a special/scaled size
+        canvasTemp.height = image.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvasTemp.getContext('2d').drawImage(image, 0, 0);
+
+        var dataUri = canvasTemp.toDataURL('image/gif');
+
+        // Modify Data URI beginning
+        dataUri = "data:image/gif;" + dataUri.substring(15);
+        console.log(dataUri);
+
+        // Return image as Data URI
+        return dataUri;
     };
 
     // =========================================================================
@@ -153,8 +199,7 @@ function Unit(json) {
         if (canStartAnimationNow) {
             startAnimatingUnitAfterTime = 0;
             this._lastAnimationEndsAt = this.timeNow() + delay + animationLength;
-        }
-        else {
+        } else {
             startAnimatingUnitAfterTime = -lastAnimationEndedAgo;
             this._lastAnimationEndsAt += delay + startAnimatingUnitAfterTime + animationLength;
         }
@@ -211,7 +256,6 @@ function Unit(json) {
 
         return this;
     };
-
     this.runNextQueuedAnimationIfNeeded = function () {
         var nextAnimation = this._queueAnimations.shift();
 
@@ -233,7 +277,6 @@ function Unit(json) {
 
         // =========================================================================
         // Animation started callback
-
         var callbackAnimationBeforeStart = options['callbackAnimationBeforeStart'];
         if (callbackAnimationBeforeStart) {
             callbackAnimationBeforeStart(this);
@@ -251,7 +294,6 @@ function Unit(json) {
 
         return this;
     };
-
     this.timeSinceLastAnimationEndedAgo = function () {
         return this.timeNow() - this._lastAnimationEndsAt;
     };
@@ -280,12 +322,10 @@ function Unit(json) {
     };
 
     // Walk
-
     this.walk = function (options, delay) {
         var walkAnimationTimespan = 800;
         var lastAnimationEnded = this.timeSinceLastAnimationEndedAgo();
         var startAnimatingUnitAfterTime;
-
         if (!delay) {
             delay = 0;
         }
@@ -298,7 +338,6 @@ function Unit(json) {
         options['callbackAnimationAfterStart'] = function (unit, options) {
             unit.convertActionToWalk();
         };
-
         options['callbackAnimationEnded'] = function (unit) {
             unit.handleWalkPositionChange();
 
@@ -312,12 +351,10 @@ function Unit(json) {
 
         return this;
     };
-
     this.convertActionToWalk = function () {
         this._action = this._action.replaceAt(1, "b");
         return this;
     };
-
     this.convertActionToIdle = function () {
         this._action = this._action.replaceAt(1, "a");
         return this;
@@ -332,23 +369,18 @@ function Unit(json) {
 
         if (this._dir === DIR_E) {
             dx += fullStep;
-        }
-        else if (this._dir === DIR_W) {
+        } else if (this._dir === DIR_W) {
             dx -= fullStep;
-        }
-        else if (this._dir === DIR_SE) {
+        } else if (this._dir === DIR_SE) {
             dx += halfStep;
             dy += halfStep;
-        }
-        else if (this._dir === DIR_SW) {
+        } else if (this._dir === DIR_SW) {
             dx -= halfStep;
             dy += halfStep;
-        }
-        else if (this._dir === DIR_NW) {
+        } else if (this._dir === DIR_NW) {
             dx -= halfStep;
             dy -= halfStep;
-        }
-        else if (this._dir === DIR_NE) {
+        } else if (this._dir === DIR_NE) {
             dx += halfStep;
             dy -= halfStep;
         }
@@ -358,7 +390,6 @@ function Unit(json) {
 
         return this;
     };
-
     // Equip weapons
 
     this.equipWeapon = function (weaponName, delay) {
@@ -369,8 +400,7 @@ function Unit(json) {
 
         if (weaponName === WEAPON_SPEAR) {
             var animationLength = 1300;
-        }
-        else {
+        } else {
             var animationLength = 1300;
         }
 
@@ -390,8 +420,7 @@ function Unit(json) {
     this.position = function (x, y) {
         if (!x && !y) {
             return {x: this.positionPX, y: this.positionPY};
-        }
-        else {
+        } else {
             this.positionPX = x;
             this.positionPY = y;
             return this;
@@ -400,17 +429,17 @@ function Unit(json) {
 
     // =========================================================================
     // HTML creation
-
-    this.createImageElement = function () {
+    this.createImageElementBase = function () {
         var id = "unit-img-" + this._id;
         var idString = this._id ? "id='" + id + "'" : "";
         var imgClass = "";
 
         // Animated image
         if (!this.isStaticImage()) {
-            var imgName = "/img/critter/all/" + this._sex + this._type + this._action + "_" + this._dir;
-            var randomString = "?" + rand(100000, 999999);
-            var imagePath = imgName + ".gif" + randomString;
+            var imgName = this._sex + this._type + this._action + "_" + this._dir + ".gif";
+            var imgPath = "/img/critter/all/" + imgName;
+//            var randomString = "?" + rand(100000, 999999);
+            //            var imagePath = imgName + ".gif" + randomString;
             imgClass = "unit-alive";
         }
 
@@ -432,22 +461,26 @@ function Unit(json) {
 //            }
 //        }
 //        this.marginTop = 60 + $("#" + id).height() * -1;
-//        this.marginTop = 15;
-//        if (this.dirTowardNorth()) {
+        //        this.marginTop = 15;
+        //        if (this.dirTowardNorth()) {
         //        }
 
         // =========================================================================
         // Response contains various elements that can be needed, include them all
 
-        var imageElement = "<img " + idString + " class='" + imgClass + "' src='" + imagePath + "' />";
-        return {"imageElement": imageElement, "imagePath": imagePath};
+//        var imageElement = "<img " + idString + " class='" + imgClass + "' src='" + imagePath + "' />";
+        var imageElement = "<img " + idString + " class='" + imgClass + "' ";
+        return {"imageElement": imageElement, "imagePath": imagePath, "imageName": imgName};
     };
 
     // =========================================================================
     // Low-level methods
 
+    this.getCanvas = function () {
+        return $("#engine-canvas");
+    };
     this.createImageWrapper = function () {
-        $("#canvas").append("<div class='engine-unit' id='unit-wrapper-" + this._id + "'></div>");
+        this.getCanvas().append("<div class='engine-unit' id='unit-wrapper-" + this._id + "'></div>");
     };
 
     this.handleOptions = function (options) {
@@ -485,7 +518,7 @@ function Unit(json) {
     };
 
 //    this.isActionStatic = function () {
-//        return [ACTION_IDLE, SPEAR_IDLE].indexOf(this._dir) != -1;
+    //        return [ACTION_IDLE, SPEAR_IDLE].indexOf(this._dir) != -1;
 //        return false;
     //    };
 
@@ -500,8 +533,7 @@ function Unit(json) {
     this.isActionWithWeapon = function (weaponName) {
         if (weaponName === WEAPON_SPEAR) {
             weaponLetter = "g";
-        }
-        else {
+        } else {
             weaponLetter = "a"; // Generic actions
         }
         return this._action.charAt(0) === weaponLetter.charAt(0);
@@ -516,8 +548,7 @@ function Unit(json) {
     this.dir = function (newDir) {
         if (newDir !== undefined) {
             this._dir = newDir;
-        }
-        else {
+        } else {
             return this._dir;
         }
     };
@@ -528,8 +559,7 @@ function Unit(json) {
     this.action = function (newAction) {
         if (newAction !== undefined) {
             this._action = newAction;
-        }
-        else {
+        } else {
             return this._action;
         }
     };
