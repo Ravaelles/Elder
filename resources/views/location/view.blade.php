@@ -14,7 +14,7 @@
                 engineView = new EngineView(2000, 1500);
             });
         </script>
-        @include ('engine.engine')
+        @include ('location.engine')
     </div>
 </div>
 @endsection

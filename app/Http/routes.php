@@ -7,6 +7,12 @@
 |--------------------------------------------------------------------------
 */
 
+Route::get('image/{path}', [
+//    'middleware' => 'auth',
+    'uses' => 'ImageController@get',
+    'as' => 'image'
+])->where(['path' => '.*']);
+
 Route::get('users', [
 //    'middleware' => 'auth',
     'uses' => 'UsersController@index',
@@ -41,12 +47,21 @@ Route::get('itemTypes/{id}/delete', [
 ]);
 
 // =========================================================================
-// World
+// Worldmap
 
-Route::get('world', [
+Route::get('worldmap', [
     'middleware' => 'auth',
-    'uses' => 'WorldController@map',
-    'as' => 'world'
+    'uses' => 'WorldmapController@index',
+    'as' => 'worldmap'
+]);
+
+// =========================================================================
+// Location
+
+Route::get('location', [
+    'middleware' => 'auth',
+    'uses' => 'LocationController@index',
+    'as' => 'Location'
 ]);
 
 // =========================================================================
@@ -134,11 +149,17 @@ Route::get('user/show/{id}/{name}', [
 // =========================================================================
 // Admin utils
 
-Route::get('logs', [
+Route::get('util/logs', [
     'middleware' => 'auth',
     'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index',
     'as' => 'logs'
 ]);
+
+Route::get('util/gif/{path}', [
+    'middleware' => 'auth',
+    'uses' => 'UtilController@gif',
+    'as' => 'logs'
+])->where(['path' => '.*']);
 
 //Route::get('php', [
 //    'middleware' => 'auth',

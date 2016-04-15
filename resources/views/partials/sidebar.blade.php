@@ -30,17 +30,24 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
 
-            <li class="header">Command, oh, mighty Elder!</li>
+            <li class="header">Command us, oh mighty Elder!</li>
 
-            <li class="active"><a href="/village">
-                    <div><i class='ion-bonfire'></i></div> <div>Village</div>
-                </a></li>
+            <!-- VILLAGE -->
+            <li class="{{ Request::is('village*') ? "active" : "" }}">
+                <a href="/village"><div><i class='ion-bonfire'></i></div> <div>Village</div></a>
+            </li>
 
-            <li><a href="/world">
-                    <div><i class='ion-planet'></i></div> <div>World</div>
-                </a></li>
+            <!-- encoun -->
+            <li class="{{ Request::is('location*') ? "active" : "" }}">
+                <a href="/location"><div><i class='ion-planet'></i></div> <div>World</div></a>
+            </li>
 
-<!--<li><a href="/world"><i class='fa fa-'></i> <span>World</span></a></li>-->
+            <!-- MAP -->
+            <li class="{{ Request::is('worldmap*') ? "active" : "" }}">
+                <a href="/worldmap"><div><i class='ion-map'></i></div> <div>Worldmap</div></a>
+            </li>
+
+<!--<li><a href="/map"><i class='fa fa-'></i> <span>Map</span></a></li>-->
 
 <!--            <li><a href="/village"><i class='fa fa-link'></i> <span>Village</span></a></li>-->
             <!--            <li class="treeview">

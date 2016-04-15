@@ -14,6 +14,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // image
+        Blade::directive('image', function($expression) {
+            $externalUrl = "/img/";
+            $expression = substr($expression, 2, strlen($expression) - 4);
+            return "<?php echo '{$externalUrl}{$expression}'; ?>";
+        });
+
+        // breadcrumbs
         Blade::directive('breadcrumbs', function($expression) {
 //            return "echo with{$expression}->format('m/d/Y H:i');
             $expression = \App\Helpers\Helper::substring($expression, 1, 1);

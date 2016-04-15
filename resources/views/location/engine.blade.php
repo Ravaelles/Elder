@@ -3,6 +3,10 @@
 </style>
 
 <div class="box box-shadow engine-canvas" id="canvas">
+    <div id="canvas-debug">
+
+    </div>
+
     <!--    <div class="" style="position: absolute; margin-top: 200px; margin-left: 400px; width: 82px; border-bottom: 1px solid red;"></div>
         <div class="" style="position: absolute; margin-top: 200px; margin-left: 482px; width: 82px; border-bottom: 1px solid blue;"></div>-->
 
@@ -28,19 +32,30 @@ var i = 1;
 //                        unit.animation({action: SPEAR_UNEQUIP});
 //                        unit.animation({dir: DIR_E});
 //                        unit.animation({dir: DIR_SE});
-                        unit.equipWeapon("SPEAR");
+//                        unit.equipWeapon("SPEAR");
 //                        unit.walk();
 //                        unit.walk({dir: DIR_E}, 700);
 //                        unit.walk({dir: DIR_E});
-                        unit.walk({dir: DIR_SE});
+                
+//                for (var i = 0; i < 20; i++) {
+//                        unit.walk({dir: DIR_SE});
+//                        unit.walk({dir: DIR_SE});
+//                        unit.walk({dir: DIR_SE});
+//                        unit.walk({dir: DIR_SE});
+//                        unit.walk({dir: DIR_SE});
+//                        unit.walk({dir: DIR_NW});
+//                        unit.walk({dir: DIR_NW});
+//                        unit.walk({dir: DIR_NW});
+//                    }
                         unit.walk({dir: DIR_E});
                         unit.walk({dir: DIR_E});
-                        unit.walk({dir: DIR_SE});
-                        unit.walk({dir: DIR_SE});
-                        unit.walk({dir: DIR_SE});
-                        unit.walk({dir: DIR_NW});
                         unit.walk({dir: DIR_E});
-                        unit.walk({dir: DIR_E});
+                        unit.walk({dir: DIR_SE});
+                        unit.walk({dir: DIR_SE});
+                        unit.walk({dir: DIR_SE});
+                        unit.walk({dir: DIR_SW});
+                        unit.walk({dir: DIR_SW});
+                        unit.walk({dir: DIR_SW});
 //                }
             }
 

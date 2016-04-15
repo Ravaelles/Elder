@@ -3,26 +3,6 @@
 
 @include('partials.htmlheader')
 
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="skin-green sidebar-mini">
     <div class="wrapper">
 
@@ -33,13 +13,26 @@ desired effect
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
+        @if(empty($disableContentHeader))
         @include('partials.contentheader')
+        @else
+        <style>
+            .content {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        </style>
+        @endif
 
         <!-- Main content -->
         <section class="content">
-            <!-- Your Page Content Here -->
+
+            <!-- START OF Content -->
             @yield('main-content')
+            <!-- END OF Content -->
+
         </section><!-- /.content -->
+
     </div><!-- /.content-wrapper -->
 
     <!--@ include ('partials.controlsidebar')-->

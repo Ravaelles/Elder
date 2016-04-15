@@ -19,6 +19,7 @@
        headers: { 'X-CSRF-Token': $('meta[name=_token]').attr('content')}
     });
     
+    // Tooltips
     window.initQueue.push(function() {
         // <!-- Bootstrap tooltips -->
         $(function () {
@@ -31,6 +32,14 @@
                 html: true
             });
         })
+    });
+    
+    // Fill content to the maximum
+    window.initQueue.push(function() {
+        setTimeout(function() {
+            $(".fill-content").css('width', $(".content").width());
+            $(".fill-content").css('height', $(".content-wrapper").height());
+        }, 50);
     });
 
     //<!-- Process all listeners to be run after window is loaded -->

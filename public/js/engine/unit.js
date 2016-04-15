@@ -1,3 +1,11 @@
+/* global DIR_E, DIR_W, DIR_SW, DIR_NW, DIR_NE, DIR_SE, WEAPON_SPEAR, MALE, ACTION_IDLE, engineView */
+
+var BASE_IMG_DIR = "/img/critter/";
+var WALK_ANIMATION_LENGTH = 800;
+var WALK_ANIMATION_MODIFIER_WHEN_FIRST = 100;
+
+// =========================================================================
+
 var allUnits = [];
 
 var numOfImages = [];
@@ -16,7 +24,7 @@ numOfImages['tree'] = 6;
  * - action - currently executed action - choose one of many constans prefixed ACTION_, SPEAR_ etc
  * - type - Fallout identifier of the type in the gif, use constants lik WARRIOR_MALE, WARRIOR_FEMALE etc
  *
- * @param string json json string that will be used to create object
+ * @param json json string that will be used to create object
  * @returns Unit
  */
 function Unit(json) {
@@ -35,7 +43,7 @@ function Unit(json) {
     this.positionPY = 0; // Position Y in pixels
 
     this._lastAnimationEndsAt = 0;
-    this._imageSelector = null;
+    this._divSelector = null;
 
     // =========================================================================
     // Constructor
@@ -44,8 +52,7 @@ function Unit(json) {
         var parameters;
         if (typeof json === 'string') {
             parameters = JSON.parse(json);
-        }
-        else {
+        } else {
             parameters = json;
         }
 
@@ -89,12 +96,25 @@ function Unit(json) {
         imageObject.unit = this;
         imageObject.imageIsLoaded = false;
 
+        function reloadImage(unitId, imgSource) {
+//            $('#unit-img-' + unitId).attr('src', imgSource);
+//            $('#unit-img-' + unitId).attr('src', "/img/empty.jpg");
+            $('#unit-img-' + unitId).attr('src', imgSource);
+        }
+
         // Define image onload callback
         imageObject.onload = function (event) {
+            var debugString = "<script>$('#unit-img-" + this.unitId + "').css('border', '1px solid rgba(255,0,0,0.2)')</script>";
+            +"<script>setTimeout(function() { $('#unit-img-" + this.unitId + "').css('border', 'none'); }, 1000)</script>";
+            $("#canvas-debug").html(debugString);
+            var imgSource = $('#unit-img-' + this.unitId).attr('src');
+//            $('#unit-img-' + this.unitId).attr('src', '');
+            reloadImage(this.unitId, imgSource);
+
             if (this.imageIsLoaded) {
                 return;
-            }
-            else {
+            } else {
+
                 var unit = this.unit;
                 this.imageIsLoaded = true;
                 this.src = imagePath;
@@ -138,10 +158,12 @@ function Unit(json) {
     this.queueAnimation = function (options, delay, animationLength) {
         var startAnimatingUnitAfterTime;
         var lastAnimationEndedAgo = this.timeSinceLastAnimationEndedAgo();
-        var canStartAnimationNow = lastAnimationEndedAgo >= 0;
+        var canStartAnimationNow = lastAnimationEndedAgo >= -20;
 
         if (!animationLength) {
-            animationLength = 800;
+            animationLength = WALK_ANIMATION_LENGTH;
+//            animationLength = 800;
+//            animationLength = 2890;
         }
         if (!delay) {
             delay = 0;
@@ -153,17 +175,17 @@ function Unit(json) {
         if (canStartAnimationNow) {
             startAnimatingUnitAfterTime = 0;
             this._lastAnimationEndsAt = this.timeNow() + delay + animationLength;
-        }
-        else {
+        } else {
             startAnimatingUnitAfterTime = -lastAnimationEndedAgo;
             this._lastAnimationEndsAt += delay + startAnimatingUnitAfterTime + animationLength;
+//            this._lastAnimationEndsAt += delay + startAnimatingUnitAfterTime + animationLength;
         }
 
         // =========================================================================
         // Either run an animation now or queue it
 
         // Run now
-        if (canStartAnimationNow && this._queueAnimations.length == 0) {
+        if (canStartAnimationNow && this._queueAnimations.length === 0) {
             this._runAnimationNow(options, delay, animationLength);
         }
 
@@ -172,7 +194,7 @@ function Unit(json) {
             var animationObject = {
                 'options': options,
                 'animationLength': animationLength,
-                'delay': delay,
+                'delay': delay
             };
             this._queueAnimations.push(animationObject);
         }
@@ -282,7 +304,11 @@ function Unit(json) {
     // Walk
 
     this.walk = function (options, delay) {
-        var walkAnimationTimespan = 800;
+//        var walkAnimationTimespan = 990;
+        var walkAnimationTimespan = WALK_ANIMATION_LENGTH +
+                +(this._queueAnimations.length === 0 ? WALK_ANIMATION_MODIFIER_WHEN_FIRST : 0);
+//        console.l  og(this._queueAnimations.length + " / " + walkAnimationTimespan);
+//        console.l  og(walkAnimationTimespan);
         var lastAnimationEnded = this.timeSinceLastAnimationEndedAgo();
         var startAnimatingUnitAfterTime;
 
@@ -302,7 +328,7 @@ function Unit(json) {
         options['callbackAnimationEnded'] = function (unit) {
             unit.handleWalkPositionChange();
 
-            if (unit._queueAnimations.length == 0) {
+            if (unit._queueAnimations.length === 0) {
                 unit.convertActionToIdle();
                 unit._animate();
             }
@@ -332,23 +358,18 @@ function Unit(json) {
 
         if (this._dir === DIR_E) {
             dx += fullStep;
-        }
-        else if (this._dir === DIR_W) {
+        } else if (this._dir === DIR_W) {
             dx -= fullStep;
-        }
-        else if (this._dir === DIR_SE) {
+        } else if (this._dir === DIR_SE) {
             dx += halfStep;
             dy += halfStep;
-        }
-        else if (this._dir === DIR_SW) {
+        } else if (this._dir === DIR_SW) {
             dx -= halfStep;
             dy += halfStep;
-        }
-        else if (this._dir === DIR_NW) {
+        } else if (this._dir === DIR_NW) {
             dx -= halfStep;
             dy -= halfStep;
-        }
-        else if (this._dir === DIR_NE) {
+        } else if (this._dir === DIR_NE) {
             dx += halfStep;
             dy -= halfStep;
         }
@@ -369,8 +390,7 @@ function Unit(json) {
 
         if (weaponName === WEAPON_SPEAR) {
             var animationLength = 1300;
-        }
-        else {
+        } else {
             var animationLength = 1300;
         }
 
@@ -390,8 +410,7 @@ function Unit(json) {
     this.position = function (x, y) {
         if (!x && !y) {
             return {x: this.positionPX, y: this.positionPY};
-        }
-        else {
+        } else {
             this.positionPX = x;
             this.positionPY = y;
             return this;
@@ -408,10 +427,16 @@ function Unit(json) {
 
         // Animated image
         if (!this.isStaticImage()) {
-            var imgName = "/img/critter/all/" + this._sex + this._type + this._action + "_" + this._dir;
-            var randomString = "?" + rand(100000, 999999);
-            var imagePath = imgName + ".gif" + randomString;
+            var imgName = BASE_IMG_DIR + "all/" + this._sex + this._type + this._action + "_" + this._dir;
+//            var imgName = "/image/critter/all/" + this._sex + this._type + this._action + "_" + this._dir;
+//            var randomString = "?" + rand(100000, 999999);
+//            var randomString = "?" + this._id + "-" + rand(0, 99999);
+//            var randomString = "?" + this._id;
+//            var imagePath = imgName + ".gif" + randomString;
+//            var imagePath = imgName + ".gif?" + this._id;
+            var imagePath = imgName + ".gif";
             imgClass = "unit-alive";
+//            specialAttributes = "loop=infinite";
         }
 
         // Static image
@@ -439,6 +464,7 @@ function Unit(json) {
         // =========================================================================
         // Response contains various elements that can be needed, include them all
 
+//        var styleString = "border: 1px solid red !important";
         var imageElement = "<img " + idString + " class='" + imgClass + "' src='" + imagePath + "' />";
         return {"imageElement": imageElement, "imagePath": imagePath};
     };
@@ -447,21 +473,28 @@ function Unit(json) {
     // Low-level methods
 
     this.createImageWrapper = function () {
-        $("#canvas").append("<div class='engine-unit' id='unit-wrapper-" + this._id + "'></div>");
+        var unitIdString = "unit-wrapper-" + this._id;
+
+        if (this._divSelector !== null) {
+            this._divSelector.html("<div class='engine-unit' id='" + unitIdString + "'></div>");
+        } else {
+            $("#canvas").append("<div class='engine-unit' id='" + unitIdString + "'></div>");
+            this._divSelector = $("#canvas #" + unitIdString);
+        }
     };
 
     this.handleOptions = function (options) {
         if (options) {
-            if (typeof options.action != 'undefined') {
+            if (typeof options.action !== 'undefined') {
                 this._action = options.action;
             }
-            if (typeof options.sex != 'undefined') {
+            if (typeof options.sex !== 'undefined') {
                 this._sex = options.sex;
             }
-            if (typeof options.dir != 'undefined') {
+            if (typeof options.dir !== 'undefined') {
                 this._dir = options.dir;
             }
-            if (typeof options.type != 'undefined') {
+            if (typeof options.type !== 'undefined') {
                 this._type = options.type;
             }
         }
@@ -469,19 +502,19 @@ function Unit(json) {
     };
 
     this.dirTowardEast = function () {
-        return [DIR_E, DIR_SE, DIR_NE].indexOf(this._dir) != -1;
+        return [DIR_E, DIR_SE, DIR_NE].indexOf(this._dir) !== -1;
     };
 
     this.dirTowardWest = function () {
-        return [DIR_W, DIR_NW, DIR_SW].indexOf(this._dir) != -1;
+        return [DIR_W, DIR_NW, DIR_SW].indexOf(this._dir) !== -1;
     };
 
     this.dirTowardNorth = function () {
-        return [DIR_NW, DIR_NE].indexOf(this._dir) != -1;
+        return [DIR_NW, DIR_NE].indexOf(this._dir) !== -1;
     };
 
     this.dirTowardSouth = function () {
-        return [DIR_SW, DIR_SE].indexOf(this._dir) != -1;
+        return [DIR_SW, DIR_SE].indexOf(this._dir) !== -1;
     };
 
 //    this.isActionStatic = function () {
@@ -490,7 +523,7 @@ function Unit(json) {
     //    };
 
     this.isStaticImage = function () {
-        return this._type != null && stringStartsWith(this._type, "nature_");
+        return this._type !== null && stringStartsWith(this._type, "nature_");
     };
 
     this.isActionWalk = function () {
@@ -500,8 +533,7 @@ function Unit(json) {
     this.isActionWithWeapon = function (weaponName) {
         if (weaponName === WEAPON_SPEAR) {
             weaponLetter = "g";
-        }
-        else {
+        } else {
             weaponLetter = "a"; // Generic actions
         }
         return this._action.charAt(0) === weaponLetter.charAt(0);
@@ -512,24 +544,24 @@ function Unit(json) {
 
     /**
      * Getter or Setter for <b>dir</b> field.
+     * @param newDir one of DIR_* variables
      */
     this.dir = function (newDir) {
         if (newDir !== undefined) {
             this._dir = newDir;
-        }
-        else {
+        } else {
             return this._dir;
         }
     };
 
     /**
      * Getter or Setter for <b>action</b> field.
+     * @param newAction one of ACTION_* variables or others like that
      */
     this.action = function (newAction) {
         if (newAction !== undefined) {
             this._action = newAction;
-        }
-        else {
+        } else {
             return this._action;
         }
     };
