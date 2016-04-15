@@ -161,11 +161,13 @@ Route::get('util/gif/{path}', [
     'as' => 'logs'
 ])->where(['path' => '.*']);
 
-//Route::get('php', [
-//    'middleware' => 'auth',
-//    'uses' => 'HomeController@php',
-//    'as' => 'php'
-//]);
+// =========================================================================
+// Generator
+
+Route::get('generator', [
+    'middleware' => 'auth', 'uses' => 'GeneratorController@generateWorld'
+]);
+
 // =========================================================================
 // Main page
 

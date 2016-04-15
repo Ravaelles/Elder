@@ -29,6 +29,27 @@ class Eloquent extends Moloquent {
         return self::PRIMARY_KEY_NAME;
     }
 
+    // =========================================================================
+
+    public function get($field) {
+        return $this->$field;
+    }
+
+    public function set($field, $value) {
+        return $this->$field = $value;
+    }
+
+    public function getOrSet($field, $value = null, $type = null) {
+        if ($value === null) {
+            return $this->$field;
+        } else {
+            if ($type === 'int') {
+                $value = (int) $value;
+            }
+            return $this->$field = $value;
+        }
+    }
+
     /**
      * Converts MongoDate value as in $this[$fieldName] into either Carbon date or into string.
      * @param string $fieldName name of the field to convert in $this context e.g. 'created_at'
