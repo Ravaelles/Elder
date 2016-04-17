@@ -12,7 +12,12 @@ class Location extends Eloquent {
 
     // =========================================================================
 
+    private static $firstFreeID = 1;
+
+    // =========================================================================
+
     function __construct($location = null) {
+//        $this->set(self::ID, self::$firstFreeID++);
         if ($location === null) {
             $this->assignRandomLocation();
         }
@@ -25,6 +30,13 @@ class Location extends Eloquent {
         $this->set(self::NAME, "");
 
         return $this;
+    }
+
+    public function getID() {
+//        var_dump($this->get(self::ID));
+//        dd($this->getAttributes());
+//        return $this->get(self::ID);
+        return $this->get($this->primaryKey);
     }
 
 }

@@ -3,8 +3,9 @@
 $top = $city->location['y'] * 10;
 $left = $city->location['x'] * 10;
 ?>
-<div class="worldmap-location" style="top: {{ $top }}px; left: {{ $left }}px;"
-     >{{ $city->name }}</div>
+<div class="worldmap-location noselect" 
+     id="worldmap-location-{{ $city->getID() }}"
+     style="top: {{ $top }}px; left: {{ $left }}px;">{{ $city->name }}</div>
 @endforeach
 
 <style>
