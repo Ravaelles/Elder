@@ -11,10 +11,16 @@ class City extends Location {
         parent::__construct();
     }
 
+    // =========================================================================
+
     public static function generate() {
         $city = new City();
         $city->set(Location::NAME, self::getRandomName());
         return $city;
+    }
+
+    public static function removeAll() {
+        
     }
 
     // =========================================================================

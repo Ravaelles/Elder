@@ -27,7 +27,7 @@ if (!Auth::check()) {
 ?>
 
 <!-- Main Header -->
-<header class="main-header">
+<header class="main-header noselect">
 
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
