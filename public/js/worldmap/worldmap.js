@@ -192,7 +192,7 @@ function initializeWorldmap() {
 //    worldmap.css('background-size', '500px 500px');
 //    worldmap.css('background-size', MAP_WIDTH_PIXELS + 'px ' + MAP_HEIGHT_PIXELS + 'px');
     worldmap.css('background-size', currentMapImageWidth + "px");
-    zoom = MAP_WIDTH_PIXELS / 1100;
+    zoom = MAP_WIDTH_PIXELS / currentMapImageWidth;
     worldmap.css('background-position-x', '-100px');
     worldmap.css('background-position-y', '-100px');
 }
@@ -201,6 +201,7 @@ window.initQueue.push(function () {
     setTimeout(function () {
         MAP_CANVAS_WIDTH = $(".worldmap").width();
         MAP_CANVAS_HEIGHT = $(".content-wrapper").height();
+        currentMapImageWidth = MAP_CANVAS_WIDTH * 2;
 
         initializeWorldmap();
         initializeMapEvents();
