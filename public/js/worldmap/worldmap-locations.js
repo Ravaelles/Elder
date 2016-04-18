@@ -5,7 +5,7 @@ function initializeWorldmapLocations() {
     });
 //    worldmap.append(createHtmlFromLocationJson(location));
 
-    console.log($("#worldmap-location-stylesheet").get(0).children());
+    console.log($("#worldmap-location").get(0).children());
 }
 
 function createHtmlFromLocationJson(location) {

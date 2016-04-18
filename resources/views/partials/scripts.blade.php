@@ -11,7 +11,34 @@
 <!-- Project specific scripts -->
 <script src="/js/project.js" type="text/javascript"></script>
 <!-- All engine scripts merged -->
-<script src="/js/all.js" type="text/javascript"></script>
+<!--<script src="/js/all.js" type="text/javascript"></script>-->
+
+<?php
+$baseDir = public_path('js');
+$scriptFiles = [];
+foreach (scandir($baseDir) as $file) {
+    if (starts_with($file, '.')) {
+        continue;
+    }
+    $path = $baseDir . '/' . $file;
+    if (is_dir($path)) {
+        foreach (scandir($path) as $file) {
+            if (starts_with($file, '.')) {
+                continue;
+            }
+            $scriptFiles[] = str_ireplace(base_path() . '/public', "", $path) . '/' . $file;
+        }
+    } else {
+//        $scriptFiles[] = $file;
+    }
+}
+//var_dump($scriptFiles);
+//exit;
+foreach ($scriptFiles as $scriptFile) {
+//<!--<script src="/js/all.js" type="text/javascript"></script>-->
+    echo "<script src='$scriptFile' type='text/javascript'></script>";
+}
+?>
 
 <script>
     //<!-- Pass CSRF token to every ajax request -->
