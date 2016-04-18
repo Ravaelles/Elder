@@ -34,3 +34,12 @@ elixir(function (mix) {
     ], 'public/css/all.css');
 
 });
+
+elixir(function (mix) {
+	
+	mix.scripts([
+		'public/js/engine/**',
+        'public/js/worldmap/**',
+    ], 'public/js/all.js', 'public/js/');
+	
+});

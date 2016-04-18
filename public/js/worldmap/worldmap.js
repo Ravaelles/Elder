@@ -79,7 +79,7 @@ function setBackgroundImagePosition(imagePosX, imagePosY) {
 
 // === Map events ======================================================================
 
-function initializeMapEvents() {
+function initializeWorldmapEvents() {
     $(".worldmap")
             .mousedown(function (event) {
                 mapMouseDown(event);
@@ -204,7 +204,8 @@ window.initQueue.push(function () {
         currentMapImageWidth = MAP_CANVAS_WIDTH * 2;
 
         initializeWorldmap();
-        initializeMapEvents();
+        initializeWorldmapLocations();
+        initializeWorldmapEvents();
     }, 80);
 });
 

@@ -67,7 +67,7 @@
 
     </div><!-- /.login-box -->
 
-    @include('auth.scripts')
+    @include('auth.auth-scripts')
 
     <script>
         $(function () {

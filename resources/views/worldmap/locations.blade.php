@@ -1,14 +1,6 @@
-@foreach ($cities as $city)
-<?php
-$top = $city->location['y'];
-$left = $city->location['x'];
-?>
-<div class="worldmap-location" 
-     id="worldmap-location-{{ $city->getID() }}"
-     style="top: {{ $top }}px; left: {{ $left }}px;"><label class="noselect">
-        {{ $city->name . ' ' . json_encode($city->location) }}
-    </label></div>
-@endforeach
+<script type="text/javascript">
+    var worldmapLocations = {!! json_encode($cities) !!};
+</script>
 
 <style>
     .worldmap-location label {
