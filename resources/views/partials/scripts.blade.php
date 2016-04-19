@@ -13,6 +13,29 @@
 <!-- All engine scripts merged -->
 <script src="/js/all.js" type="text/javascript"></script>
 
+<?php
+//$baseDir = public_path('js');
+//$scriptFiles = [];
+//foreach (scandir($baseDir) as $file) {
+//    if (starts_with($file, '.')) {
+//        continue;
+//    }
+//    $path = $baseDir . '/' . $file;
+//    if (is_dir($path)) {
+//        foreach (scandir($path) as $file) {
+//            if (starts_with($file, '.')) {
+//                continue;
+//            }
+//            $scriptFiles[] = str_ireplace(base_path() . '/public', "", $path) . '/' . $file;
+//        }
+//    } else {
+//    }
+//}
+//foreach ($scriptFiles as $scriptFile) {
+//    echo "<script src='$scriptFile' type='text/javascript'></script>";
+//}
+?>
+
 <script>
     //<!-- Pass CSRF token to every ajax request -->
     $.ajaxSetup({

@@ -5,9 +5,6 @@ function initializeWorldmapLocations() {
     worldmapLocations.forEach(function (location) {
         worldmap.append(createHtmlFromLocationJson(location));
     });
-//    worldmap.append(createHtmlFromLocationJson(location));
-
-//    console.log($("#worldmap-location-stylesheet").get(0).children());
 }
 
 function createHtmlFromLocationJson(location) {

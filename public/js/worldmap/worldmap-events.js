@@ -107,29 +107,6 @@ function getCoordinatesFromMapClick(event) {
     var mapScreenHeight = MAP_CANVAS_HEIGHT * zoom;
     var mapScreenHeightPercent = canvasClickY / MAP_CANVAS_HEIGHT;
 
-//    var backgroundOffsetY = -1 * worldmap.css('background-position-y').slice(0, -2);
-//    var backgroundWidth = worldmap.css('background-size').slice(0, -2);
-//    var backgroundImageX = backgroundOffsetX + (event.offsetX * MAP_CANVAS_WIDTH) / backgroundWidth;
-//    console.log("------------");
-//    console.log("mapScreenWidthPercent = " + mapScreenWidthPercent);
-//    console.log("MAP_CANVAS_WIDTH = " + MAP_CANVAS_WIDTH);
-//    log('event.offsetX', event.offsetX);
-//    log('mapScreenWidth', mapScreenWidth);
-//    log('mapScreenWidthPercent', mapScreenWidthPercent);
-//    log('coordinatesOffsetX', coordinatesOffsetX);
-//    log('backgroundWidth', backgroundWidth);
-//    log('MAP_CANVAS_WIDTH', MAP_CANVAS_WIDTH);
-//    console.log("backgroundOffsetX = " + backgroundOffsetX);
-//    console.log("backgroundImageX = " + backgroundImageX);
-//    var backgroundSizeY = -1 * worldmap.css('background-position-x').slice(0, -2);
-//    console.log("OFFSET: " + backgroundOffsetX + "  /  " + backgroundOffsetY);
-//    console.log("zoom = " + zoom);
-//    console.log("result = " + backgroundImageX * zoom);
-//    console.log("currentMapImageWidth = " + currentMapImageWidth);
-//    console.log("MAP_CANVAS_WIDTH = " + MAP_CANVAS_WIDTH);
-//    console.log("MAP_WIDTH = " + MAP_WIDTH);
-//    var x = parseInt(mapOffsetX + event.offsetX * zoom);
-
     // Return object
     var x = parseInt(coordinatesOffsetX + mapScreenWidthPercent * mapScreenWidth);
     var y = parseInt(coordinatesOffsetY + mapScreenHeightPercent * mapScreenHeight);
