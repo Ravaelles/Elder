@@ -3,7 +3,7 @@
 <?php $disableContentHeader = true; ?>
 
 @section('main-content')
-<div class="worldmap fill-content"></div>
+<div class="worldmap fill-content no-select"></div>
 
 <!-- Dynamic stylesheet for the worldmap -->
 <!--<style id="worldmap-location-stylesheet">

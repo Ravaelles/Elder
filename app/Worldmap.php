@@ -15,7 +15,7 @@ class Worldmap extends Eloquent {
 
     public static function getRandomCoordinates() {
 //        $x = (int) rand(0.13 * self::MAP_WIDTH, 0.9 * self::MAP_WIDTH);
-        $x = (int) rand(0.1 * self::MAP_WIDTH, 0.9 * self::MAP_WIDTH);
+        $x = (int) rand(0.136 * self::MAP_WIDTH, 0.9 * self::MAP_WIDTH);
         $y = (int) rand(0.1 * self::MAP_HEIGHT, 0.9 * self::MAP_HEIGHT);
         return ['x' => $x, 'y' => $y];
     }

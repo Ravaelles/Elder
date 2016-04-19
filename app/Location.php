@@ -17,6 +17,7 @@ class Location extends Eloquent {
     // =========================================================================
 
     function __construct($location = null) {
+        parent::__construct();
 //        $this->set(self::ID, self::$firstFreeID++);
         if ($location === null) {
             $this->assignRandomLocation();
@@ -25,12 +26,14 @@ class Location extends Eloquent {
 
     // =========================================================================
 
-    public function assignRandomLocation() {
+    private function assignRandomLocation() {
         $this->set(self::LOCATION, Worldmap::getRandomCoordinates());
         $this->set(self::NAME, "");
 
         return $this;
     }
+
+    // =========================================================================
 
     public function getID() {
 //        var_dump($this->get(self::ID));
