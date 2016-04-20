@@ -59,5 +59,8 @@
                         </li>-->
         </ul><!-- /.sidebar-menu -->
     </section>
+
+    <section class="game-log">
+    </section>
     <!-- /.sidebar -->
 </aside>

@@ -5,40 +5,56 @@ var mouseHasMoved = false;
 // === Map events ======================================================================
 
 function initializeWorldmapEvents() {
+    $(".worldmap-location")
+            .mousedown(function (event) {
+                mapMouseDown(event);
+                event.stopPropagation();
+            })
+            .mouseup(function (event) {
+                mapMouseUp(event);
+                event.stopPropagation();
+            })
+            .mousemove(function (event) {
+                mapMouseMove(event);
+                event.stopPropagation();
+            });
+
     $(".worldmap")
             .mousedown(function (event) {
                 mapMouseDown(event);
             })
-            .mousemove(function (event) {
-                mapMouseMove(event);
-            })
             .mouseup(function (event) {
                 mapMouseUp(event);
+            })
+            .mousemove(function (event) {
+                mapMouseMove(event);
             })
             .mousewheel(function (event) {
                 mapScroll(event);
             })
-//            .click(function (event) {
-//                mapClick(event);
-//            })
             .mouseleave(function (event) {
                 mapMouseLeave(event);
-            });
-
-    $(".worldmap-location")
-            .mousedown(function (event) {
-                mapMouseDown(event);
             })
-            .mousemove(function (event) {
-                mapMouseMove(event);
-            })
-            .mouseup(function (event) {
-                mapMouseUp(event);
+            .contextmenu(function (event) {
+//                event.preventDefault(); // Stop the context menu
             });
 }
 
 function mapMouseDown(event) {
     worldmap = $(".worldmap");
+
+    // Right click
+    if (event.button === 2) {
+        console.log("Right click");
+//        event.preventDefault();
+//        event.stopPropagation()();
+//        return true;
+    }
+
+    // Left or middle click
+    else {
+    }
+
     mousePreviousPosition = event;
     mouseIsClicked = true;
     mouseHasMoved = false;
@@ -54,7 +70,9 @@ function mapMouseUp(event) {
 }
 
 function mapMouseMove(event) {
-    mouseHasMoved = true;
+    if (mouseIsClicked) {
+        mouseHasMoved = true;
+    }
 
     if (mouseIsClicked && mousePreviousPosition != null) {
         translationVector = moveMapImage(event);
@@ -79,21 +97,25 @@ function mapScroll(event) {
 }
 
 function mapMouseLeave(event) {
-    mapMouseUp(event);
+    if (mouseIsClicked) {
+        mapMouseUp(event);
+        mouseIsClicked = false;
+    }
 }
 
 function mapClick(event) {
-    var coordinates = getCoordinatesFromMapClick(event);
-    console.log(coordinates);
+    var coordinates = getMapCoordinatesFromScreenClick(event);
+    gameLog('<span>[' + coordinates['mapX'] + ',' + coordinates['mapY'] + ']</span> is unknown wasteland, '
+            + 'not very hospitable place.');
 }
 
 // =========================================================================
 
-function getCoordinatesFromMapClick(event) {
+function getMapCoordinatesFromScreenClick(event) {
 
     // Define click on map canvas manually, because if clicked on a child, it changes .offsetX value.
-    var canvasClickX = event.pageX - $(".sidebar").width();
-    var canvasClickY = event.pageY - $(".main-header").height();
+    var canvasClickX = event.pageX - WORLDMAP_CANVAS_MARGIN_LEFT;
+    var canvasClickY = event.pageY - WORLDMAP_CANVAS_MARGIN_TOP;
 
     // X-related
     var backgroundOffsetX = -1 * worldmap.css('background-position-x').slice(0, -2);
@@ -108,7 +130,11 @@ function getCoordinatesFromMapClick(event) {
     var mapScreenHeightPercent = canvasClickY / MAP_CANVAS_HEIGHT;
 
     // Return object
-    var x = parseInt(coordinatesOffsetX + mapScreenWidthPercent * mapScreenWidth);
-    var y = parseInt(coordinatesOffsetY + mapScreenHeightPercent * mapScreenHeight);
-    return {'x': x, 'y': y};
+    var mapX = parseInt(coordinatesOffsetX + mapScreenWidthPercent * mapScreenWidth);
+    var mapY = parseInt(coordinatesOffsetY + mapScreenHeightPercent * mapScreenHeight);
+    return {'mapX': mapX, 'mapY': mapY};
+}
+
+function getCanvasCoordinatesFromMapCoordinates(mapX, mapY) {
+    return {'canvasX': mapX / zoom - getMapOffsetPixelsX(), 'canvasY': mapY / zoom - getMapOffsetPixelsY()};
 }

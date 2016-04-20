@@ -1,5 +1,5 @@
 //var MOUSE_DRAG_MODIFIER = -0.07;
-var MOUSE_DRAG_MODIFIER = 0.5;
+var MOUSE_DRAG_MODIFIER = 1;
 
 // === Move map / objects ==============================================================
 
@@ -12,17 +12,14 @@ function moveMapImage(event) {
     var imagePosY = worldmap.css('background-position-y');
     imagePosX = parseFloat(imagePosX.substr(0, imagePosX.length - 2));
     imagePosY = parseFloat(imagePosY.substr(0, imagePosY.length - 2));
-//    console.log(imagePosX + " / " + imagePosY);
 
     // Modify variable image position
-    deltaImagePosX = dx * MOUSE_DRAG_MODIFIER * zoom;
-    deltaImagePosY = dy * MOUSE_DRAG_MODIFIER * zoom;
+    deltaImagePosX = dx * MOUSE_DRAG_MODIFIER;
+    deltaImagePosY = dy * MOUSE_DRAG_MODIFIER;
     imagePosX += deltaImagePosX;
     imagePosY += deltaImagePosY;
     imagePosXWithScreenWidth = imagePosX - MAP_CANVAS_WIDTH;
     imagePosYWithScreenHeight = imagePosY - MAP_CANVAS_HEIGHT;
-//    console.log(imagePosX + " / " + MAP_CANVAS_WIDTH + " / " + imagePosXWithScreenWidth + " // " + -MAP_WIDTH_PIXELS / zoom);
-//    console.log(imagePosY + " / " + MAP_CANVAS_HEIGHT + " / " + imagePosYWithScreenHeight + " // " + -MAP_CANVAS_HEIGHT / zoom);
 
     // Force image to be horizontally in bounds
     if (imagePosX > 0) {

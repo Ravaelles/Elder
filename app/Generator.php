@@ -7,7 +7,7 @@ use App\City;
 
 class Generator extends Model {
 
-    const NUM_OF_CITIES = 100;
+    const NUM_OF_CITIES = 15;
 
     public static function generateWorld() {
         City::truncate();

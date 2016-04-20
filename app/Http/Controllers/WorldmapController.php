@@ -15,7 +15,7 @@ class WorldmapController extends Controller {
         $cities = City::all();
 //        $locations = Location::all();
 //        return view('worldmap.map')->with(compact('locations'));
-        return view('worldmap.map')->with(compact('cities'));
+        return view('worldmap.worldmap')->with(compact('cities'));
     }
 
 }

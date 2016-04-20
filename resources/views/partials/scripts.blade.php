@@ -8,6 +8,8 @@
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="/js/app.min.js" type="text/javascript"></script>
+<!-- Noty - nice notifications -->
+<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>-->
 <!-- Project specific scripts -->
 <script src="/js/project.js" type="text/javascript"></script>
 <!-- All engine scripts merged -->
