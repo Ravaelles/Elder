@@ -4,21 +4,31 @@ var WORLDMAP_INITIAL_VIEW_Y = 100;
 var MIN_ZOOM_VALUE = 0.58;
 
 var zoom = 1;
-var zoomStep = 200;
+var zoomStep = 150;
 
 var currentMapImageWidth = null;
 var currentMapImageHeight = null;
+
+// Revert zoom
+var oldMapImageWidth = null;
+var oldZoom = null;
 
 // === Zoom ======================================================================
 
 function initializeWorldmapZoom() {
     currentMapImageWidth = WORLDMAP_IMAGE_INITIAL_WIDTH;
-    currentMapImageHeight = currentMapImageWidth * MAP_CANVAS_WIDTH / MAP_CANVAS_HEIGHT;
-    zoom = MAP_WIDTH / currentMapImageWidth;
+    currentMapImageHeight = currentMapImageWidth * WORLDMAP_CANVAS_WIDTH / WORLDMAP_CANVAS_HEIGHT;
+    zoom = WORLDMAP_WIDTH / currentMapImageWidth;
 }
 
 function changeZoom(event, isZoomIn) {
-    var oldMapImageWidth = currentMapImageWidth;
+
+    // Remember initial view variables
+    oldMapImageWidth = currentMapImageWidth;
+    oldZoom = zoom;
+
+    // =========================================================================
+
     if (isZoomIn) {
         currentMapImageWidth -= zoomStep;
     } else {
@@ -26,13 +36,17 @@ function changeZoom(event, isZoomIn) {
     }
 
     // Recalculate zoom
-    var oldZoom = zoom;
-    zoom = MAP_WIDTH / currentMapImageWidth;
-    if (zoom < MIN_ZOOM_VALUE) {
-        currentMapImageWidth = oldMapImageWidth;
-        zoom = oldZoom;
-        return;
+    zoom = WORLDMAP_WIDTH / currentMapImageWidth;
+
+    // === Revert zoom if needed ================================================
+
+    var isZoomTooClose = zoom < MIN_ZOOM_VALUE; // Zoom is TOO BIG, background would be too pixel
+    var isZoomTooFar = currentMapImageWidth < WORLDMAP_CANVAS_WIDTH;
+    if (isZoomTooClose || isZoomTooFar) {
+        return revertZoom();
     }
+
+    // =========================================================================
 
     console.log("zoom: " + zoom + " / map width: " + currentMapImageWidth);
 
@@ -41,6 +55,11 @@ function changeZoom(event, isZoomIn) {
 
     // Move every map location and change its size.
     changeZoom_updateMapLocation();
+}
+
+function revertZoom() {
+    currentMapImageWidth = oldMapImageWidth;
+    zoom = oldZoom;
 }
 
 // === View ======================================================================

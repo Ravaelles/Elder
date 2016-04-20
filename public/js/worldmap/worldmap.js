@@ -1,8 +1,8 @@
-var MAP_WIDTH = 3500;
-var MAP_HEIGHT = 3500;
+var WORLDMAP_WIDTH = 3500;
+var WORLDMAP_HEIGHT = 3500;
 
-var MAP_CANVAS_WIDTH = null;
-var MAP_CANVAS_HEIGHT = null;
+var WORLDMAP_CANVAS_WIDTH = null;
+var WORLDMAP_CANVAS_HEIGHT = null;
 
 var WORLDMAP_CANVAS_MARGIN_LEFT = $(".sidebar").width();
 var WORLDMAP_CANVAS_MARGIN_TOP = $(".main-header").height();
@@ -32,8 +32,8 @@ function initializeWorldmap() {
 
 window.initQueue.push(function () {
     setTimeout(function () {
-        MAP_CANVAS_WIDTH = $(".worldmap").width();
-        MAP_CANVAS_HEIGHT = $(".content-wrapper").height();
+        WORLDMAP_CANVAS_WIDTH = $(".worldmap").width();
+        WORLDMAP_CANVAS_HEIGHT = $(".content-wrapper").height();
 
         initializeWorldmapZoom();
         initializeWorldmap();

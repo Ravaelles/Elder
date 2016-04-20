@@ -18,17 +18,17 @@ function moveMapImage(event) {
     deltaImagePosY = dy * MOUSE_DRAG_MODIFIER;
     imagePosX += deltaImagePosX;
     imagePosY += deltaImagePosY;
-    imagePosXWithScreenWidth = imagePosX - MAP_CANVAS_WIDTH;
-    imagePosYWithScreenHeight = imagePosY - MAP_CANVAS_HEIGHT;
+    imagePosXWithScreenWidth = imagePosX - WORLDMAP_CANVAS_WIDTH;
+    imagePosYWithScreenHeight = imagePosY - WORLDMAP_CANVAS_HEIGHT;
 
     // Force image to be horizontally in bounds
     if (imagePosX > 0) {
         var oldImagePosX = imagePosX;
         imagePosX = 0;
         deltaImagePosX -= (oldImagePosX - imagePosX);
-    } else if (imagePosXWithScreenWidth <= -MAP_WIDTH / zoom) {
+    } else if (imagePosXWithScreenWidth <= -WORLDMAP_WIDTH / zoom) {
         var oldImagePosX = imagePosX;
-        imagePosX = -MAP_WIDTH / zoom + MAP_CANVAS_WIDTH;
+        imagePosX = -WORLDMAP_WIDTH / zoom + WORLDMAP_CANVAS_WIDTH;
         deltaImagePosX -= (oldImagePosX - imagePosX);
     }
 
@@ -37,9 +37,9 @@ function moveMapImage(event) {
         var oldImagePosY = imagePosY;
         imagePosY = 0;
         deltaImagePosY -= (oldImagePosY - imagePosY);
-    } else if (imagePosYWithScreenHeight <= -MAP_HEIGHT / zoom) {
+    } else if (imagePosYWithScreenHeight <= -WORLDMAP_HEIGHT / zoom) {
         var oldImagePosY = imagePosY;
-        imagePosY = -MAP_HEIGHT / zoom + MAP_CANVAS_HEIGHT;
+        imagePosY = -WORLDMAP_HEIGHT / zoom + WORLDMAP_CANVAS_HEIGHT;
         deltaImagePosY -= (oldImagePosY - imagePosY);
     }
 

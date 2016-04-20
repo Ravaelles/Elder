@@ -120,14 +120,14 @@ function getMapCoordinatesFromScreenClick(event) {
     // X-related
     var backgroundOffsetX = -1 * worldmap.css('background-position-x').slice(0, -2);
     var coordinatesOffsetX = backgroundOffsetX * zoom;
-    var mapScreenWidth = MAP_CANVAS_WIDTH * zoom;
-    var mapScreenWidthPercent = canvasClickX / MAP_CANVAS_WIDTH;
+    var mapScreenWidth = WORLDMAP_CANVAS_WIDTH * zoom;
+    var mapScreenWidthPercent = canvasClickX / WORLDMAP_CANVAS_WIDTH;
 
     // Y-related
     var backgroundOffsetY = -1 * worldmap.css('background-position-y').slice(0, -2);
     var coordinatesOffsetY = backgroundOffsetY * zoom;
-    var mapScreenHeight = MAP_CANVAS_HEIGHT * zoom;
-    var mapScreenHeightPercent = canvasClickY / MAP_CANVAS_HEIGHT;
+    var mapScreenHeight = WORLDMAP_CANVAS_HEIGHT * zoom;
+    var mapScreenHeightPercent = canvasClickY / WORLDMAP_CANVAS_HEIGHT;
 
     // Return object
     var mapX = parseInt(coordinatesOffsetX + mapScreenWidthPercent * mapScreenWidth);
