@@ -15,7 +15,7 @@ function initializeWorldmapLocations() {
 
 function createHtmlFromLocationJson(location, index) {
     var id = location['_id'];
-    var text = location['name'] + ' ' + JSON.stringify(location['location']);
+    var text = location['location']['x'] + "," + location['location']['y'];
 //    var text = location['name'];
     var size = WORLDMAP_LOCATION_SIZE;
     var canvasCoordinates = getCanvasCoordinatesFromMapCoordinates(
@@ -36,7 +36,7 @@ function createHtmlFromLocationJson(location, index) {
 
 function recalculateWorldmapLocationVariables() {
     WORLDMAP_LOCATION_SIZE = WORLDMAP_LOCATION_SIZE_MODIFIER / zoom;
-    WORLDMAP_LOCATION_LABEL_MARGIN_TOP = WORLDMAP_LOCATION_SIZE_MODIFIER / zoom * 0.95;
+    WORLDMAP_LOCATION_LABEL_MARGIN_TOP = WORLDMAP_LOCATION_SIZE_MODIFIER / zoom * 0.99;
 //    console.log("LOCATION_SIZE = " + LOCATION_SIZE);
 //    console.log("LOCATION_LABEL_MARGIN_TOP = " + LOCATION_LABEL_MARGIN_TOP);
 }

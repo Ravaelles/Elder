@@ -80,6 +80,10 @@ function mapMouseMove(event) {
     }
 
     mousePreviousPosition = event;
+
+    // =========================================================================
+    // Show coords
+    gameMessage("Mouse points to " + coordinatesToString(getMapCoordinatesFromScreenClick(event)));
 }
 
 function mapScroll(event) {
