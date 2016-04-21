@@ -1,1 +1,0 @@
-cd domains/felder.vdl.pl/public_html/ && unzip -o Fallout.zip && exit

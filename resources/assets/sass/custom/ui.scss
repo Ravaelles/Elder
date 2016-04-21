@@ -33,6 +33,11 @@ $cursor:url('/img/cursor/engine-default.ico'), default !important;
     
     p {
         margin: 0;
+        margin-bottom: 3px;
+        text-align: left;
+        line-height: 1.05em;
+        letter-spacing: -0.05em;
+        word-spacing: -0.12em;
         
         span:not(.dot) {
             color: white;

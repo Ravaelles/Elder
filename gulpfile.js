@@ -36,10 +36,15 @@ elixir(function (mix) {
 });
 
 elixir(function (mix) {
-	
-	mix.scripts([
-		'public/js/engine/**',
-        'public/js/worldmap/**',
-    ], 'public/js/all.js', 'public/js/');
-	
+
+    /**mix.scripts([
+     'resources/js/engine/**',
+     'resources/js/worldmap/**',
+     ], 'public/js/all.js', 'public/js/');*/
+
+    mix.scripts([
+        'engine/**',
+        'worldmap/**',
+    ], 'public/js/all.js');
+
 });
