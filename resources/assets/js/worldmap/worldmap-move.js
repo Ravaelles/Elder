@@ -46,12 +46,22 @@ function moveWorldmapImage(event) {
     setBackgroundImagePosition(imagePosX, imagePosY);
 
     // Remember current view position
-    updateCurrentView(imagePosX, imagePosY);
+    updateViewRectangle(imagePosX, imagePosY);
 
     return {dx: deltaImagePosX, dy: deltaImagePosY};
 }
 
 function moveWorldmapObjects(translationVector) {
+    var allWorldmapObjects = getAllWorldmapObjects();
+    console.log("==== WORLDMAP OBJECTS =====");
+    for (var key in allWorldmapObjects) {
+        var worldmapObject = allWorldmapObjects[key];
+//        console.log(allWorldmapObjects[id]);
+        console.log(worldmapObject);
+    }
+
+    // =========================================================================
+
     var mapLocations = $(".worldmap-location");
     $.each(mapLocations, function (index, object) {
         var mapObject = $("#" + object['id']);

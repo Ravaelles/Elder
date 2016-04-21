@@ -9,7 +9,7 @@ window.initQueue.push(function () {
 //        getWorldmap().append(createLine(300, 300, 400, 300));
 
         var rect = jQuery.extend({}, currentWorldmapView);
-        var TEMP = 2;
+        var TEMP = 30;
         rect['x'] += TEMP;
         rect['y'] += TEMP;
         rect['width'] -= 2 * TEMP + WENGINE_DEFAULT_LINE_WIDTH;
@@ -17,15 +17,19 @@ window.initQueue.push(function () {
         rect['width'] /= zoom;
         rect['height'] /= zoom;
 
+//        WEngine_paintLine(
+//                currentWorldmapView['x'], currentWorldmapView['y'],
+//                currentWorldmapView['x'] + currentWorldmapView['width'],
+//                currentWorldmapView['y'] + currentWorldmapView['height'],
+//                {'background-color': 'yellow'});
         WEngine_paintRectangleFromArray(rect, {'background-color': 'yellow'});
     }, 160);
 });
 
 // === Public ======================================================================
 
-function WEngine_paintLine(x1, y1, x2, y2, options) {
+function WEngine_paintLine(x1, y1, x2, y2, options, worldmapObject) {
     //    console.log("Line: " + x1 + "," + y1 + " / " + x2 + "," + y2);
-
     canvasCoords = getCanvasCoordinatesFromMapCoordinates(x1, y1);
     x1 = canvasCoords['canvasX'];
     y1 = canvasCoords['canvasY'];
@@ -34,7 +38,23 @@ function WEngine_paintLine(x1, y1, x2, y2, options) {
     y2 = canvasCoords['canvasY'];
 
     var line = _WEngine_getLine(x1, y1, x2, y2, options);
-    getWorldmap().append(line);
+
+    // =========================================================================
+    // Worldmap object related - automatically create only if no worldmapObject was passed
+    if (isUndefined(worldmapObject)) {
+        worldmapObject = new WorldmapObject();
+        worldmapObject.setCoordinates(x1, y1);
+        worldmapObject.addHtmlElement(line);
+        addWorldmapObject(worldmapObject);
+
+        // Return WORLDMAP OBJECT
+        return worldmapObject;
+    }
+
+    // If passed existing WorldmapObject return HTML ELEMENT
+    else {
+        return line;
+    }
 }
 
 function WEngine_paintRectangleFromArray(array, options) {
@@ -44,10 +64,16 @@ function WEngine_paintRectangleFromArray(array, options) {
 }
 
 function WEngine_paintRectangle(x1, y1, x2, y2, options) {
-    WEngine_paintLine(x1, y1, x2, y1, options); // Horizontal Top
-    WEngine_paintLine(x1, y2, x2, y2, options); // Horizontal Bottom
-    WEngine_paintLine(x1, y1, x1, y2, options); // Vertical Left
-    WEngine_paintLine(x2, y1, x2, y2, options); // Vertical Right
+    var worldmapObject = new WorldmapObject();
+    worldmapObject.setCoordinates(x1, y1);
+
+    worldmapObject.addHtmlElement(WEngine_paintLine(x1, y1, x2, y1, options, worldmapObject)); // Horiz Top
+    worldmapObject.addHtmlElement(WEngine_paintLine(x1, y2, x2, y2, options, worldmapObject)); // Horiz Bottom
+    worldmapObject.addHtmlElement(WEngine_paintLine(x1, y1, x1, y2, options, worldmapObject)); // Vert Left
+    worldmapObject.addHtmlElement(WEngine_paintLine(x2, y1, x2, y2, options, worldmapObject)); // Vert Right
+
+    addWorldmapObject(worldmapObject);
+    return worldmapObject;
 }
 
 // === Private ======================================================================
