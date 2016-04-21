@@ -100,6 +100,9 @@ function mapScroll(event) {
     else if (scrollType <= -1) {
         changeZoom(event, true);
     }
+
+    // Force mouse move event as scroll will change cursor relative position on the map
+    mapMouseMove(event);
 }
 
 function mapMouseLeave(event) {

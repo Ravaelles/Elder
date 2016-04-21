@@ -80,9 +80,12 @@ function changeZoom(event, isZoomIn) {
     // Change image map
     $(".worldmap").css('background-size', currentWorldmapImageWidth + "px");
 
+    // Update view rectangle
+    updateViewRectangle();
+
+    // =========================================================================
     // Move every map location and change its size.
     changeZoom_updateMapLocations();
-    changeZoom_updateViewRectangle();
 }
 
 function revertZoom() {
@@ -92,20 +95,26 @@ function revertZoom() {
 
 // === View ======================================================================
 
-function updateCurrentView(arg1, arg2) {
-    var newX, newY;
-    if (arg1 != null) {
-        newX = Math.abs(arg1);
-        newY = Math.abs(arg2);
-    } else {
-        newX = Math.abs(arg1['x']);
-        newY = Math.abs(arg2['y']);
+function updateViewRectangle(xOrObject, yOrObject) {
+
+    // If params are defined, it means we need to move by view rectangle [x,y]
+    if (isDefined(xOrObject)) {
+        var newX, newY;
+        if (xOrObject != null) {
+            newX = Math.abs(xOrObject);
+            newY = Math.abs(yOrObject);
+        } else {
+            newX = Math.abs(xOrObject['x']);
+            newY = Math.abs(yOrObject['y']);
+        }
+
+        currentWorldmapView['x'] = newX;
+        currentWorldmapView['y'] = newY;
     }
 
-    currentWorldmapView['x'] = newX;
-    currentWorldmapView['y'] = newY;
-    currentWorldmapView['width'] = currentWorldmapView['width'];
-    currentWorldmapView['height'] = currentWorldmapView['height'];
+    // Update width and height of view rectangle
+    currentWorldmapView['width'] = WORLDMAP_CANVAS_WIDTH / zoom;
+    currentWorldmapView['height'] = WORLDMAP_CANVAS_HEIGHT / zoom;
 }
 
 function getMapOffsetPixelsX() {
