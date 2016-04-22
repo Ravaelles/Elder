@@ -5,15 +5,13 @@ function getMapCoordinatesFromScreenClick(event) {
     var canvasClickY = event.pageY - WORLDMAP_CANVAS_MARGIN_TOP;
 
     // X-related
-    var backgroundOffsetX = -1 * worldmap.css('background-position-x').slice(0, -2);
-    var coordinatesOffsetX = backgroundOffsetX * zoom;
-    var mapScreenWidth = WORLDMAP_CANVAS_WIDTH * zoom;
+    var coordinatesOffsetX = getMapOffsetPixelsX() * getWorldmapZoom();
+    var mapScreenWidth = WORLDMAP_CANVAS_WIDTH * getWorldmapZoom();
     var mapScreenWidthPercent = canvasClickX / WORLDMAP_CANVAS_WIDTH;
 
     // Y-related
-    var backgroundOffsetY = -1 * worldmap.css('background-position-y').slice(0, -2);
-    var coordinatesOffsetY = backgroundOffsetY * zoom;
-    var mapScreenHeight = WORLDMAP_CANVAS_HEIGHT * zoom;
+    var coordinatesOffsetY = getMapOffsetPixelsY() * getWorldmapZoom();
+    var mapScreenHeight = WORLDMAP_CANVAS_HEIGHT * getWorldmapZoom();
     var mapScreenHeightPercent = canvasClickY / WORLDMAP_CANVAS_HEIGHT;
 
     // Return object
@@ -24,8 +22,8 @@ function getMapCoordinatesFromScreenClick(event) {
 
 function getCanvasCoordinatesFromMapCoordinates(mapX, mapY) {
     return {
-        'canvasX': WORLDMAP_CANVAS_MARGIN_LEFT + mapX / zoom - getMapOffsetPixelsX() + 2,
-        'canvasY': WORLDMAP_CANVAS_MARGIN_TOP + mapY / zoom - getMapOffsetPixelsY() + 1
+        'canvasX': WORLDMAP_CANVAS_MARGIN_LEFT + mapX / getWorldmapZoom() - getMapOffsetPixelsX() + 2,
+        'canvasY': WORLDMAP_CANVAS_MARGIN_TOP + mapY / getWorldmapZoom() - getMapOffsetPixelsY() + 1
     };
 }
 

@@ -147,9 +147,9 @@ Route::get('user/show/{id}/{name}', [
 ]);
 
 // =========================================================================
-// Admin utils
+// HQ (Admin stuff)
 
-Route::get('util/logs', [
+Route::get('hq/logs', [
     'middleware' => 'auth',
     'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index',
     'as' => 'logs'

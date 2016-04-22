@@ -2,15 +2,19 @@ var MOUSE_DRAG_MODIFIER = 1;
 
 // === Move map / objects ==============================================================
 
-function moveWorldmapImage(event) {
-    var dx = event.pageX - mousePreviousPosition.pageX;
-    var dy = event.pageY - mousePreviousPosition.pageY;
+function moveWorldmapBackgroundImage(eventOrX, yOrNull) {
+    if (isUndefined(yOrNull)) {
+        var dx = event.pageX - mousePreviousPosition.pageX;
+        var dy = event.pageY - mousePreviousPosition.pageY;
+    } else {
+        var dx = eventOrX;
+        var dy = yOrNull;
+    }
 
+    // =========================================================================
     // Get current image position
-    var imagePosX = worldmap.css('background-position-x');
-    var imagePosY = worldmap.css('background-position-y');
-    imagePosX = parseFloat(imagePosX.substr(0, imagePosX.length - 2));
-    imagePosY = parseFloat(imagePosY.substr(0, imagePosY.length - 2));
+    var imagePosX = -1 * getMapOffsetPixelsX();
+    var imagePosY = -1 * getMapOffsetPixelsY();
 
     // Modify variable image position
     deltaImagePosX = dx;
@@ -25,9 +29,9 @@ function moveWorldmapImage(event) {
         var oldImagePosX = imagePosX;
         imagePosX = 0;
         deltaImagePosX -= (oldImagePosX - imagePosX);
-    } else if (imagePosXWithScreenWidth <= -WORLDMAP_WIDTH / zoom) {
+    } else if (imagePosXWithScreenWidth <= -WORLDMAP_WIDTH / getWorldmapZoom()) {
         var oldImagePosX = imagePosX;
-        imagePosX = -WORLDMAP_WIDTH / zoom + WORLDMAP_CANVAS_WIDTH;
+        imagePosX = -WORLDMAP_WIDTH / getWorldmapZoom() + WORLDMAP_CANVAS_WIDTH;
         deltaImagePosX -= (oldImagePosX - imagePosX);
     }
 
@@ -36,28 +40,26 @@ function moveWorldmapImage(event) {
         var oldImagePosY = imagePosY;
         imagePosY = 0;
         deltaImagePosY -= (oldImagePosY - imagePosY);
-    } else if (imagePosYWithScreenHeight <= -WORLDMAP_HEIGHT / zoom) {
+    } else if (imagePosYWithScreenHeight <= -WORLDMAP_HEIGHT / getWorldmapZoom()) {
         var oldImagePosY = imagePosY;
-        imagePosY = -WORLDMAP_HEIGHT / zoom + WORLDMAP_CANVAS_HEIGHT;
+        imagePosY = -WORLDMAP_HEIGHT / getWorldmapZoom() + WORLDMAP_CANVAS_HEIGHT;
         deltaImagePosY -= (oldImagePosY - imagePosY);
     }
 
-    // Change image position
-    setBackgroundImagePosition(imagePosX, imagePosY);
-
     // Remember current view position
-    updateViewRectangle(imagePosX, imagePosY);
+    updateViewRectangle(-1 * imagePosX, -1 * imagePosY);
+
+    // =========================================================================
 
     return {dx: deltaImagePosX, dy: deltaImagePosY};
 }
 
 function moveWorldmapObjects(translationVector) {
     var allWorldmapObjects = getAllWorldmapObjects();
-    console.log("==== WORLDMAP OBJECTS =====");
+//    console.log("==== WORLDMAP OBJECTS =====");
     for (var key in allWorldmapObjects) {
         var worldmapObject = allWorldmapObjects[key];
-//        console.log(allWorldmapObjects[id]);
-        console.log(worldmapObject);
+//        console.log(worldmapObject);
     }
 
     // =========================================================================
@@ -65,12 +67,9 @@ function moveWorldmapObjects(translationVector) {
     var mapLocations = $(".worldmap-location");
     $.each(mapLocations, function (index, object) {
         var mapObject = $("#" + object['id']);
-        mapObject.css('top', parseFloat(mapObject.css('top')) + translationVector['dy']);
-        mapObject.css('left', parseFloat(mapObject.css('left')) + translationVector['dx']);
+        mapObject.css({
+            'top': parseFloat(mapObject.css('top')) + translationVector['dy'],
+            'left': parseFloat(mapObject.css('left')) + translationVector['dx']
+        });
     });
-}
-
-function setBackgroundImagePosition(imagePosX, imagePosY) {
-    worldmap.css('background-position-x', imagePosX + "px");
-    worldmap.css('background-position-y', imagePosY + "px");
 }

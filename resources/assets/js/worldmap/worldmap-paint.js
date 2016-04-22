@@ -1,28 +1,20 @@
-WENGINE_DEFAULT_LINE_WIDTH = 2;
+WENGINE_DEFAULT_LINE_WIDTH = 1;
 
 // =========================================================================
 
 window.initQueue.push(function () {
     setTimeout(function () {
-//        getWorldmap().append(createLine(300, 300, 500, 500));
-//        getWorldmap().append(createLine(300, 300, 300, 500));
-//        getWorldmap().append(createLine(300, 300, 400, 300));
-
-        var rect = jQuery.extend({}, currentWorldmapView);
+        var rect = getWorldmapViewRectangle();
         var TEMP = 30;
+
         rect['x'] += TEMP;
         rect['y'] += TEMP;
         rect['width'] -= 2 * TEMP + WENGINE_DEFAULT_LINE_WIDTH;
         rect['height'] -= 2 * TEMP + WENGINE_DEFAULT_LINE_WIDTH;
-        rect['width'] /= zoom;
-        rect['height'] /= zoom;
+        rect['width'] /= getWorldmapZoom();
+        rect['height'] /= getWorldmapZoom();
 
-//        WEngine_paintLine(
-//                currentWorldmapView['x'], currentWorldmapView['y'],
-//                currentWorldmapView['x'] + currentWorldmapView['width'],
-//                currentWorldmapView['y'] + currentWorldmapView['height'],
-//                {'background-color': 'yellow'});
-        WEngine_paintRectangleFromArray(rect, {'background-color': 'yellow'});
+        WEngine_paintRectangleFromArray(rect, {'background-color': 'transparent'});
     }, 160);
 });
 

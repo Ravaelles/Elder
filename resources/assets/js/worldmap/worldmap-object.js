@@ -15,7 +15,6 @@ function WorldmapObject(options) {
             var value = options[fieldName];
             fieldName = "_" + fieldName;
             this.fieldName = value;
-//            console.log(fieldName + " / " + value);
         }
     };
     this.constructor(options);

@@ -8,6 +8,12 @@
 
     .logo-lg img {
         max-height: 36px;
+        transition: all .9s;
+        
+        &:hover {
+            max-height: 48px;
+            transition: all .4s;
+        }
     }
 
     .logo-mini img {

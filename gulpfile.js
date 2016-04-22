@@ -37,14 +37,19 @@ elixir(function (mix) {
 
 elixir(function (mix) {
 
+    // Base scripts
     /**mix.scripts([
-     'resources/js/engine/**',
-     'resources/js/worldmap/**',
-     ], 'public/js/all.js', 'public/js/');*/
+     'public/plugins/jQuery/jQuery-2.1.4.min.js', // jQuery 2.1.4
+     'public/plugins/jQuery-wheel/jquery.mousewheel.min.js', // jQuery wheel
+     'public/js/bootstrap.min.js', // Bootstrap 3.3.2 J
+     'public/js/app.min.js', // AdminLTE App
+     ], 'public/js/compressed/base.min.js', 'public');*/
 
+    // Game specific scripts
     mix.scripts([
+        'project.js',
         'engine/**',
         'worldmap/**',
-    ], 'public/js/all.js');
+    ], 'public/js/compressed/game.min.js');
 
 });

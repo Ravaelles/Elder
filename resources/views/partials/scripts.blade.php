@@ -1,19 +1,9 @@
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 2.1.4 -->
-<script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<!-- jQuery wheel -->
-<script src="/plugins/jQuery-wheel/jquery.mousewheel.min.js" type="text/javascript"></script>
-<!-- Bootstrap 3.3.2 JS -->
-<script src="/js/bootstrap.min.js" type="text/javascript"></script>
-<!-- AdminLTE App -->
-<script src="/js/app.min.js" type="text/javascript"></script>
-<!-- Noty - nice notifications -->
-<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>-->
-<!-- Project specific scripts -->
-<script src="/js/project.js" type="text/javascript"></script>
-<!-- All engine scripts merged -->
-<script src="/js/all.js" type="text/javascript"></script>
+<!-- Layout & base scripts merged -->
+<script src="/js/compressed/base.min.js" type="text/javascript"></script>
+<!-- Engine & game scripts merged -->
+<script src="/js/compressed/game.min.js" type="text/javascript"></script>
 
 <?php
 //$baseDir = public_path('js');

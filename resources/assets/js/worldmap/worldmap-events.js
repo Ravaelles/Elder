@@ -1,3 +1,7 @@
+var FORBID_RIGHT_CLICK = false;
+
+// =========================================================================
+
 var mouseIsClicked = false;
 var mousePreviousPosition = null;
 var mouseHasMoved = false;
@@ -36,7 +40,9 @@ function initializeWorldmapEvents() {
                 mapMouseLeave(event);
             })
             .contextmenu(function (event) {
-//                event.preventDefault(); // Stop the context menu
+                if (FORBID_RIGHT_CLICK) {
+                    event.preventDefault(); // Stop the context menu
+                }
             });
 }
 
@@ -69,6 +75,7 @@ function mapMouseUp(event) {
 
     mouseIsClicked = false;
     mousePreviousPosition = null;
+    mouseHasMoved = false;
 }
 
 function mapMouseMove(event) {
@@ -77,7 +84,7 @@ function mapMouseMove(event) {
     }
 
     if (mouseIsClicked && mousePreviousPosition != null) {
-        translationVector = moveWorldmapImage(event);
+        translationVector = moveWorldmapBackgroundImage(event);
         moveWorldmapObjects(translationVector);
     }
 

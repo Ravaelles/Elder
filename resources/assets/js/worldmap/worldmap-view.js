@@ -1,99 +1,50 @@
-var WORLDMAP_IMAGE_INITIAL_WIDTH = 3500;
-var WORLDMAP_IMAGE_INITIAL_X = 150;
-var WORLDMAP_IMAGE_INITIAL_Y = 100;
 
-var MIN_ZOOM_VALUE = 0.58;
-var zoom = 1;
-var zoomStep = 150;
+// Initial view settings
+var _WORLDMAP_IMAGE_INITIAL_WIDTH = 3500;
+var _WORLDMAP_IMAGE_INITIAL_X = 2350;
+var _WORLDMAP_IMAGE_INITIAL_Y = 100;
 
-var currentWorldmapView = null;
-var currentWorldmapImageWidth = null;
-var currentWorldmapImageHeight = null;
+// View rectangle
+var _worldmapViewRectangle = null;
+var _currentWorldmapImageWidth = null;
+var _currentWorldmapImageHeight = null;
 
-// Revert zoom
-var oldMapImageWidth = null;
-var oldZoom = null;
-
-// === Zoom ======================================================================
-
-function initializeWorldmapZoom() {
-    initializeWorldmapView();
-
-    getWorldmap().css('background-size', currentWorldmapImageWidth + "px");
-    getWorldmap().css('background-position-x', '-' + currentWorldmapView['x'] + 'px');
-    getWorldmap().css('background-position-y', '-' + currentWorldmapView['y'] + 'px');
-
-    currentWorldmapImageWidth = WORLDMAP_IMAGE_INITIAL_WIDTH;
-    currentWorldmapImageHeight = currentWorldmapImageWidth * WORLDMAP_CANVAS_WIDTH / WORLDMAP_CANVAS_HEIGHT;
-    zoom = WORLDMAP_WIDTH / currentWorldmapImageWidth;
-}
+// === Set up view & zoom ===================================================
 
 function initializeWorldmapView() {
-    currentWorldmapView = {
-        'x': WORLDMAP_IMAGE_INITIAL_X, 'y': WORLDMAP_IMAGE_INITIAL_Y,
+
+    // Define rectangle view width and height
+    _currentWorldmapImageWidth = _WORLDMAP_IMAGE_INITIAL_WIDTH;
+    _currentWorldmapImageHeight = _currentWorldmapImageWidth * WORLDMAP_CANVAS_WIDTH / WORLDMAP_CANVAS_HEIGHT;
+
+    // Definte rectangle view
+    _worldmapViewRectangle = {
+        'x': _WORLDMAP_IMAGE_INITIAL_X,
+        'y': _WORLDMAP_IMAGE_INITIAL_Y,
         'width': WORLDMAP_CANVAS_WIDTH,
         'height': WORLDMAP_CANVAS_HEIGHT
     };
+
+    // Init zoom
+    initializeWorldmapZoom();
+
+    // Assign proper values for background image
+    updateViewRectangle(_worldmapViewRectangle['x'], _worldmapViewRectangle['y']);
 }
 
-// =========================================================================
+// === Public ======================================================================
 
-function changeZoom(event, isZoomIn) {
-
-    // Remember initial view variables
-    oldMapImageWidth = currentWorldmapImageWidth;
-    oldZoom = zoom;
-
-    // =========================================================================
-
-    if (isZoomIn) {
-        currentWorldmapImageWidth -= zoomStep;
-    } else {
-        currentWorldmapImageWidth += zoomStep;
-    }
-
-    // Recalculate zoom
-    zoom = WORLDMAP_WIDTH / currentWorldmapImageWidth;
-
-    // === Revert zoom if too close/far =========================================
-
-    var isZoomTooClose = zoom < MIN_ZOOM_VALUE; // Zoom is TOO BIG, background would be too pixel
-    var isZoomTooFar = currentWorldmapImageWidth < WORLDMAP_CANVAS_WIDTH;
-    if (isZoomTooClose || isZoomTooFar) {
-        return revertZoom();
-    }
-
-    // === Adapt zoom or revert if out of bounds ================================
-
-    var viewX2 = currentWorldmapView['x'] + currentWorldmapView['width'];
-    var viewY2 = currentWorldmapView['y'] + currentWorldmapView['height'];
-    console.log(viewX2 + " / " + WORLDMAP_WIDTH);
-    var isZoomOutOfBounds = viewX2 > WORLDMAP_WIDTH;
-    if (isZoomOutOfBounds) {
-        return revertZoom();
-    }
-
-    // =========================================================================
-
-//    console.log("zoom: " + zoom + " / map width: " + currentWorldmapImageWidth);
-
-    // Change image map
-    $(".worldmap").css('background-size', currentWorldmapImageWidth + "px");
-
-    // Update view rectangle
-    updateViewRectangle();
-
-    // =========================================================================
-    // Move every map location and change its size.
-    changeZoom_updateMapLocations();
+function getWorldmapViewRectangle() {
+    return cloneObject(_worldmapViewRectangle);
 }
 
-function revertZoom() {
-    currentWorldmapImageWidth = oldMapImageWidth;
-    zoom = oldZoom;
+function getMapOffsetPixelsX() {
+    return _worldmapViewRectangle['x'];
 }
 
-// === View ======================================================================
+function getMapOffsetPixelsY() {
+    return _worldmapViewRectangle['y'];
+}
 
 function updateViewRectangle(xOrObject, yOrObject) {
 
@@ -108,56 +59,37 @@ function updateViewRectangle(xOrObject, yOrObject) {
             newY = Math.abs(yOrObject['y']);
         }
 
-        currentWorldmapView['x'] = newX;
-        currentWorldmapView['y'] = newY;
+        _worldmapViewRectangle['x'] = newX;
+        _worldmapViewRectangle['y'] = newY;
+
+        // Update background image position
+        getWorldmap().css({
+            'background-position': -newX + "px " + -newY + "px"
+        });
     }
 
     // Update width and height of view rectangle
-    currentWorldmapView['width'] = WORLDMAP_CANVAS_WIDTH / zoom;
-    currentWorldmapView['height'] = WORLDMAP_CANVAS_HEIGHT / zoom;
-}
+    _worldmapViewRectangle['width'] = WORLDMAP_CANVAS_WIDTH / _zoom;
+    _worldmapViewRectangle['height'] = WORLDMAP_CANVAS_HEIGHT / _zoom;
 
-function getMapOffsetPixelsX() {
-    return currentWorldmapView['x'];
-}
-
-function getMapOffsetPixelsY() {
-    return currentWorldmapView['y'];
-}
-
-// =========================================================================
-
-function changeZoom_updateMapLocations() {
-
-    // Recalculate margin-top for location label
-    recalculateWorldmapLocationVariables();
-
-    // Change location and size of every worldmap location
-    var mapLocations = $(".worldmap-location");
-    $.each(mapLocations, function (index, object) {
-        var mapObject = $("#" + object['id']);
-        var variableName = mapObject.attr('variableName');
-        var variableIndex = mapObject.attr('variableIndex');
-        var mapLocationObject = window[variableName][variableIndex];
-
-        // Change size
-        mapObject.css('width', WORLDMAP_LOCATION_SIZE + "px");
-        mapObject.css('height', WORLDMAP_LOCATION_SIZE + "px");
-
-        // Change X,Y
-        var canvasCoordinates = getCanvasCoordinatesFromMapCoordinates(
-                mapLocationObject['location']['x'], mapLocationObject['location']['y']
-//                mapLocationObject['location']['x'] - WORLDMAP_LOCATION_SIZE / 2,
-//                mapLocationObject['location']['y'] - WORLDMAP_LOCATION_SIZE / 2
-                );
-//        if (index == 0) {
-//            console.log("ZOOM:");
-//            console.log(canvasCoordinates);
-//        }
-        mapObject.css('left', canvasCoordinates['canvasX'] - WORLDMAP_LOCATION_SIZE / 2);
-        mapObject.css('top', canvasCoordinates['canvasY'] - WORLDMAP_LOCATION_SIZE / 2);
+    // Update background image size
+    getWorldmap().css({
+        'background-size': _currentWorldmapImageWidth + "px auto"
     });
 
-    // Move label
-    $(".worldmap-location label").css('margin-top', WORLDMAP_LOCATION_LABEL_MARGIN_TOP + 'px');
+    // =========================================================================
+    // Return difference in view rectangle field values
+
+//    console.log('');
+//    console.log("NEW:");
+//    console.log(_worldmapViewRectangle);
+//    console.log("OLD");
+//    console.log(_oldWorldmapViewRectangle);
+
+    return {
+        'dX': (_worldmapViewRectangle['x'] - _oldWorldmapViewRectangle['x']),
+        'dY': (_worldmapViewRectangle['y'] - _oldWorldmapViewRectangle['y']),
+        'dWidth': (_worldmapViewRectangle['width'] - _oldWorldmapViewRectangle['width']),
+        'dHeight': (_worldmapViewRectangle['height'] - _oldWorldmapViewRectangle['height'])
+    };
 }

@@ -7,17 +7,9 @@ window.initQueue.push(function () {
     setTimeout(function () {
 
         // =========================================================================
-        // Define few layout related variables
-        WORLDMAP_CANVAS_WIDTH = $(".worldmap").width();
-        WORLDMAP_CANVAS_HEIGHT = $(".content-wrapper").height();
-
-        WORLDMAP_CANVAS_MARGIN_LEFT = $(".sidebar").width();
-        WORLDMAP_CANVAS_MARGIN_TOP = $(".main-header").height();
-
-        // =========================================================================
         // Create canvas and define view rectangle
         initializeWorldmap();
-        initializeWorldmapZoom();
+        initializeWorldmapView();
 
         // Initialize all canvas objects
         initializeWorldmapLocations();
@@ -42,8 +34,20 @@ var worldmap = null;
 // === Initialize ======================================================================
 
 function initializeWorldmap() {
+
+    // =========================================================================
+    // Define few layout related variables
+    WORLDMAP_CANVAS_WIDTH = $(".worldmap").width();
+    WORLDMAP_CANVAS_HEIGHT = $(".content-wrapper").height();
+
+    WORLDMAP_CANVAS_MARGIN_LEFT = $(".sidebar").width();
+    WORLDMAP_CANVAS_MARGIN_TOP = $(".main-header").height();
+//    console.log("INIT WORLDMAP");
+//    console.log("WORLDMAP_CANVAS_WIDTH = " + WORLDMAP_CANVAS_WIDTH);
+
+    // =========================================================================
     var worldmap = $(".worldmap");
-    worldmap.css('background-image', 'url("/img/map/map.jpg")');
+    getWorldmap().css('background-image', 'url("/img/map/map.jpg")');
 }
 
 // =========================================================================

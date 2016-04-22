@@ -5,7 +5,7 @@
 @endsection
 
 @section('contentheader_title')
-@breadcrumbs('map', 'Map', 'village', 'Village', 'Home')
+@breadcrumbs('worldmap', 'Map', 'village', 'Village', 'Home')
 @endsection
 
 @section('main-content')
