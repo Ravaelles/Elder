@@ -61,6 +61,7 @@ function mapMouseDown(event) {
 
     // Left or middle click
     else {
+//        worldmapMessage("Maximum zoom reached!", "#f35");
     }
 
     mousePreviousPosition = event;
@@ -92,7 +93,9 @@ function mapMouseMove(event) {
 
     // =========================================================================
     // Show coords
-    gameMessage("Mouse points to " + coordinatesToString(getMapCoordinatesFromScreenClick(event)));
+    worldmapMessageForever(
+            "Mouse points to " + coordinatesToString(getMapCoordinatesFromScreenClick(event)), 'mouse-cords'
+            );
 }
 
 function mapScroll(event) {

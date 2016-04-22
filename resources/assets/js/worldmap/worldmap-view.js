@@ -1,8 +1,8 @@
 
 // Initial view settings
 var _WORLDMAP_IMAGE_INITIAL_WIDTH = 3500;
-var _WORLDMAP_IMAGE_INITIAL_X = 2350;
-var _WORLDMAP_IMAGE_INITIAL_Y = 100;
+var _WORLDMAP_IMAGE_INITIAL_X = 1000;
+var _WORLDMAP_IMAGE_INITIAL_Y = 1000;
 
 // View rectangle
 var _worldmapViewRectangle = null;
@@ -38,6 +38,14 @@ function getWorldmapViewRectangle() {
     return cloneObject(_worldmapViewRectangle);
 }
 
+function getWorldmapViewRectangleWidth() {
+    return _worldmapViewRectangle['width'];
+}
+
+function getWorldmapViewRectangleHeight() {
+    return _worldmapViewRectangle['height'];
+}
+
 function getMapOffsetPixelsX() {
     return _worldmapViewRectangle['x'];
 }
@@ -69,8 +77,8 @@ function updateViewRectangle(xOrObject, yOrObject) {
     }
 
     // Update width and height of view rectangle
-    _worldmapViewRectangle['width'] = WORLDMAP_CANVAS_WIDTH / _zoom;
-    _worldmapViewRectangle['height'] = WORLDMAP_CANVAS_HEIGHT / _zoom;
+    _worldmapViewRectangle['width'] = WORLDMAP_CANVAS_WIDTH / getWorldmapZoom();
+    _worldmapViewRectangle['height'] = WORLDMAP_CANVAS_HEIGHT / getWorldmapZoom();
 
     // Update background image size
     getWorldmap().css({
@@ -86,10 +94,10 @@ function updateViewRectangle(xOrObject, yOrObject) {
 //    console.log("OLD");
 //    console.log(_oldWorldmapViewRectangle);
 
-    return {
-        'dX': (_worldmapViewRectangle['x'] - _oldWorldmapViewRectangle['x']),
-        'dY': (_worldmapViewRectangle['y'] - _oldWorldmapViewRectangle['y']),
-        'dWidth': (_worldmapViewRectangle['width'] - _oldWorldmapViewRectangle['width']),
-        'dHeight': (_worldmapViewRectangle['height'] - _oldWorldmapViewRectangle['height'])
-    };
+//    return {
+//        'dX': (_worldmapViewRectangle['x'] - _oldWorldmapViewRectangle['x']),
+//        'dY': (_worldmapViewRectangle['y'] - _oldWorldmapViewRectangle['y']),
+//        'dWidth': (_worldmapViewRectangle['width'] - _oldWorldmapViewRectangle['width']),
+//        'dHeight': (_worldmapViewRectangle['height'] - _oldWorldmapViewRectangle['height'])
+//    };
 }

@@ -1,13 +1,16 @@
 
 // Zoom animation
-var _WORLDMAP_ZOOM_INTERVAL = 30;
-var _WORLDMAP_ZOOM_CYCLES = 20;
-var _worldmapZoomsToProceedCounter = 0;
+var _WORLDMAP_ZOOM_INTERVAL = 30; // Miliseconds of interval between zoom animations
+var _WORLDMAP_ZOOM_ANIMATIONS = 25; // Number of zoom animations
+//var _WORLDMAP_ZOOM_SPEED_FACTOR = 3; //
+var _worldmapZoomsToProceedCounter = 0; // How many zoom animation are left to proceed
+//var _worldmapZoomCurrentSpeed = 0; //
 
 // Zoom
-var _MIN_ZOOM_VALUE = 0.58;
-var _zoomStep = 25;
-var _zoom = 1;
+var _MIN_ZOOM_VALUE = 0.58; // Do not lower - below this value some weird floating things happen
+var _zoomStep = 40; // Background image width quantum pixel difference
+var _zoom; // Current zoom - actually lower value is bigger zoom
+var _zoomMessageWasShown = false;
 
 // Revert zoom
 var _oldMapImageWidth = null;
@@ -17,7 +20,7 @@ var _oldWorldmapViewRectangle = {'x': 0, 'y': 0, 'width': 0, 'height': 0};
 // =========================================================================
 
 function initializeWorldmapZoom() {
-    _zoom = WORLDMAP_WIDTH / _currentWorldmapImageWidth; // Define zoom
+    _recalculateZoom();
 }
 
 // === Public ======================================================================
@@ -27,7 +30,9 @@ function getWorldmapZoom() {
 }
 
 function changeZoom(event, isZoomIn) {
-    _worldmapZoomsToProceedCounter = _WORLDMAP_ZOOM_CYCLES;
+    _zoomMessageWasShown = false;
+
+    _worldmapZoomsToProceedCounter = _WORLDMAP_ZOOM_ANIMATIONS;
     _delayChangeZoom(event, isZoomIn);
 }
 
@@ -44,7 +49,9 @@ function _processZoom(event, isZoomIn) {
     // Validate that we need to zoom smoothly
     if (_worldmapZoomsToProceedCounter > 0) {
         _worldmapZoomsToProceedCounter--;
+//        _worldmapZoomCurrentSpeed += Math.sqrt(_WORLDMAP_ZOOM_SPEED_FACTOR);
     } else {
+//        _worldmapZoomCurrentSpeed = 0;
         return;
     }
 
@@ -57,13 +64,14 @@ function _processZoom(event, isZoomIn) {
     // =========================================================================
     // Revert if zoom is not allowed (too far, too close)
     if (!_changeZoomAndCheckIfAllowed(event, isZoomIn)) {
-        _revertZoom();
-        return;
+        return _revertZoom(); // Returns nothing, just exits
     }
 
     // Zoom is okay
     else {
-        var diffInView = updateViewRectangle();
+        updateViewRectangle();
+//        var diffInView = updateViewRectangle();
+//        console.log(diffInView);
     }
 
     // =========================================================================
@@ -85,10 +93,17 @@ function _processZoom(event, isZoomIn) {
 }
 
 function _afterZoomMakeSureWeReInbound(event, isZoomIn) {
+    var topLeftCoords = getCurrentTopLeftPointMapCoordinates();
+    var dX = topLeftCoords['mapX'] - _oldWorldmapViewRectangle['x'];
+    var dY = topLeftCoords['mapY'] - _oldWorldmapViewRectangle['y'];
 
     // Enforce that the view rectangle is in bounds; moving the worldmap by [0,0] does that
-    moveWorldmapBackgroundImage(0, 0);
-//    moveWorldmapBackgroundImage(-2.15 * diffInView['dWidth'], -0.8 * diffInView['dHeight']);
+    var counterModifier = 2;
+    if (isZoomIn) {
+        moveWorldmapBackgroundImage(_zoomStep / counterModifier, _zoomStep / counterModifier);
+    } else {
+        moveWorldmapBackgroundImage(_zoomStep / -counterModifier, _zoomStep / -counterModifier);
+    }
 }
 
 function _afterZoomUpdateMapLocations() {
@@ -125,22 +140,32 @@ function _afterZoomUpdateMapLocations() {
     });
 }
 
+function _recalculateZoom() {
+    _zoom = WORLDMAP_WIDTH / _currentWorldmapImageWidth;
+}
+
 function _changeZoomAndCheckIfAllowed(event, isZoomIn) {
+    var quantumOfChange = _zoomStep; //  * _worldmapZoomCurrentSpeed
     if (isZoomIn) {
         _currentWorldmapImageWidth -= _zoomStep;
     } else {
         _currentWorldmapImageWidth += _zoomStep;
     }
-//    console.log("_currentWorldmapImageWidth = " + _currentWorldmapImageWidth);
 
     // Recalculate zoom
-    _zoom = WORLDMAP_WIDTH / _currentWorldmapImageWidth;
+    _recalculateZoom();
 
     // === Revert zoom if too close/far =========================================
 
     var isZoomTooClose = _zoom < _MIN_ZOOM_VALUE; // Zoom is TOO BIG, background would be too pixel
     var isZoomTooFar = _currentWorldmapImageWidth < WORLDMAP_CANVAS_WIDTH;
-    if (isZoomTooClose || isZoomTooFar) {
+    if (isZoomTooClose) {
+        worldmapMessage("Maximum zoom reached!", "#f35");
+        _zoomMessageWasShown = true;
+        return false;
+    } else if (isZoomTooFar) {
+        worldmapMessage("Maximum zoom out reached!", "#2f3");
+        _zoomMessageWasShown = true;
         return false;
     } else {
         return true;

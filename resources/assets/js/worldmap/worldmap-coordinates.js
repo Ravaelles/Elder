@@ -1,18 +1,23 @@
 function getMapCoordinatesFromScreenClick(event) {
 
     // Define click on map canvas manually, because if clicked on a child, it changes .offsetX value.
-    var canvasClickX = event.pageX - WORLDMAP_CANVAS_MARGIN_LEFT;
-    var canvasClickY = event.pageY - WORLDMAP_CANVAS_MARGIN_TOP;
+    var canvasX = event.pageX - WORLDMAP_CANVAS_MARGIN_LEFT;
+    var canvasY = event.pageY - WORLDMAP_CANVAS_MARGIN_TOP;
+
+    return getMapCoordinatesFromCanvasCoordinates(canvasX, canvasY);
+}
+
+function getMapCoordinatesFromCanvasCoordinates(canvasX, canvasY) {
 
     // X-related
     var coordinatesOffsetX = getMapOffsetPixelsX() * getWorldmapZoom();
     var mapScreenWidth = WORLDMAP_CANVAS_WIDTH * getWorldmapZoom();
-    var mapScreenWidthPercent = canvasClickX / WORLDMAP_CANVAS_WIDTH;
+    var mapScreenWidthPercent = canvasX / WORLDMAP_CANVAS_WIDTH;
 
     // Y-related
     var coordinatesOffsetY = getMapOffsetPixelsY() * getWorldmapZoom();
     var mapScreenHeight = WORLDMAP_CANVAS_HEIGHT * getWorldmapZoom();
-    var mapScreenHeightPercent = canvasClickY / WORLDMAP_CANVAS_HEIGHT;
+    var mapScreenHeightPercent = canvasY / WORLDMAP_CANVAS_HEIGHT;
 
     // Return object
     var mapX = parseInt(coordinatesOffsetX + mapScreenWidthPercent * mapScreenWidth);
@@ -25,6 +30,12 @@ function getCanvasCoordinatesFromMapCoordinates(mapX, mapY) {
         'canvasX': WORLDMAP_CANVAS_MARGIN_LEFT + mapX / getWorldmapZoom() - getMapOffsetPixelsX() + 2,
         'canvasY': WORLDMAP_CANVAS_MARGIN_TOP + mapY / getWorldmapZoom() - getMapOffsetPixelsY() + 1
     };
+}
+
+// =========================================================================
+
+function getCurrentTopLeftPointMapCoordinates() {
+    return getMapCoordinatesFromCanvasCoordinates(0, 0);
 }
 
 // =========================================================================
