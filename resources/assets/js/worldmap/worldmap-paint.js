@@ -14,7 +14,7 @@ window.initQueue.push(function () {
         rect['width'] /= getWorldmapZoom();
         rect['height'] /= getWorldmapZoom();
 
-        WEngine_paintRectangleFromArray(rect, {'background-color': 'transparent'});
+//        WEngine_paintRectangleFromArray(rect, {'background-color': 'transparent'});
     }, 160);
 });
 

@@ -1,6 +1,6 @@
 
 // Zoom animation
-var _WORLDMAP_ZOOM_INTERVAL = 30; // Miliseconds of interval between zoom animations
+var _WORLDMAP_ZOOM_INTERVAL = 15; // Miliseconds of interval between zoom animations
 var _WORLDMAP_ZOOM_ANIMATIONS = 25; // Number of zoom animations
 //var _WORLDMAP_ZOOM_SPEED_FACTOR = 3; //
 var _worldmapZoomsToProceedCounter = 0; // How many zoom animation are left to proceed
@@ -8,7 +8,7 @@ var _worldmapZoomsToProceedCounter = 0; // How many zoom animation are left to p
 
 // Zoom
 var _MIN_ZOOM_VALUE = 0.58; // Do not lower - below this value some weird floating things happen
-var _zoomStep = 40; // Background image width quantum pixel difference
+var _zoomStep = 50; // Background image width quantum pixel difference
 var _zoom; // Current zoom - actually lower value is bigger zoom
 var _zoomMessageWasShown = false;
 

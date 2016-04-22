@@ -26,16 +26,39 @@ class City extends Location {
     // =========================================================================
 
     public static function getRandomName() {
-        $names = [
-            'Seattle',
-            'Portland',
-            'Redding',
-            'Yakima',
-            'Kennewick',
-            'Bend',
-            'Tacoma',
-        ];
-        return $names[array_rand($names)];
+        $index = array_rand(self::$names);
+        $name = self::$names[$index];
+        unset(self::$names[$index]);
+
+        return $name;
     }
+
+    // =========================================================================
+
+    private static $names = [
+        'Red Fort',
+        'Menacing keep',
+        'Mike\'s Ranch',
+        'The Chinese',
+        'The Italians',
+        'The Mexicans',
+        'Watohi Tribe',
+        'Arakanna Tribe',
+        'Wild Brood',
+        'Old Creek',
+        
+        'Burned temple',
+        'Highway outpost',
+        'Empty police station',
+        'Water tower',
+        'Rusty factory',
+//            'Seattle',
+//            'Portland',
+//            'Redding',
+//            'Yakima',
+//            'Kennewick',
+//            'Bend',
+//            'Tacoma',
+    ];
 
 }

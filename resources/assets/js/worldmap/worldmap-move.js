@@ -4,8 +4,8 @@ var MOUSE_DRAG_MODIFIER = 1;
 
 function moveWorldmapBackgroundImage(eventOrX, yOrNull) {
     if (isUndefined(yOrNull)) {
-        var dx = event.pageX - mousePreviousPosition.pageX;
-        var dy = event.pageY - mousePreviousPosition.pageY;
+        var dx = eventOrX.pageX - mousePreviousPosition.pageX;
+        var dy = eventOrX.pageY - mousePreviousPosition.pageY;
     } else {
         var dx = eventOrX;
         var dy = yOrNull;
