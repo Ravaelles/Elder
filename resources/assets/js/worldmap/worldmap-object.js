@@ -3,6 +3,8 @@ function WorldmapObject(options) {
     this._id = null; // Unique identifier for the worldmap object
     this._x = null; //
     this._y = null; //
+    this._x2 = null; //
+    this._y2 = null; //
     this._htmlElements = []; //
 
     // =========================================================================
@@ -23,8 +25,19 @@ function WorldmapObject(options) {
         return this._id;
     };
 
-    // =========================================================================
-    // Assign fields
+    // === HTML elements ======================================================================
+
+    this.addHtmlElement = function (htmlElement) {
+        var htmlElementId = htmlElement.getId();
+        this._htmlElements[htmlElementId] = htmlElement;
+        return this;
+    };
+
+    this.getHtmlElements = function () {
+        return this._htmlElements.slice();
+    };
+
+    // === Coordinates ======================================================================
 
     this.setCoordinates = function (x, y) {
         this._x = x;
@@ -32,17 +45,24 @@ function WorldmapObject(options) {
         return this;
     };
 
+    this.setEndCoordinates = function (x2, y2) {
+        this._x2 = x2;
+        this._y2 = y2;
+        return this;
+    };
+
     this.getCoordinates = function () {
         return {'x': this._x, 'y': this._y};
     };
 
-    this.addHtmlElement = function (htmlElement) {
-        this._htmlElements.push(htmlElement);
-        return this;
-    };
+    this.translate = function (dx, dy) {
+        this._x += dx;
+        this._y += dy;
 
-    this.getHtmlElements = function () {
-        return this._htmlElements.slice();
+        for (var htmlElementId in this._htmlElements) {
+            var htmlElementObject = this._htmlElements[htmlElementId];
+            htmlElementObject.translate(dx, dy);
+        }
     };
 
 }

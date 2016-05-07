@@ -63,6 +63,7 @@ function moveWorldmapObjects(translationVector) {
     }
 
     // =========================================================================
+    // Locations
 
     var mapLocations = $(".worldmap-location");
     $.each(mapLocations, function (index, object) {
@@ -71,5 +72,12 @@ function moveWorldmapObjects(translationVector) {
             'top': parseFloat(mapObject.css('top')) + translationVector['dy'],
             'left': parseFloat(mapObject.css('left')) + translationVector['dx']
         });
+    });
+
+    // =========================================================================
+    // Worldmap objects
+
+    $.each(_allWorldmapObjects, function (index, worldmapObject) {
+        worldmapObject.translate(translationVector['dx'], translationVector['dy']);
     });
 }

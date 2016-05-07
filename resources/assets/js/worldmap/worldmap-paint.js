@@ -15,8 +15,29 @@ window.initQueue.push(function () {
         rect['height'] /= getWorldmapZoom();
 
 //        WEngine_paintRectangleFromArray(rect, {'background-color': 'transparent'});
+        paintTest();
     }, 160);
 });
+
+// =========================================================================
+
+var testLineX1;
+var testLineY1;
+var testLineX2;
+var testLineY2;
+function paintTest() {
+    testLineX1 = _WORLDMAP_IMAGE_INITIAL_X + 300;
+    testLineY1 = _WORLDMAP_IMAGE_INITIAL_Y + 400;
+    testLineX2 = testLineX1;
+    testLineY2 = testLineY1;
+
+    var line = WEngine_paintLine(testLineX1, testLineY1, testLineX2, testLineY2);
+    console.log(line);
+
+    setTimeout(function () {
+        testLineX2
+    }, 100);
+}
 
 // === Public ======================================================================
 
@@ -36,6 +57,7 @@ function WEngine_paintLine(x1, y1, x2, y2, options, worldmapObject) {
     if (isUndefined(worldmapObject)) {
         worldmapObject = new WorldmapObject();
         worldmapObject.setCoordinates(x1, y1);
+        worldmapObject.setEndCoordinates(x2, y2);
         worldmapObject.addHtmlElement(line);
         addWorldmapObject(worldmapObject);
 
@@ -58,6 +80,7 @@ function WEngine_paintRectangleFromArray(array, options) {
 function WEngine_paintRectangle(x1, y1, x2, y2, options) {
     var worldmapObject = new WorldmapObject();
     worldmapObject.setCoordinates(x1, y1);
+    worldmapObject.setEndCoordinates(x2, y2);
 
     worldmapObject.addHtmlElement(WEngine_paintLine(x1, y1, x2, y1, options, worldmapObject)); // Horiz Top
     worldmapObject.addHtmlElement(WEngine_paintLine(x1, y2, x2, y2, options, worldmapObject)); // Horiz Bottom
@@ -86,25 +109,61 @@ function _WEngine_getLine(x1, y1, x2, y2, options) {
     return _WEngine_getLine_element(x, y, c, alpha, options);
 }
 
+// === Html elements ======================================================================
+
+//function _WEngine_getLine_element(x, y, length, angle, options) {
+//    var line = document.createElement("div");
+//    var styles = 'border: ' + WENGINE_DEFAULT_LINE_WIDTH + 'px dashed red; '
+//            + 'width: ' + length + 'px; '
+//            + 'height: 0px; '
+//            + '-moz-transform: rotate(' + angle + 'rad); '
+//            + '-webkit-transform: rotate(' + angle + 'rad); '
+//            + '-o-transform: rotate(' + angle + 'rad); '
+//            + '-ms-transform: rotate(' + angle + 'rad); '
+//            + 'position: absolute; '
+//            + 'top: ' + y + 'px; '
+//            + 'left: ' + x + 'px; ';
+//
+//    if (isDefined(options)) {
+//        for (var option in options) {
+//            styles += option + ':' + options[option] + ';';
+//        }
+//    }
+//
+//    line.setAttribute('style', styles);
+//    _WEngine_assignIdToHtmlElement(line);
+//    return line;
+//}
 function _WEngine_getLine_element(x, y, length, angle, options) {
-    var line = document.createElement("div");
-    var styles = 'border: ' + WENGINE_DEFAULT_LINE_WIDTH + 'px dashed red; '
+    var lineHtmlElement = new HtmlElement(x, y);
+    var style = 'border: ' + WENGINE_DEFAULT_LINE_WIDTH + 'px dashed red; '
             + 'width: ' + length + 'px; '
             + 'height: 0px; '
             + '-moz-transform: rotate(' + angle + 'rad); '
             + '-webkit-transform: rotate(' + angle + 'rad); '
             + '-o-transform: rotate(' + angle + 'rad); '
             + '-ms-transform: rotate(' + angle + 'rad); '
-            + 'position: absolute; '
-            + 'top: ' + y + 'px; '
-            + 'left: ' + x + 'px; ';
+            + 'position: absolute; ';
+//            + 'top: ' + y + 'px; '
+//            + 'left: ' + x + 'px; ';;
 
     if (isDefined(options)) {
         for (var option in options) {
-            styles += option + ':' + options[option] + ';';
+            style += option + ':' + options[option] + ';';
         }
     }
 
-    line.setAttribute('style', styles);
-    return line;
+    lineHtmlElement.setStyle(style);
+    return lineHtmlElement;
 }
+
+// =========================================================================
+
+//function _WEngine_assignIdToHtmlElement(element) {
+//    __lastHtmlElementId = (__firstFreeWorldmapObjectHtmlElementId++);
+//    element.setAttribute('id', 'html-element-' + __lastHtmlElementId);
+//    return __lastHtmlElementId;
+//}
+
+__firstFreeWorldmapObjectHtmlElementId = 100;
+//__lastHtmlElementId = null;
