@@ -3,9 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -16,8 +17,10 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
+        AuthorizationException::class,
         HttpException::class,
         ModelNotFoundException::class,
+        ValidationException::class,
     ];
 
     /**
@@ -30,7 +33,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        return parent::report($e);
+        parent::report($e);
     }
 
     /**
@@ -40,18 +43,8 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $e
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e) {
-        if ($e instanceof ModelNotFoundException) {
-            $e = new NotFoundHttpException($e->getMessage(), $e);
-        }
-
-        $message = !empty($e->getMessage()) ? $e->getMessage() : "Error";
-//        return view('errors.500')->with(compact('request', 'e', 'message'));
-        return response()->view('errors.500', compact('request', 'e', 'message'), 500);
-
-//        return response()->view('errors.500', compact('request', 'e'), 500);
-//        return view('errors.500')->with(compact('request', 'e'));
-//        return parent::render($request, $e);
+    public function render($request, Exception $e)
+    {
+        return parent::render($request, $e);
     }
-
 }
