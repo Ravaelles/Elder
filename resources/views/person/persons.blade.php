@@ -1,18 +1,26 @@
 <div class="box box-fallout box-shadow">
     @if (count($persons) > 0)
-    <table class="table table-borderless-header table-fallout persons">
+    <table class="table table-borderless-header table-fallout persons tablesorter">
         <thead>
-        <th>Mission</th>
-        <th>Name</th>
-        <th></th>
-        <th>Description</th>
-        <th class="th-special-stat">S</th>
-        <th class="th-special-stat">P</th>
-        <th class="th-special-stat">E</th>
-        <th class="th-special-stat">C</th>
-        <th class="th-special-stat">I</th>
-        <th class="th-special-stat">A</th>
-        <th class="th-special-stat">L</th>
+            <tr>
+                <th>Mission</th>
+                <th>Name</th>
+                <th></th>
+                <th>Description</th>
+
+            <th class="th-special-stat">
+                <button type="button" class="btn-green-dark" @include('ui.tooltip', ['message' => 'Strength', 'location' => 'top'])>S</button>
+            </th>
+            <th class="th-special-stat">
+                <button type="button" class="btn-green-dark" @include('ui.tooltip', ['message' => 'Agility', 'location' => 'top'])>A</button>
+            </th>
+            <th class="th-special-stat">
+                <button type="button" class="btn-green-dark" @include('ui.tooltip', ['message' => 'Intelligence', 'location' => 'top'])>I</button>
+            </th>
+            <th class="th-special-stat">
+                <button type="button" class="btn-green-dark" @include('ui.tooltip', ['message' => 'Charisma', 'location' => 'top'])>C</button>
+            </th>
+            </tr>
         </thead>
 
         <tbody>
@@ -21,7 +29,7 @@
                 <td class="centered borderless-cell column-buttons" style="width: 120px;">
                     <a type="button" class="btn btn-green-dark" 
                        tabindex="0" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right"
-                       data-content='@include("person.missions")'>{!! empty($person->job) ? "In village" : $person->job !!}</a>
+                       data-content='@include("person.missions")'>{!! empty($person->job) ? "In band" : $person->job !!}</a>
                 </td>
                 <td class="left column-name">
                     {{ $person->name }}
@@ -65,22 +73,13 @@
                     {!! $person->SPECIAL->S !!}
                 </td>
                 <td class="td-special-stat">
-                    {!! $person->SPECIAL->P !!}
-                </td>
-                <td class="td-special-stat">
-                    {!! $person->SPECIAL->E !!}
-                </td>
-                <td class="td-special-stat">
-                    {!! $person->SPECIAL->C !!}
+                    {!! $person->SPECIAL->A !!}
                 </td>
                 <td class="td-special-stat">
                     {!! $person->SPECIAL->I !!}
                 </td>
                 <td class="td-special-stat">
-                    {!! $person->SPECIAL->A !!}
-                </td>
-                <td class="td-special-stat">
-                    {!! $person->SPECIAL->L !!}
+                    {!! $person->SPECIAL->C !!}
                 </td>
             </tr>
             @endforeach
@@ -88,6 +87,6 @@
     </table>
     <!--{ !! $persons->appends(\Input::except('page'))->render() !! }-->
     @else
-    All of your tribemen are extinct like damned mammuts <img src="/img/emots/sad.png" class="emoticon" />
+    All of your tribemen are extinct like damned mammoths <img src="/img/emots/sad.png" class="emoticon" />
     @endif
 </div>

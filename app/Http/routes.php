@@ -47,6 +47,14 @@ Route::get('itemTypes/{id}/delete', [
 ]);
 
 // =========================================================================
+// Simulation
+
+Route::get('simulation', [
+    'as' => 'simulation',
+    'uses' => 'SimulationController@index',
+]);
+
+// =========================================================================
 // Worldmap
 
 Route::get('worldmap', [
@@ -69,16 +77,16 @@ Route::get('location', [
 
 Route::get('home', [
     'middleware' => 'auth',
-    'uses' => 'VillageController@index',
+    'uses' => 'BandController@index',
     'as' => 'home'
 ]);
 // =========================================================================
 // Person
 
-Route::get('village', [
+Route::get('band', [
     'middleware' => 'auth',
-    'uses' => 'VillageController@index',
-    'as' => 'village'
+    'uses' => 'BandController@index',
+    'as' => 'band'
 ]);
 
 Route::get('person/show/{id}', [

@@ -5,6 +5,11 @@
 <!-- Engine & game scripts merged -->
 <script src="/js/compressed/game.min.js" type="text/javascript"></script>
 
+<!-- SHOULD BE MERGED -->
+
+<!-- Sorts tables with jQuery -->
+<script src="/plugins/TableSorter/jquery.tablesorter.min.js" type="text/javascript"></script>
+
 <?php
 //$baseDir = public_path('js');
 //$scriptFiles = [];
@@ -47,8 +52,13 @@
                 html: true
             });
         })
+        
+        // Sort tables - TableSorter plugin
+        $(".tablesorter").tablesorter({
+            'cssAsc': "th.headerSortUp{background-image: url(/img/ui/tablesorter/small_asc.gif); background-color: #3399FF;}"
+        }); 
     });
-
+    
     // Fill content to the maximum
     window.initQueue.push(function () {
         setTimeout(function () {

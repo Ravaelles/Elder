@@ -4,15 +4,13 @@ namespace App;
 
 class SPECIAL extends Eloquent {
 
+    const BASE = 100;
+
     public $fillable = [
         'strength',
-        'perception',
-        'endurance',
-        'charisma',
-        'intelligence',
         'agility',
-        'luck',
-        'dupa'
+        'intelligence',
+        'charisma',
     ];
 
     // =========================================================================
@@ -22,13 +20,10 @@ class SPECIAL extends Eloquent {
         $SPECIAL = new SPECIAL;
 
         $SPECIAL->randomizeSPECIALs([
-            'strength' => 6,
-            'perception' => 6,
-            'endurance' => 7,
-            'charisma' => 2,
-            'intelligence' => 3,
-            'agility' => 7,
-            'luck' => 5,
+            'strength' => self::BASE,
+            'agility' => self::BASE,
+            'intelligence' => self::BASE,
+            'charisma' => self::BASE,
         ]);
 
         return $SPECIAL;
@@ -44,7 +39,8 @@ class SPECIAL extends Eloquent {
     }
 
     private static function randomizeBaseValue($value) {
-        return min(10, max(1, $value + 2 - rand(0, 4)));
+        return self::BASE + self::BASE / 2 - rand(0, self::BASE);
+//        return min(self::BASE + $halfBase, max(self::BASE - $halfBase, $value));
     }
 
     // =========================================================================
@@ -55,18 +51,8 @@ class SPECIAL extends Eloquent {
         return \App\Helpers\String::coloredValue($value, 1, 10);
     }
 
-    public function getPAttribute($value) {
-        $value = $this->perception;
-        return \App\Helpers\String::coloredValue($value, 1, 10);
-    }
-
-    public function getEAttribute($value) {
-        $value = $this->endurance;
-        return \App\Helpers\String::coloredValue($value, 1, 10);
-    }
-
-    public function getCAttribute($value) {
-        $value = $this->charisma;
+    public function getAAttribute($value) {
+        $value = $this->agility;
         return \App\Helpers\String::coloredValue($value, 1, 10);
     }
 
@@ -75,13 +61,8 @@ class SPECIAL extends Eloquent {
         return \App\Helpers\String::coloredValue($value, 1, 10);
     }
 
-    public function getAAttribute($value) {
-        $value = $this->agility;
-        return \App\Helpers\String::coloredValue($value, 1, 10);
-    }
-
-    public function getLAttribute($value) {
-        $value = $this->luck;
+    public function getCAttribute($value) {
+        $value = $this->charisma;
         return \App\Helpers\String::coloredValue($value, 1, 10);
     }
 

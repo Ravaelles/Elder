@@ -8,8 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Person;
 
-class VillageController extends Controller
- {
+class BandController extends Controller {
 
     public function index() {
 //        $persons = Person::truncate();
@@ -22,7 +21,7 @@ class VillageController extends Controller
             $persons = Person::our()->get();
         }
 
-        return view('village.overview')->with(compact('persons'));
+        return view('band.band')->with(compact('persons'));
     }
 
 }

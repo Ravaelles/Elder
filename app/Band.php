@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Location;
 
-class City extends Location {
+class Band extends Location {
 
     function __construct() {
         parent::__construct();
@@ -14,7 +14,7 @@ class City extends Location {
     // =========================================================================
 
     public static function generate() {
-        $city = new City();
+        $city = new Band();
         $city->set(Location::NAME, self::getRandomName());
         return $city;
     }

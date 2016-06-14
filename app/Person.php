@@ -74,32 +74,23 @@ class Person extends Eloquent {
         $goodTraits = [];
 
         $higherS = 0;
-        $higherP = 0;
-        $higherE = 0;
-        $higherC = 0;
-        $higherI = 0;
         $higherA = 0;
-        $higherL = 0;
+        $higherI = 0;
+        $higherC = 0;
         foreach ($persons as $otherPerson) {
             $higherS += ($this->S < $otherPerson->S);
-            $higherP += ($this->P < $otherPerson->P);
-            $higherE += ($this->E < $otherPerson->E);
-            $higherC += ($this->C < $otherPerson->C);
-            $higherI += ($this->I < $otherPerson->I);
             $higherA += ($this->A < $otherPerson->A);
-            $higherL += ($this->L < $otherPerson->L);
+            $higherI += ($this->I < $otherPerson->I);
+            $higherC += ($this->C < $otherPerson->C);
         }
 
         // =========================================================================
 
         $numOfPeople = count($persons);
         $this->createTraitIfPossible($bestTraits, $goodTraits, $higherS, $numOfPeople, "strongest", "strong");
-        $this->createTraitIfPossible($bestTraits, $goodTraits, $higherP, $numOfPeople, "most observant", "observant");
-        $this->createTraitIfPossible($bestTraits, $goodTraits, $higherE, $numOfPeople, "toughest", "tough");
-        $this->createTraitIfPossible($bestTraits, $goodTraits, $higherC, $numOfPeople, "best leader", "leader");
         $this->createTraitIfPossible($bestTraits, $goodTraits, $higherI, $numOfPeople, "wisest", "wise");
         $this->createTraitIfPossible($bestTraits, $goodTraits, $higherA, $numOfPeople, "fittest", "agile");
-        $this->createTraitIfPossible($bestTraits, $goodTraits, $higherL, $numOfPeople, "luckiest bastard", "lucky");
+        $this->createTraitIfPossible($bestTraits, $goodTraits, $higherC, $numOfPeople, "best leader", "leader");
 
         // =========================================================================
 
@@ -107,10 +98,11 @@ class Person extends Eloquent {
             if (count($bestTraits) + count($goodTraits) > 3) {
                 $goodTraits = [];
             }
-            return implode(", ", $bestTraits) . (count($goodTraits) && count($bestTraits) ? ", " : "")
-                . implode(", ", $goodTraits);
+            $comma = "<span class='gray'>,</span> ";
+            return implode($comma, $bestTraits) . (count($goodTraits) && count($bestTraits) ? $comma : "")
+                . implode($comma, $goodTraits);
         } else {
-            return "Balanced personality";
+            return "Balanced";
         }
     }
 

@@ -12,7 +12,7 @@
             <div class="pull-left info" style="padding-top: 10px;">
                 <p>{{ Auth::user()->name }}</p>
                 <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Village Elder</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> Band Elder</a>
             </div>
         </div>
 
@@ -33,8 +33,8 @@
             <li class="header">Command us, oh mighty Elder!</li>
 
             <!-- VILLAGE -->
-            <li class="{{ Request::is('village*') ? "active" : "" }}">
-                <a href="/village"><div><i class='ion-bonfire'></i></div> <div>Village</div></a>
+            <li class="{{ Request::is('band*') ? "active" : "" }}">
+                <a href="/band"><div><i class='ion-bonfire'></i></div> <div>Band</div></a>
             </li>
 
             <!-- encoun -->
@@ -49,7 +49,7 @@
 
 <!--<li><a href="/map"><i class='fa fa-'></i> <span>Map</span></a></li>-->
 
-<!--            <li><a href="/village"><i class='fa fa-link'></i> <span>Village</span></a></li>-->
+<!--            <li><a href="/band"><i class='fa fa-link'></i> <span>Band</span></a></li>-->
             <!--            <li class="treeview">
                             <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

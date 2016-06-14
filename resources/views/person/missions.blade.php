@@ -9,8 +9,8 @@
         <div class="row">
 
             <div class="col-sm-4"><button type="button" class="btn btn-green-dark" 
-                                          @include('ui.tooltip', ['message' => 'Will stay in village, gather food and water that can be found nearby. Will also fight if village gets attacked.'])
-                                          >In village</button></div>
+                                          @include('ui.tooltip', ['message' => 'Will stay in band, gather food and water that can be found nearby. Will also fight if band gets attacked.'])
+                                          >In band</button></div>
             <div class="col-sm-4"><button type="button" class="btn btn-green-dark"
                                           @include('ui.tooltip', ['message' => 'Will scout new areas or scavenge in search of useful junk'])
                                           >Explore</button></div>

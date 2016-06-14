@@ -1,23 +1,23 @@
 @extends('app')
 
 @section('htmlheader_title')
-- Village
+- Band
 @endsection
 
 @section('contentheader_title')
-@breadcrumbs('worldmap', 'Wasteland', 'Village')
+@breadcrumbs('worldmap', 'Wasteland', 'Band')
 @endsection
 
 @section('main-content')
 <div class="row">
     <div class="col-md-12">
-        @include('village.resources')
+        @include('band.resources')
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        @include('person.index')
+        @include('person.persons')
     </div>
 </div>
 @endsection

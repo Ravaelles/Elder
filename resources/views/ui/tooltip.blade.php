@@ -19,4 +19,7 @@ if (!empty($align) || strlen($message) > 50) {
 //        $message = "<div style=\'text-align: left\'>$message</div>";
 //    }
 }
-?> data-toggle="tooltip" data-placement="bottom" title="{!! $message or '' !!}"
+?> 
+data-toggle="tooltip" 
+data-placement="{!! $location or 'bottom' !!}" 
+title="{!! $message or '' !!}"
