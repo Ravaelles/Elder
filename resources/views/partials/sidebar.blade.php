@@ -38,8 +38,13 @@
             </li>
 
             <!-- encoun -->
+            <li class="{{ Request::is('world*') ? "active" : "" }}">
+                <a href="/world"><div><i class='ion-planet'></i></div> <div>World</div></a>
+            </li>
+
+            <!-- encoun -->
             <li class="{{ Request::is('location*') ? "active" : "" }}">
-                <a href="/location"><div><i class='ion-planet'></i></div> <div>World</div></a>
+                <a href="/location"><div><i class='ion-planet'></i></div> <div>FLocation</div></a>
             </li>
 
             <!-- MAP -->

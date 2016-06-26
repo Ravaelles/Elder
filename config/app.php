@@ -157,9 +157,19 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        /** AdminLTE template provider          */
+        Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
+        /** Custom */
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+//        Collective\Html\HtmlServiceProvider::class,
+//        Laracasts\Flash\FlashServiceProvider::class,
+//        Watson\BootstrapForm\BootstrapFormServiceProvider::class,
+//        Mitul\Generator\GeneratorServiceProvider::class,
+        Gaaarfild\LaravelNotifications\LaravelNotificationsServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -203,7 +213,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        /** Custom */
+        'Notifications' => Gaaarfild\LaravelNotifications\NotificationsFacade::class,
     ],
 
 ];

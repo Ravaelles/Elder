@@ -1,0 +1,1 @@
+var TILE_SIZE = 80;

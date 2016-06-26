@@ -4,9 +4,115 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c284a9c122da36c99a8b6597bdce7aa6",
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "hash": "a6694124eaa5dfcf985bb9682abf2182",
+    "content-hash": "7aa9ba1460f41100b7729016b74eea42",
     "packages": [
+        {
+            "name": "acacha/admin-lte-template-laravel",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/acacha/adminlte-laravel.git",
+                "reference": "31e251f28eace45aa55ddbd566fbfe74a9608904"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/acacha/adminlte-laravel/zipball/31e251f28eace45aa55ddbd566fbfe74a9608904",
+                "reference": "31e251f28eace45aa55ddbd566fbfe74a9608904",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Acacha\\AdminLTETemplateLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergi Tur Badenas",
+                    "email": "sergiturbadenas@gmail.com",
+                    "homepage": "http://acacha.org"
+                }
+            ],
+            "description": "AdminLTE template applied to Laravel Scaffolding",
+            "keywords": [
+                "AdminLTE",
+                "admin",
+                "admin-lte",
+                "administrator",
+                "bootstrap",
+                "laravel",
+                "template",
+                "theme"
+            ],
+            "time": "2015-12-17 10:34:47"
+        },
+        {
+            "name": "bosnadev/repositories",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bosnadev/Repositories.git",
+                "reference": "9444fab1e52463e9f1a56b3da450f3c531d4e9be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bosnadev/Repositories/zipball/9444fab1e52463e9f1a56b3da450f3c531d4e9be",
+                "reference": "9444fab1e52463e9f1a56b3da450f3c531d4e9be",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bosnadev\\Repositories\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Mirza Pasic",
+                    "email": "mirza.pasic@edu.fit.ba"
+                },
+                {
+                    "name": "Maarten Paauw",
+                    "email": "maartenpaauw@gmail.com"
+                }
+            ],
+            "description": "Laravel Repositories",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "repositories",
+                "repository"
+            ],
+            "time": "2016-04-08 21:35:31"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",
@@ -162,6 +268,50 @@
             "time": "2015-11-06 14:35:42"
         },
         {
+            "name": "gaaarfild/laravel-notifications",
+            "version": "v1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gaaarfild/laravel-notifications.git",
+                "reference": "c6673260e799870818d65d17e9613886f88e532b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gaaarfild/laravel-notifications/zipball/c6673260e799870818d65d17e9613886f88e532b",
+                "reference": "c6673260e799870818d65d17e9613886f88e532b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.1.3 <5.3",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gaaarfild\\LaravelNotifications\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dinar Garipov",
+                    "email": "garipov.dinar@gmail.com"
+                }
+            ],
+            "description": "Convenient flash notifications",
+            "keywords": [
+                "laravel",
+                "notifications"
+            ],
+            "time": "2016-06-14 13:10:14"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -249,6 +399,67 @@
             "time": "2015-04-20 18:58:01"
         },
         {
+            "name": "jenssegers/mongodb",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/laravel-mongodb.git",
+                "reference": "e1c12ac063eb0d5f4f10cc91f6e269b67cae4e80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/e1c12ac063eb0d5f4f10cc91f6e269b67cae4e80",
+                "reference": "e1c12ac063eb0d5f4f10cc91f6e269b67cae4e80",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "^5.1",
+                "illuminate/database": "^5.1",
+                "illuminate/events": "^5.1",
+                "illuminate/support": "^5.1",
+                "mongodb/mongodb": "^1.0.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9",
+                "orchestra/testbench": "^3.1",
+                "phpunit/phpunit": "^4.0|^5.0",
+                "satooshi/php-coveralls": "^0.6"
+            },
+            "suggest": {
+                "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB",
+                "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Jenssegers\\Mongodb": "src/",
+                    "Jenssegers\\Eloquent": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "A MongoDB based Eloquent model and Query builder for Laravel (Moloquent)",
+            "homepage": "https://github.com/jenssegers/laravel-mongodb",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "model",
+                "moloquent",
+                "mongo",
+                "mongodb"
+            ],
+            "time": "2016-03-04 21:34:41"
+        },
+        {
             "name": "jeremeamia/SuperClosure",
             "version": "2.2.0",
             "source": {
@@ -305,6 +516,51 @@
                 "tokenizer"
             ],
             "time": "2015-12-05 17:17:57"
+        },
+        {
+            "name": "kyslik/column-sortable",
+            "version": "5.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kyslik/column-sortable.git",
+                "reference": "ef6f19812f5dd8ab23bfb0cd6f89788408127bfc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kyslik/column-sortable/zipball/ef6f19812f5dd8ab23bfb0cd6f89788408127bfc",
+                "reference": "ef6f19812f5dd8ab23bfb0cd6f89788408127bfc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.1.* || 5.2.*",
+                "illuminate/support": "5.1.* || 5.2.*",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kyslik\\ColumnSortable\\": "src/ColumnSortable/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Kiesel",
+                    "email": "martinkiesel@gmail.com"
+                }
+            ],
+            "description": "Package for handling column sorting in Laravel 5.1 and Laravel 5.2",
+            "keywords": [
+                "column",
+                "laravel",
+                "one-to-one",
+                "sortable",
+                "sorting"
+            ],
+            "time": "2016-04-04 15:18:17"
         },
         {
             "name": "laravel/framework",
@@ -517,6 +773,61 @@
                 "storage"
             ],
             "time": "2016-06-03 19:11:39"
+        },
+        {
+            "name": "mongodb/mongodb",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mongodb/mongo-php-library.git",
+                "reference": "faf8a1d86b5c10684ef91fa6c81475b0c7f95240"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/faf8a1d86b5c10684ef91fa6c81475b0c7f95240",
+                "reference": "faf8a1d86b5c10684ef91fa6c81475b0c7f95240",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mongodb": "^1.1.0",
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MongoDB\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com"
+                },
+                {
+                    "name": "Hannes Magnusson",
+                    "email": "bjori@mongodb.com"
+                },
+                {
+                    "name": "Derick Rethans",
+                    "email": "github@derickrethans.nl"
+                }
+            ],
+            "description": "MongoDB driver library",
+            "homepage": "https://jira.mongodb.org/browse/PHPLIB",
+            "keywords": [
+                "database",
+                "driver",
+                "mongodb",
+                "persistence"
+            ],
+            "time": "2016-03-30 19:10:28"
         },
         {
             "name": "monolog/monolog",
@@ -897,6 +1208,106 @@
             "time": "2016-03-09 05:03:14"
         },
         {
+            "name": "rap2hpoutre/laravel-log-viewer",
+            "version": "v0.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
+                "reference": "bef8c316b382fa9f6445190ea0251ec5bc7d13dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/bef8c316b382fa9f6445190ea0251ec5bc7d13dd",
+                "reference": "bef8c316b382fa9f6445190ea0251ec5bc7d13dd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*|5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/controllers"
+                ],
+                "psr-0": {
+                    "Rap2hpoutre\\LaravelLogViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rap2hpoutre",
+                    "email": "raphaelht@gmail.com"
+                }
+            ],
+            "description": "A Laravel log reader",
+            "keywords": [
+                "log",
+                "log-reader",
+                "log-viewer",
+                "logging"
+            ],
+            "time": "2016-05-03 20:10:40"
+        },
+        {
+            "name": "ravaelles/filterable",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ravaelles/Filterable.git",
+                "reference": "0f288eb30241dac89e9cb21c952bbf4c8c5fc6bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ravaelles/Filterable/zipball/0f288eb30241dac89e9cb21c952bbf4c8c5fc6bd",
+                "reference": "0f288eb30241dac89e9cb21c952bbf4c8c5fc6bd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ravaelles\\Filterable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafal Poniatowski",
+                    "email": "ravaelles@gmail.com",
+                    "role": "Web Developer"
+                }
+            ],
+            "description": "Package for handling record filtering in Laravel 5.*",
+            "homepage": "https://github.com/Ravaelles/Filterable",
+            "keywords": [
+                "filter",
+                "filterable",
+                "laravel",
+                "records"
+            ],
+            "time": "2015-11-23 15:18:03"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.2",
             "source": {
@@ -1068,16 +1479,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "0343b2cedd0edb26cdc791212a8eb645c406018b"
+                "reference": "f5b7563f67779c6d3d5370e23448e707c858df3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/0343b2cedd0edb26cdc791212a8eb645c406018b",
-                "reference": "0343b2cedd0edb26cdc791212a8eb645c406018b",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/f5b7563f67779c6d3d5370e23448e707c858df3e",
+                "reference": "f5b7563f67779c6d3d5370e23448e707c858df3e",
                 "shasum": ""
             },
             "require": {
@@ -1124,7 +1535,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-12 18:27:47"
+            "time": "2016-06-06 11:42:41"
         },
         {
             "name": "symfony/finder",
@@ -1730,16 +2141,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "63f37b9395e8041cd4313129c08ece896d06ca8e"
+                "reference": "9ca5644c536654e9509b9d257f53c58630eb2a6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/63f37b9395e8041cd4313129c08ece896d06ca8e",
-                "reference": "63f37b9395e8041cd4313129c08ece896d06ca8e",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/9ca5644c536654e9509b9d257f53c58630eb2a6a",
+                "reference": "9ca5644c536654e9509b9d257f53c58630eb2a6a",
                 "shasum": ""
             },
             "require": {
@@ -1751,7 +2162,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -1776,7 +2187,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-04-15 10:48:49"
+            "time": "2016-06-14 14:14:52"
         }
     ],
     "packages-dev": [
@@ -2739,16 +3150,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "7ae5513327cb536431847bcc0c10edba2701064e"
+                "reference": "42c4c2eec485ee3e159ec9884f95b431287edde4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/7ae5513327cb536431847bcc0c10edba2701064e",
-                "reference": "7ae5513327cb536431847bcc0c10edba2701064e",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/42c4c2eec485ee3e159ec9884f95b431287edde4",
+                "reference": "42c4c2eec485ee3e159ec9884f95b431287edde4",
                 "shasum": ""
             },
             "require": {
@@ -2756,12 +3167,13 @@
                 "sebastian/recursion-context": "~1.0"
             },
             "require-dev": {
+                "ext-mbstring": "*",
                 "phpunit/phpunit": "~4.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -2801,7 +3213,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2015-06-21 07:55:53"
+            "time": "2016-06-17 09:04:28"
         },
         {
             "name": "sebastian/global-state",
@@ -3053,16 +3465,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "eca51b7b65eb9be6af88ad7cc91685f1556f5c9a"
+                "reference": "c5a7e7fc273c758b92b85dcb9c46149ccda89623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca51b7b65eb9be6af88ad7cc91685f1556f5c9a",
-                "reference": "eca51b7b65eb9be6af88ad7cc91685f1556f5c9a",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/c5a7e7fc273c758b92b85dcb9c46149ccda89623",
+                "reference": "c5a7e7fc273c758b92b85dcb9c46149ccda89623",
                 "shasum": ""
             },
             "require": {
@@ -3098,7 +3510,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-05-26 21:46:24"
+            "time": "2016-06-14 11:18:07"
         },
         {
             "name": "webmozart/assert",
@@ -3152,7 +3564,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "bosnadev/repositories": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

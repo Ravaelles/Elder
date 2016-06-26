@@ -19,7 +19,7 @@
 
     <div class="login-box fallout-terminal">
 
-        @if (count($errors) > 0)
+        @if (!empty($errors) && count($errors) > 0)
         <div class="alert alert-danger" id="validation-errors" style="margin-top: 50px;">
             Bloody geck, error!<br><br>
             <ul>

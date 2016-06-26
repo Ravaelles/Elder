@@ -51,7 +51,17 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
         ],
-
+        'mongodb-local' => [
+            'driver' => 'mongodb',
+            'host' => env('MONGO_LOCAL_HOST', 'localhost'),
+            'port' => env('MONGO_LOCAL_PORT', 27017),
+            'database' => env('MONGO_LOCAL_DATABASE'),
+//            'username' => env('MONGO_LOCAL_USERNAME'),
+//            'password' => env('MONGO_LOCAL_PASSWORD'),
+//            'options' => [
+//                'database' => env('MONGO_LOCAL_DATABASE') // sets the authentication database required by mongo 3
+//            ]
+        ],
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),

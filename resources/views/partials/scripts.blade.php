@@ -3,7 +3,7 @@
 <!-- Layout & base scripts merged -->
 <script src="/js/compressed/base.min.js" type="text/javascript"></script>
 <!-- Engine & game scripts merged -->
-<script src="/js/compressed/game.min.js" type="text/javascript"></script>
+<!--<script src="/js/compressed/game.min.js" type="text/javascript"></script>-->
 
 <!-- SHOULD BE MERGED -->
 
