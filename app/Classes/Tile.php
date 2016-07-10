@@ -2,40 +2,76 @@
 
 namespace App\Classes;
 
+use App\World;
 use App\Helpers\Images;
+use App\Tiles\ForestTile;
+use App\Tiles\LandTile;
 
-class Tile {
+class Tile implements \JsonSerializable {
 
+//    const TILE_SIZE = 256;
     const TYPE_LAND = 'land';
     const TYPE_MOUNTAIN = 'mountain';
+    const TYPE_FOREST = 'forest';
 
     // =========================================================================
 
+    private $world = null;
     private $type = null;
+    private $x = null;
+    private $y = null;
     private $image = null;
     private $mapObjects = [];
 
     // =========================================================================
 
-    function __construct($type) {
+    function __construct(World $world, $type, $x, $y) {
+        $this->world = $world;
         $this->type = $type;
+        $this->x = $x;
+        $this->y = $y;
     }
 
     // =========================================================================
 
-    public function assignTextureAccordingToType() {
-        $this->image = Images::getRandomFile($this->type);
-//        if ($this->type === self::TYPE_LAND) {
-//            $this->image = Images::getTextureLand();
-//        } else if ($this->type === self::TYPE_MOUNTAIN) {
-//            $this->image = Images::getTextureMountain();
-//        } else {
-//            dd("WTF?!?");
-//        }
+    public function generateTileAccordingToType() {
+
+        // Assign surface texture
+        $this->image = Images::getTextureLand();
+
+        // Mountain
+        if ($this->type === self::TYPE_LAND) {
+            LandTile::addGrass($this);
+        }
+
+        // Mountain
+        else if ($this->type === self::TYPE_MOUNTAIN) {
+            
+        }
+
+        // Forest
+        else if ($this->type === self::TYPE_FOREST) {
+//            ForestTile::addTrees($this);
+        }
+
+        // Unknown type
+        else {
+            die("Unknown tile type: " . $this->type);
+        }
     }
 
     public function addMapObject(MapObject $mapObject) {
         array_push($this->mapObjects, $mapObject);
+        $this->world->addMapObject($mapObject);
+    }
+
+    // =========================================================================
+
+    public function jsonSerialize() {
+        return [
+            'type' => $this->type,
+            'image' => $this->image,
+        ];
     }
 
     // =========================================================================
@@ -50,6 +86,26 @@ class Tile {
 
     function getMapObjects() {
         return $this->mapObjects;
+    }
+
+    function getWorld() {
+        return $this->world;
+    }
+
+    function getX() {
+        return $this->x;
+    }
+
+    function getY() {
+        return $this->y;
+    }
+
+    function setX($x) {
+        $this->x = $x;
+    }
+
+    function setY($y) {
+        $this->y = $y;
     }
 
 }

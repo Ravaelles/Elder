@@ -13,7 +13,8 @@
         "kyslik/column-sortable": "~5.0.0",
         "rap2hpoutre/laravel-log-viewer": "^0.6.1",
         "acacha/admin-lte-template-laravel": "1.*",
-        "ravaelles/filterable": "^1.0"
+        "ravaelles/filterable": "^1.0",
+        "rtconner/laravel-kint": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

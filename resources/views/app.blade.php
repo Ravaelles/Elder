@@ -3,7 +3,7 @@
 
 @include('partials.htmlheader')
 
-<body class="skin-green sidebar-mini">
+<body class="skin-green sidebar-mini @yield('sidebar-collapse', '')">
     <div class="wrapper">
 
     @include('partials.mainheader')

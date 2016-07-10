@@ -14,7 +14,13 @@ class Images {
 
     public static function getRandomFile($filePath) {
         $files = self::getFiles($filePath);
-        return $files[array_rand($files)];
+        $file = $files[array_rand($files)];
+
+        if ($file === null) {
+            die("Random image for `$filePath` failed with null");
+        }
+
+        return $file;
     }
 
     // =========================================================================
@@ -25,6 +31,10 @@ class Images {
 
         $outputFiles = [];
         foreach ($files as $fileName) {
+            if (is_dir($dirPath . $fileName)) {
+                continue;
+            }
+
             $outputFiles[] = $dirPath . $fileName;
         }
         return $outputFiles;

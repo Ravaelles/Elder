@@ -55,17 +55,6 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 
     // =========================================================================
-    // Item types
-
-    Route::resource('itemTypes', 'ItemTypeController');
-
-    Route::get('itemTypes/{id}/delete', [
-        'as' => 'itemTypes.delete',
-        'uses' => 'ItemTypeController@destroy',
-    ]);
-
-
-    // =========================================================================
     // Simulation
 
     Route::get('simulation', [
@@ -74,48 +63,12 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 
     // =========================================================================
-    // World
+    // Map
 
-    Route::get('world', [
+    Route::get('map', [
         'middleware' => 'auth',
-        'uses' => 'WorldController@index',
-        'as' => 'world'
-    ]);
-
-    // =========================================================================
-    // Worldmap
-
-    Route::get('worldmap', [
-        'middleware' => 'auth',
-        'uses' => 'WorldmapController@index',
-        'as' => 'worldmap'
-    ]);
-
-    // =========================================================================
-    // Location
-
-    Route::get('location', [
-        'uses' => 'FLocationController@index',
-        'as' => 'Location'
-    ]);
-
-    // =========================================================================
-    // Person
-
-    Route::get('band', [
-        'uses' => 'BandController@index',
-        'as' => 'band'
-    ]);
-
-    Route::get('person/show/{id}', [
-        'uses' => 'PersonController@show',
-        'as' => 'person.show'
-    ]);
-
-    Route::get('person/destroy/{id}', [
-        'middleware' => 'auth',
-        'uses' => 'PersonController@destroy',
-        'as' => 'person.destroy'
+        'uses' => 'MapController@index',
+        'as' => 'map'
     ]);
 
     // =========================================================================

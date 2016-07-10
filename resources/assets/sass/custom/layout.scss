@@ -12,6 +12,22 @@ body {
     cursor: url(/img/cursor/engine-default.ico),default !important;
 }
 
+.main-sidebar {
+    position: absolute;
+}
+
+.sidebar-collapse {
+    
+    .user-panel .image {
+        margin-left: 0px !important;
+    }
+    
+    .sidebar-menu > li > a {
+        padding-left: 0px !important;
+    }
+
+}
+
 .content-wrapper {
 
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#439343+0,367836+17,2b5f2b+33,004a00+67,002e00+83,001400+100 */

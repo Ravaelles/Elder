@@ -3,33 +3,38 @@
 namespace App;
 
 use App\Classes\Tile;
+use App\Tiles\ForestTile;
 
 class WorldGenerator {
 
-    const WORLD_TILES_WIDTH = 20;
-    const WORLD_TILES_HEIGHT = 8;
+    const WORLD_TILES_WIDTH = 4;
+    const WORLD_TILES_HEIGHT = 3;
 
     public static function generateWorld() {
         $world = new World(self::WORLD_TILES_WIDTH, self::WORLD_TILES_HEIGHT);
-        self::handleTiles($world);
+        self::generateTiles($world);
         return $world;
     }
 
 // =========================================================================
 
-    public static function handleTiles($world) {
-        for ($row = 0; $row < $world->tilesHeight; $row++) {
-            for ($column = 0; $column < $world->tilesWidth; $column++) {
+    public static function generateTiles($world) {
+        for ($row = 0; $row < $world->getTilesHeight(); $row++) {
+            for ($column = 0; $column < $world->getTilesWidth(); $column++) {
                 $tile = $world->getTile($row, $column);
 
                 if (rand(1, 10) <= 2) {
                     $tile->setType(Tile::TYPE_MOUNTAIN);
                 }
 
+                if (rand(1, 10) <= 2) {
+                    $tile->setType(Tile::TYPE_FOREST);
+                }
+
 //                echo
 //                <img class="map-object" style="top: {{ $y * 80 }}px; left: {{ $x * 80 }}px"
 //                     src="/img/world/land/grass_{{ rand(1, 3) }}.png">
-                $tile->assignTextureAccordingToType();
+                $tile->generateTileAccordingToType();
 //                dd($world->getTile($row, $column));
             }
         }

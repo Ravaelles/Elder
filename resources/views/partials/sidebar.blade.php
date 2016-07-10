@@ -25,31 +25,21 @@
               </span>
             </div>
                 </form>-->
-<!-- /.search form -->
+        <!-- /.search form -->
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
 
             <li class="header">Command us, oh mighty Elder!</li>
 
-            <!-- VILLAGE -->
-            <li class="{{ Request::is('band*') ? "active" : "" }}">
-                <a href="/band"><div><i class='ion-bonfire'></i></div> <div>Band</div></a>
-            </li>
+            <!-- World -->
+            <!--            <li class="{{ Request::is('world*') ? "active" : "" }}">
+                            <a href="/world"><div><i class='ion-planet'></i></div> <div>World</div></a>
+                        </li>-->
 
-            <!-- encoun -->
-            <li class="{{ Request::is('world*') ? "active" : "" }}">
-                <a href="/world"><div><i class='ion-planet'></i></div> <div>World</div></a>
-            </li>
-
-            <!-- encoun -->
-            <li class="{{ Request::is('location*') ? "active" : "" }}">
-                <a href="/location"><div><i class='ion-planet'></i></div> <div>FLocation</div></a>
-            </li>
-
-            <!-- MAP -->
-            <li class="{{ Request::is('worldmap*') ? "active" : "" }}">
-                <a href="/worldmap"><div><i class='ion-map'></i></div> <div>Worldmap</div></a>
+            <!-- Map -->
+            <li class="{{ Request::is('map*') ? "active" : "" }}">
+                <a href="/map"><div><i class='ion-map'></i></div> <div>Map</div></a>
             </li>
 
 <!--<li><a href="/map"><i class='fa fa-'></i> <span>Map</span></a></li>-->

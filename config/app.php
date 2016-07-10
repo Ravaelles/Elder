@@ -161,6 +161,7 @@ return [
         Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
         /** Custom */
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        Conner\Kint\KintServiceProvider::class,
 //        Collective\Html\HtmlServiceProvider::class,
 //        Laracasts\Flash\FlashServiceProvider::class,
 //        Watson\BootstrapForm\BootstrapFormServiceProvider::class,

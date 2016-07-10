@@ -14,10 +14,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $test = '1';
-        return view('home')->with(compact('test'));
+    public function index() {
+//        $test = '1';
+//        return view('home')->with(compact('test'));
+        return redirect()->route('world');
     }
 
     public function php() {
