@@ -23,14 +23,13 @@ class WorldGenerator {
             for ($column = 0; $column < $world->getTilesWidth(); $column++) {
                 $tile = $world->getTile($row, $column);
 
-                if (rand(1, 10) <= 2) {
-                    $tile->setType(Tile::TYPE_MOUNTAIN);
-                }
-
-                if (rand(1, 10) <= 2) {
-                    $tile->setType(Tile::TYPE_FOREST);
-                }
-
+//                if (rand(1, 10) <= 2) {
+//                    $tile->setType(Tile::TYPE_MOUNTAIN);
+//                }
+//
+//                if (rand(1, 10) <= 2) {
+//                    $tile->setType(Tile::TYPE_FOREST);
+//                }
 //                echo
 //                <img class="map-object" style="top: {{ $y * 80 }}px; left: {{ $x * 80 }}px"
 //                     src="/img/world/land/grass_{{ rand(1, 3) }}.png">

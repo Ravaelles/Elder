@@ -2,5 +2,9 @@
     position: absolute;
     width: 80px;
     height: 80px;
-    border: 1px solid rgba(0, 150, 205, 0.4);
+    border: 1px dashed rgba(0, 150, 205, 0.4);
+    
+    &:hover {
+        background-color: rgba(0, 150, 205, 0.4);
+    }
 }

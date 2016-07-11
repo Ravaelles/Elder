@@ -5,7 +5,7 @@ namespace App\Classes;
 use App\World;
 use App\Helpers\Images;
 use App\Tiles\ForestTile;
-use App\Tiles\LandTile;
+use App\Tiles\TileLand;
 
 class Tile implements \JsonSerializable {
 
@@ -41,7 +41,7 @@ class Tile implements \JsonSerializable {
 
         // Mountain
         if ($this->type === self::TYPE_LAND) {
-            LandTile::addGrass($this);
+            TileLand::addGrass($this);
         }
 
         // Mountain

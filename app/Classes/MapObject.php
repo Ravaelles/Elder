@@ -16,8 +16,8 @@ class MapObject implements \JsonSerializable {
     private $tile = null;
     private $type = null;
     private $image = null;
-    private $dx;
-    private $dy;
+    private $dx = 0;
+    private $dy = 0;
 
     // =========================================================================
 
@@ -42,10 +42,9 @@ class MapObject implements \JsonSerializable {
     }
 
     private function spreadImageInTile() {
-//        $this->dx = Tile::TILE_SIZE / 2 - rand(0, Tile::TILE_SIZE);
-//        $this->dy = Tile::TILE_SIZE / 2 - rand(0, Tile::TILE_SIZE);
-        $this->dx = 0.9 - rand(0, 18) / 10;
-        $this->dy = 0.9 - rand(0, 18) / 10;
+        $spreadFactor = 0.4;
+        $this->dx = $spreadFactor - rand(0, 20 * $spreadFactor) / 10;
+        $this->dy = $spreadFactor - rand(0, 20 * $spreadFactor) / 10;
     }
 
     // =========================================================================

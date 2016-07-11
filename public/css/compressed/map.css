@@ -1,16 +1,21 @@
 .map-object {
   position: absolute;
-  margin-top: 50px;
-  margin-left: 230px;
   width: 80px;
   height: 80px;
   border: 1px solid rgba(255, 0, 0, 0.4); }
+  .map-object:hover {
+    background-color: rgba(255, 0, 0, 0.4); }
+
+.map-object-grass:hover {
+  background-color: rgba(0, 0, 100, 0.4); }
 
 .map-tile {
   position: absolute;
   width: 80px;
   height: 80px;
-  border: 1px solid rgba(0, 150, 205, 0.4); }
+  border: 1px dashed rgba(0, 150, 205, 0.4); }
+  .map-tile:hover {
+    background-color: rgba(0, 150, 205, 0.4); }
 
 .map-canvas {
   overflow: hidden;

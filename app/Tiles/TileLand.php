@@ -5,7 +5,7 @@ namespace App\Tiles;
 use App\Classes\Tile;
 use App\Classes\MapObject;
 
-class LandTile {
+class TileLand {
 
     public static function addGrass(Tile $tile) {
         $tree = new MapObject($tile, MapObject::TYPE_GRASS);
