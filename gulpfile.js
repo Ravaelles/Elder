@@ -29,7 +29,7 @@ elixir(function (mix) {
 
     mix.sass([
         'custom/**'
-    ], 'public/css/compressed/ui.css');
+    ], 'public/css/compressed/ui.min.css');
 
 });
 
@@ -38,19 +38,19 @@ elixir(function (mix) {
 
     mix.sass([
         'map/**'
-    ], 'public/css/compressed/map.css');
+    ], 'public/css/compressed/map.min.css');
 
 });
 
 // ALL.CSS
-elixir(function (mix) {
+//elixir(function (mix) {
 
-    mix.sass([
-        '../../../public/css/compressed/ui.css',
-        '../../../public/css/compressed/map.css'
-    ], 'public/css/all.css');
+//    mix.sass([
+//        '../../../public/css/compressed/ui.css',
+//        '../../../public/css/compressed/map.css'
+//    ], 'public/css/all.css');
 
-});
+//});
 
 // Scripts
 
@@ -72,11 +72,31 @@ elixir(function (mix) {
 
 });
 
-/**elixir(function (mix) {
+// =========================================================================
 
- // Game specific scripts
- mix.scripts([
- 'map/**',
- ], 'public/js/compressed/map.min.js');
+//elixir(function (mix) {
 
- });*/
+//    mix./sass([
+//        'custom/**'
+//    ], 'public/css/compressed/ui.css');
+
+//});
+
+// Map Engine CSS
+//elixir(function (mix) {
+
+//    mix.sass([
+//        'map/**'
+//    ], 'public/css/compressed/map.css');
+
+//});
+
+// ALL.CSS
+//elixir(function (mix) {
+
+//    mix.sass([
+//        '../../../public/css/compressed/ui.css',
+//        '../../../public/css/compressed/map.css'
+//    ], 'public/css/all.css');
+
+//});

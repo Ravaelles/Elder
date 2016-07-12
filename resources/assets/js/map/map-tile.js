@@ -1,9 +1,11 @@
 function createElement_tile(tile, x, y) {
-    var canvasX = getCanvasCoordinatesForTileX(x);
-    var canvasY = getCanvasCoordinatesForTileY(y);
+    var canvasX = getCanvasXForTile(x);
+    var canvasY = getCanvasYForTile(y);
 
-    var html = '<img class="map-tile" data-x="' + x + '" data-y="' + y + '" style="top: '
-            + canvasY + 'px; left: ' + canvasX + 'px" src="' + tile['image'] + '">';
+    var style = 'top: ' + canvasY + 'px; left: ' + canvasX + 'px;';
+
+    var html = '<img class="map-tile" data-x="' + x + '" data-y="' + y + '" style="' + style
+            + '" src="' + tile['image'] + '"' + ' width=' + getTileSize() + ' height=' + getTileSize() + '>';
 
     return html;
 }

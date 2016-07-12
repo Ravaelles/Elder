@@ -22,7 +22,13 @@
     <link href="{{ asset('/css/admin-lte.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- All stylesheets merged into one file -->
-    <link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />
+    <!--<link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />-->
+
+    <!-- The interface part of stylesheets -->
+    <link href="{{ asset('/css/compressed/ui.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <!-- Map engine stylesheets -->
+    <link href="{{ asset('/css/compressed/map.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- --- Top priority JS ---------------- -->
 

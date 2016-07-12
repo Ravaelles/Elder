@@ -7,4 +7,14 @@
     /*        background-size: 250% 250%;
             background-position-x: 10%;
             background-position-y: 10%;*/
+    
+    * {
+        user-drag: none; 
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    
 }

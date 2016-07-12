@@ -1,0 +1,22 @@
+.fullscreen-layout {
+    
+    .logo-mini {
+        position: fixed;
+        z-index: 9999;
+        opacity: 0.7;
+        width: 80px;
+        padding-top: 5px;
+        padding-left: 2px;
+        background-color: rgba(0,200,30,0.5);
+        border-bottom-right-radius: 15px;
+        cursor: pointer;
+        /*transition: all .5s;*/
+        
+        &:hover {
+            width: 120px;
+            opacity: 1;
+            transition: all .5s;
+        }
+    }
+    
+}

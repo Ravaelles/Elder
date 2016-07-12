@@ -1,16 +1,24 @@
 .map-object {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    border: 1px solid rgba(255, 0, 0, 0.4);
-    
-    &:hover {
-        background-color: rgba(255, 0, 0, 0.4);
-    }
 }
 
-.map-object-grass {
-    &:hover {
-        background-color: rgba(0, 0, 100, 0.4);
+/* ============================================= */
+
+.map-debug {
+    
+    .map-object {
+        border: 1px solid rgba(255, 0, 0, 0.25);
+
+        &:hover {
+            background-color: rgba(255, 0, 0, 0.15);
+            border: 1px solid rgba(255, 40, 40, 0.5);
+        }
     }
+
+    .map-object-grass {
+        &:hover {
+            /*background-color: rgba(0, 0, 100, 0.4);*/
+        }
+    }
+        
 }

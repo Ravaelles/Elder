@@ -57,6 +57,19 @@
         $(".tablesorter").tablesorter({
             'cssAsc': "th.headerSortUp{background-image: url(/img/ui/tablesorter/small_asc.gif); background-color: #3399FF;}"
         }); 
+        
+        // Fullscreen - show sidebar on click
+        $(".fullscreen-layout .logo-mini").click(function() {
+            $("body").toggleClass('sidebar-collapse');
+            $(".fullscreen-layout .logo-mini").hide(100);
+        });
+        
+        $(".fullscreen-layout .main-sidebar").mouseleave(function() {
+            $("body").toggleClass('sidebar-collapse');
+            setTimeout(function() {
+                $(".fullscreen-layout .logo-mini").fadeIn(1000);
+            }, 500);
+        });
     });
     
     // Fill content to the maximum

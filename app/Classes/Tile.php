@@ -5,11 +5,11 @@ namespace App\Classes;
 use App\World;
 use App\Helpers\Images;
 use App\Tiles\ForestTile;
-use App\Tiles\TileLand;
+use App\Tiles\LandTile;
 
 class Tile implements \JsonSerializable {
 
-//    const TILE_SIZE = 256;
+    const TILE_SIZE = 200;
     const TYPE_LAND = 'land';
     const TYPE_MOUNTAIN = 'mountain';
     const TYPE_FOREST = 'forest';
@@ -41,7 +41,7 @@ class Tile implements \JsonSerializable {
 
         // Mountain
         if ($this->type === self::TYPE_LAND) {
-            TileLand::addGrass($this);
+            LandTile::generateGrassInTile($this);
         }
 
         // Mountain
@@ -51,7 +51,7 @@ class Tile implements \JsonSerializable {
 
         // Forest
         else if ($this->type === self::TYPE_FOREST) {
-//            ForestTile::addTrees($this);
+            ForestTile::generateTreesInTile($this);
         }
 
         // Unknown type

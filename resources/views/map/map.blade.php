@@ -1,6 +1,9 @@
-@extends('app')
+@extends('fullscreen')
 
-<?php $disableContentHeader = true; ?>
+<?php
+$disableContentHeader = true;
+$mapDebug = false;
+?>
 
 @section('sidebar-collapse')
 sidebar-collapse
@@ -12,7 +15,8 @@ sidebar-collapse
     var world = {!! $worldJson !!};
 </script>
 
-<div class="map-canvas no-select" id="map-canvas">
+<div class="map-canvas {{ $mapDebug ? 'map-debug' : '' }} no-select" id="map-canvas">
+    <!--<div class="map-canvas map-debug no-select" id="map-canvas">-->
     <div class="game-messages"></div>
 
     @include('map.content')

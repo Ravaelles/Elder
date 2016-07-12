@@ -25,7 +25,39 @@ class MapObject implements \JsonSerializable {
         $this->tile = $tile;
         $this->type = $type;
         $this->assignImageAccordingToType();
-        $this->spreadImageInTile();
+    }
+
+    // =========================================================================
+
+    public function spreadImageInTile() {
+        $spreadFactor = 0.4;
+        $this->dx = $spreadFactor - mt_rand(0, 20 * $spreadFactor) / 10;
+        $this->dy = $spreadFactor - mt_rand(0, 20 * $spreadFactor) / 10;
+    }
+
+    // =========================================================================
+
+    public function jsonSerialize() {
+        $imageSize = Images::getImageSize($this->image);
+        return [
+
+            // Type of this map object e.g. grass, tree
+            'type' => $this->type,
+            // Url of the file image
+            'image' => $this->image,
+            // Image width in pixels
+            'width' => $imageSize['width'],
+            // Image height in pixels
+            'height' => $imageSize['height'],
+            // Tile X
+            'TX' => $this->tile->getX(),
+            // Tile Y
+            'TY' => $this->tile->getY(),
+            // Spread modifier for X (causes objects to be elsewhere than in exact center of tile)
+            'dTX' => $this->dx,
+            // Spread modifier for Y (causes objects to be elsewhere than in exact center of tile)
+            'dTY' => $this->dy,
+        ];
     }
 
     // =========================================================================
@@ -39,25 +71,6 @@ class MapObject implements \JsonSerializable {
 //        } else {
 //            dd("WTF?!?");
 //        }
-    }
-
-    private function spreadImageInTile() {
-        $spreadFactor = 0.4;
-        $this->dx = $spreadFactor - rand(0, 20 * $spreadFactor) / 10;
-        $this->dy = $spreadFactor - rand(0, 20 * $spreadFactor) / 10;
-    }
-
-    // =========================================================================
-
-    public function jsonSerialize() {
-        return [
-            'type' => $this->type,
-            'image' => $this->image,
-            'x' => $this->tile->getX(),
-            'y' => $this->tile->getY(),
-            'dx' => $this->dx,
-            'dy' => $this->dy,
-        ];
     }
 
     // =========================================================================

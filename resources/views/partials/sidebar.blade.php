@@ -1,3 +1,13 @@
+<!-- Overlay to show sidebar in the fullscreen layout -->
+<div class="sidebar-fullscreen" style="">
+    <!--display:none-->
+    <!--<a href="{{ url('/home') }}" class="logo">-->
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+        <!--<span class="logo-mini"><img src="/img/logo/logo.png" /></span>-->
+    <!--</a>-->
+    <img src="/img/logo/logo-mini.png" class="logo-mini" />
+</div>
+
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar no-select">
 

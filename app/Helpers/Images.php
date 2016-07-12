@@ -25,6 +25,16 @@ class Images {
 
     // =========================================================================
 
+    public static function getImageSize($path) {
+        $size = getimagesize($path);
+        return [
+            'width' => $size[0],
+            'height' => $size[1],
+        ];
+    }
+
+    // =========================================================================
+
     private static function getFiles($dirName) {
         $dirPath = 'img/world/' . $dirName . '/';
         $files = array_diff(scandir(public_path($dirPath)), ['.', '..']);

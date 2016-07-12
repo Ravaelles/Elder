@@ -1,3 +1,7 @@
-var TILE_SIZE = 80;
-var MAP_CANVAS_OFFSET_TOP = 50;
-var MAP_CANVAS_OFFSET_LEFT = 50;
+var TILE_SIZE = 128;
+//var MAP_CANVAS_OFFSET_TOP = 0;
+//var MAP_CANVAS_OFFSET_LEFT = 0;
+
+function getTileSize() {
+    return TILE_SIZE;
+}

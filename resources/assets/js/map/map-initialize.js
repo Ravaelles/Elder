@@ -2,7 +2,7 @@ window.initQueue.push(function () {
     var mapWidth = world['map-width'];
     var mapHeight = world['map-height'];
     var tiles = world['tiles'];
-    var mapObjects = world['map-objects'];
+    var rawMapObjects = world['map-objects'];
     var html = "";
 
     // === Tiles ======================================================================
@@ -15,9 +15,10 @@ window.initQueue.push(function () {
 
     // === MapObjects ======================================================================
 
-    for (var i in mapObjects) {
-        var mapObject = mapObjects[i];
-        html += createElement_mapObject(mapObject);
+    for (var i in rawMapObjects) {
+        var rawMapObject = rawMapObjects[i];
+        var mapObject = new MapObject(rawMapObject);
+        html += mapObject.createElement();
     }
 
     // =========================================================================
