@@ -2,8 +2,6 @@
 
 <!-- Layout & base scripts merged -->
 <script src="/js/compressed/base.min.js" type="text/javascript"></script>
-<!-- Engine & game scripts merged -->
-<script src="/js/compressed/game.min.js" type="text/javascript"></script>
 
 <!-- SHOULD BE MERGED -->
 
@@ -60,12 +58,13 @@
         
         // Fullscreen - show sidebar on click
         $(".fullscreen-layout .logo-mini").click(function() {
-            $("body").toggleClass('sidebar-collapse');
+            $("body").removeClass('sidebar-collapse');
             $(".fullscreen-layout .logo-mini").hide(100);
         });
         
         $(".fullscreen-layout .main-sidebar").mouseleave(function() {
-            $("body").toggleClass('sidebar-collapse');
+            $("body").addClass('sidebar-collapse');
+            $(".fullscreen-layout .logo-mini").hide(100);
             setTimeout(function() {
                 $(".fullscreen-layout .logo-mini").fadeIn(1000);
             }, 500);

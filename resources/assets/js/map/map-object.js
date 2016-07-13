@@ -13,23 +13,7 @@ function MapObject(mapObject) {
     this.constructor(mapObject);
 
     // =========================================================================
-
-    this.createElement = function () {
-        var rawMapObject = this.rawMapObject;
-
-        var type = rawMapObject['type'];
-        var canvasX = this.getCanvasX();
-        var canvasY = this.getCanvasY();
-
-        var style = 'top:' + canvasY + 'px; left:' + canvasX + 'px; width:' + getTileSize() + 'px';
-
-        var html = '<img class="map-object map-object-' + type + '" style="' + style
-                + '" src="' + rawMapObject['image'] + '">'
-
-        return html;
-    };
-
-    // =========================================================================
+    // Getters
 
     /*
      * Returns width of image representing this map object according to the current zoom.
@@ -60,12 +44,40 @@ function MapObject(mapObject) {
     };
 
     this.getCanvasY = function () {
+        var centerInTileModifier = (this.isVerticalAlignofImageToTheBottom() ?
+                (-this.getHeight()) : (-this.getHeight() / 2));
         return ((this.rawMapObject['TY'] + 0.5 + this.rawMapObject['dTY']) * getTileSize())
-                - this.getHeight() / 2;
+                + centerInTileModifier;
         //    return ((mapObject['TY'] + 0.5 + mapObject['dTY']) * getTileSize());
     };
 
     // =========================================================================
+    // Create element
+
+    this.createElement = function () {
+        var rawMapObject = this.rawMapObject;
+
+        var type = rawMapObject['type'];
+        var canvasX = this.getCanvasX();
+        var canvasY = this.getCanvasY();
+        var zIndex = this.calculateZIndex();
+
+        var style = 'z-index:' + zIndex + '; top:' + canvasY + 'px; left:' + canvasX + 'px; '
+                + 'width:' + getTileSize() + 'px';
+
+        var html = '<img class="map-object map-object-' + type + '" style="' + style
+                + '" src="' + rawMapObject['image'] + '">'
+
+        return html;
+    };
+
+    this.calculateZIndex = function () {
+        var zIndex = (this.rawMapObject['TY'] + this.rawMapObject['dTY'] + 2) * 10;
+        return zIndex;
+    };
+
+    // =========================================================================
+    // Raw MapObject getters
 
     this.getRawType = function () {
         return this.rawMapObject.type;
@@ -77,6 +89,10 @@ function MapObject(mapObject) {
 
     this.getRawHeight = function () {
         return this.rawMapObject['height'];
+    };
+
+    this.isVerticalAlignofImageToTheBottom = function () {
+        return this.rawMapObject['vertical-align'] === 'bottom';
     };
 
 }

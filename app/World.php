@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Classes\Tile;
-use App\Classes\MapObject;
+use App\Tiles\Tile;
+use App\MapObjects\MapObject;
 
 class World extends Eloquent {
 

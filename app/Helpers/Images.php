@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-use App\Classes\Tile;
+use App\Tiles\Tile;
 
 class Images {
 

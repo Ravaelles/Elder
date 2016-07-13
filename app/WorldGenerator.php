@@ -2,13 +2,16 @@
 
 namespace App;
 
-use App\Classes\Tile;
+use App\Tiles\Tile;
 use App\Tiles\ForestTile;
 
 class WorldGenerator {
 
     const WORLD_TILES_WIDTH = 9;
     const WORLD_TILES_HEIGHT = 6;
+
+//    const WORLD_TILES_WIDTH = 3;
+//    const WORLD_TILES_HEIGHT = 1;
 
     public static function generateWorld() {
         $world = new World(self::WORLD_TILES_WIDTH, self::WORLD_TILES_HEIGHT);

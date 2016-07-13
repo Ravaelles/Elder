@@ -66,9 +66,18 @@ elixir(function (mix) {
 
     // Game specific scripts
     mix.scripts([
+        '../../../public/js/compressed/base.min.js',
         'project.js',
+    ], 'public/js/compressed/ui.min.js');
+
+});
+
+elixir(function (mix) {
+
+    // Game specific scripts
+    mix.scripts([
         'map/**',
-    ], 'public/js/compressed/game.min.js');
+    ], 'public/js/compressed/rmap-engine.min.js');
 
 });
 

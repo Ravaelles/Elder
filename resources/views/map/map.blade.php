@@ -1,9 +1,12 @@
-@extends('fullscreen')
-
 <?php
+// === Parameters ==========================================================
 $disableContentHeader = true;
 $mapDebug = false;
+//$mapDebug = true;
+// ========================================================================= 
 ?>
+
+@extends('fullscreen')
 
 @section('sidebar-collapse')
 sidebar-collapse
@@ -16,10 +19,12 @@ sidebar-collapse
 </script>
 
 <div class="map-canvas {{ $mapDebug ? 'map-debug' : '' }} no-select" id="map-canvas">
-    <!--<div class="map-canvas map-debug no-select" id="map-canvas">-->
     <div class="game-messages"></div>
 
     @include('map.content')
 </div>
+
+<!-- Get script that runs RMap engine -->
+<script type="text/javascript" src="/js/compressed/rmap-engine.min.js"></script>
 
 @endsection
