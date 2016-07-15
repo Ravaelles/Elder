@@ -7,8 +7,8 @@ use App\Tiles\ForestTile;
 
 class WorldGenerator {
 
-    const WORLD_TILES_WIDTH = 9;
-    const WORLD_TILES_HEIGHT = 6;
+    const WORLD_TILES_WIDTH = 12;
+    const WORLD_TILES_HEIGHT = 7;
 
 //    const WORLD_TILES_WIDTH = 3;
 //    const WORLD_TILES_HEIGHT = 1;

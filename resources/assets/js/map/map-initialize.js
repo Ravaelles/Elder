@@ -21,10 +21,17 @@ window.initQueue.push(function () {
         html += mapObject.createElement();
     }
 
+    html += '<img src="/img/world/people/person-right.gif" class="person" style="position:absolute; ' +
+            'width:30px; height:60px; z-index:9999; top:200px; left:400px;" />';
+
     // =========================================================================
     // Add html to the map
 
     addHtmlToMapCanvas(html);
+
+    $(".person").animate({
+        left: "1940px"
+    }, 26000, "linear");
 });
 
 // =========================================================================

@@ -6,11 +6,23 @@
   |--------------------------------------------------------------------------
  */
 
-Route::get('image/{path}', [
+//Route::get('image/{function}/{path}', [
+//    //    'middleware' => 'auth',
+//    'uses' => 'ImageController@get',
+//    'as' => 'image'
+//])->where(['function' => '.*', 'path' => '.*']);
+
+//Route::get('image/{path}', [
+//    //    'middleware' => 'auth',
+//    'uses' => 'ImageController@get',
+//    'as' => 'image'
+//])->where(['path' => '.*']);
+
+Route::get('image/test', [
     //    'middleware' => 'auth',
-    'uses' => 'ImageController@get',
-    'as' => 'image'
-])->where(['path' => '.*']);
+    'uses' => 'ImageController@test',
+    'as' => 'image.test'
+]);
 
 Route::get('users', [
     //    'middleware' => 'auth',
@@ -69,6 +81,12 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'auth',
         'uses' => 'MapController@index',
         'as' => 'map'
+    ]);
+
+    Route::get('map/test/animation', [
+        'middleware' => 'auth',
+        'uses' => 'MapController@animation',
+        'as' => 'map.animation'
     ]);
 
     // =========================================================================

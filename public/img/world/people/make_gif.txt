@@ -1,0 +1,8 @@
+(1) Create GIF from frames
+convert -delay 5 -loop 0 -alpha set -dispose previous *.png output.gif
+
+(2) Mirror horizontally
+convert person-right.gif -flop person-left.gif
+
+(3) Replace colors
+convert person-right.gif -fuzz 94% -fill green -opaque black test.gif

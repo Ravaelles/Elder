@@ -25,4 +25,8 @@ class MapController extends Controller {
         return view('map.map')->with(compact('world', 'worldJson'));
     }
 
+    public function animation() {
+        return view('map.test');
+    }
+
 }
