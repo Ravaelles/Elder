@@ -16,24 +16,52 @@ sidebar-collapse
 
 <div style="width: 100%; height: 100%;">
     <img src="/img/world/test/background.jpg" style="position:absolute; z-index:1" />
-    <img src="/img/world/people/person-right.gif" style="position:absolute; z-index:9; top:300px; left:300px; 
+    <img src="/img/world/people/right-stand.png" style="position:absolute; z-index:9; top:300px; left:300px; 
          width:22px; height:35px;" class="person" />
+
+    <div class="" style="position:absolute; top:300px; left:300px; border-bottom:1px solid red; width:70px; z-index:99">
+    </div>
+
 </div>
 
 
 <script type="text/javascript">
+    var people = [
+        {x:300, y:300}
+    ];
+    
     window.initQueue.push(function() {
-        console.log((getLeft() + "px"));
-        walkRight();
+//        setTimeout(function() {
+//            walkRight();
+//            setTimeout(function() {
+//                walkRight();
+//            }, 500);
+//        }, 500);
+        for (var i in people) {
+            var person = people[i];
+            createElement_person(person);
+        }
+
         setTimeout(function() {
             walkRight();
-        }, 2500);
+            walkRight();
+            walkRight();
+            setTimeout(function() {
+                walkRight();
+                walkRight();
+                walkRight();
+            }, 50);
+        }, 500);
     }); 
     
     function walkRight() {
-        $(".person").animate({
+        var selector = $(".person");
+        selector.attr("src", "/img/world/people/right-walk.gif");
+        selector.animate({
             left: (getLeft() + "px")
-        }, 2000, "linear");
+        }, 500, "linear", function() {
+            selector.attr("src", "/img/world/people/right-stand.png");
+        });
     }
     
     function getLeft() {

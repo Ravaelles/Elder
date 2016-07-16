@@ -1,4 +1,4 @@
-function MapObject(mapObject) {
+ function MapObject(mapObject) {
 
     this.rawMapObject = null; // Array object passed from PHP
 
