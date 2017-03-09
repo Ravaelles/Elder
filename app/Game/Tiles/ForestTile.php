@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tiles;
+namespace App\Game\Tiles;
 
-use App\Tiles\Tile;
-use App\MapObjects\Tree;
+use App\Game\Tiles\Tile;
+use App\Game\MapObjects\Tree;
 
 class ForestTile {
 

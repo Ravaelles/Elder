@@ -1,9 +1,9 @@
 <?php
 
-namespace App\MapObjects;
+namespace App\Game\MapObjects;
 
-use App\MapObjects\MapObject;
-use App\Tiles\Tile;
+use App\Game\MapObjects\MapObject;
+use App\Game\Tiles\Tile;
 
 class Tree extends MapObject {
 

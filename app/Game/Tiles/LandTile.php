@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Tiles;
+namespace App\Game\Tiles;
 
-use App\Tiles\Tile;
-use App\MapObjects\MapObject;
-use App\MapObjects\Grass;
+use App\Game\Tiles\Tile;
+use App\Game\MapObjects\MapObject;
+use App\Game\MapObjects\Grass;
 
 class LandTile {
 
     public static function generateGrassInTile(Tile $tile) {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             self::generateGrass($tile);
         }
     }

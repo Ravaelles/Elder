@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Tiles;
+namespace App\Game\Tiles;
 
 use App\World;
-use App\MapObjects\MapObject;
+use App\Game\MapObjects\MapObject;
 use App\Helpers\Images;
-use App\Tiles\ForestTile;
-use App\Tiles\LandTile;
+use App\Game\Tiles\ForestTile;
+use App\Game\Tiles\LandTile;
 
 class Tile implements \JsonSerializable {
 

@@ -62,6 +62,17 @@ return [
 //                'database' => env('MONGO_LOCAL_DATABASE') // sets the authentication database required by mongo 3
 //            ]
         ],
+        'mongodb-production' => [
+            'driver' => 'mongodb',
+            'host' => env('MONGO_PRODUCTION_HOST', 'localhost'),
+            'port' => env('MONGO_PRODUCTION_PORT', 27017),
+            'database' => env('MONGO_PRODUCTION_DATABASE'),
+            'username' => env('MONGO_PRODUCTION_USERNAME'),
+            'password' => env('MONGO_PRODUCTION_PASSWORD'),
+//            'options' => [
+//                'database' => env('MONGO_PRODUCTION_DATABASE') // sets the authentication database required by mongo 3
+//            ]
+        ],
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),

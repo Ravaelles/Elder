@@ -13,7 +13,7 @@ class MapController extends Controller {
 //        $cities = Band::all();
         $world = WorldGenerator::generateWorld();
         $worldJson = $world->createJson();
-//        dd($world->tiles);
+//        ddd($worldJson);
 //        dd($worldJson);
 //        var_dump($worldJson);
 //        echo $worldJson;

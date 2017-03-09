@@ -2,96 +2,114 @@
 
 namespace App;
 
-use App\Tiles\Tile;
-use App\MapObjects\MapObject;
+use App\Game\MapObjects\MapObject;
+use App\Game\Tiles\Tile;
 
-class World extends Eloquent {
+class World extends Eloquent
+{
+
+    private static $world = null;
 
     private $tilesWidth = -1;
     private $tilesHeight = -1;
     private $tiles = [];
     private $mapObjects = [];
+    private $settlements = [];
 
     // =========================================================================
 
-    function __construct($tilesWidth, $tilesHeight) {
-        $this->tilesWidth = $tilesWidth;
-        $this->tilesHeight = $tilesHeight;
-
-        $this->_initializeTilesArray();
-    }
-
-    public function getTile($row, $column) {
-        return $this->tiles[$row][$column];
-    }
-
-    // =========================================================================
-
-    public function createJson() {
+    public function createJson()
+    {
 //        dd($this->createTilesArray());
 //        return str_replace(['\"', "\""], ["'", "'"], json_encode([
+        //ddd($this->tiles);
         return json_encode([
             'map-width' => $this->tilesWidth,
             'map-height' => $this->tilesHeight,
 //            'tiles' => $this->createTilesArray(),
             'tiles' => $this->tiles,
             'map-objects' => $this->mapObjects,
+            'settlements' => $this->settlements,
         ]);
 //        ]));
 //        return $this->getJson();
 //        json_encode($world->getAttributes())
     }
 
-//    private function createTilesArray() {
-////        return json_encode($this->tiles);
-//
-//        $array = [];
-//        for ($i = 0; $i < count($this->tiles); $i++) {
-//            for ($j = 0; $j < count($this->tiles[$i]); $j++) {
-//                $tileString = $this->tiles[$i][$j]->__toString();
-//                $tileString = str_replace("\"", "'", $tileString);
-//                $array[$i][$j] = $tileString;
-//            }
-//        }
-//        return $array;
-//    }
     // =========================================================================
 
-    private function _initializeTilesArray() {
+    function __construct($tilesWidth, $tilesHeight)
+    {
+        $this->tilesWidth = $tilesWidth;
+        $this->tilesHeight = $tilesHeight;
+
         $this->tiles = [];
         for ($y = 0; $y < $this->tilesHeight; $y++) {
-//            $row = array_fill(0, $this->tilesWidth, []);
             $row = [];
             for ($x = 0; $x < $this->tilesWidth; $x++) {
                 $row[$x] = new Tile($this, Tile::TYPE_LAND, $x, $y);
             }
-
             $this->tiles[$y] = $row;
         }
 
 //        dd($this->tiles);
+        self::$world = $this;
     }
 
-    public function addMapObject(MapObject $mapObject) {
-        $this->mapObjects[] = $mapObject;
+    public static function getInstance() {
+        return self::$world;
     }
 
     // =========================================================================
 
-    function getTilesWidth() {
+//    private function _initializeTilesArray() {
+//
+//    }
+
+    public function addMapObject(MapObject $mapObject)
+    {
+        $this->mapObjects[] = $mapObject;
+    }
+
+    public function addSettlement(Settlement $settlement)
+    {
+        $this->settlements[] = $settlement;
+    }
+
+    // =========================================================================
+
+    public function getTile($row, $column)
+    {
+        return $this->tiles[$row][$column];
+    }
+
+    function getTilesWidth()
+    {
         return $this->tilesWidth;
     }
 
-    function getTilesHeight() {
+    function getTilesHeight()
+    {
         return $this->tilesHeight;
     }
 
-    function getTiles() {
+    function getTiles()
+    {
         return $this->tiles;
     }
 
-    function getMapObjects() {
+    function getMapObjects()
+    {
         return $this->mapObjects;
     }
+
+    /**
+     * @return array
+     */
+    public function getSettlements()
+    {
+        return $this->settlements;
+    }
+
 
 }

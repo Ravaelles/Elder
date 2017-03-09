@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index() {
 //        $test = '1';
 //        return view('home')->with(compact('test'));
-        return redirect()->route('world');
+        return redirect()->route('map');
     }
 
     public function php() {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\MapObjects;
+namespace App\Game\MapObjects;
 
 use App\Helpers\Images;
-use App\Tiles\Tile;
+use App\Game\Tiles\Tile;
 
 class MapObject implements \JsonSerializable {
 

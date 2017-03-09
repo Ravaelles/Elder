@@ -2,13 +2,16 @@
 
 namespace App;
 
-use App\Tiles\Tile;
-use App\Tiles\ForestTile;
+use App\Game\Tiles\Tile;
+use App\Game\Tiles\ForestTile;
 
 class WorldGenerator {
 
-    const WORLD_TILES_WIDTH = 12;
-    const WORLD_TILES_HEIGHT = 7;
+//    const WORLD_TILES_WIDTH = 12;
+//    const WORLD_TILES_HEIGHT = 7;
+    const WORLD_TILES_WIDTH = 4;
+    const WORLD_TILES_HEIGHT = 2;
+    const NUMBER_OF_SETTLEMENTS = 7;
 
 //    const WORLD_TILES_WIDTH = 3;
 //    const WORLD_TILES_HEIGHT = 1;
@@ -16,6 +19,7 @@ class WorldGenerator {
     public static function generateWorld() {
         $world = new World(self::WORLD_TILES_WIDTH, self::WORLD_TILES_HEIGHT);
         self::generateTiles($world);
+        self::generateSettlements($world);
         return $world;
     }
 
@@ -39,6 +43,13 @@ class WorldGenerator {
                 $tile->generateTileAccordingToType();
 //                dd($world->getTile($row, $column));
             }
+        }
+    }
+
+    public static function generateSettlements($world) {
+        for ($i = 0; $i < self::NUMBER_OF_SETTLEMENTS; $i++) {
+            $settlement = Settlement::generateSettlement();
+            $world->addSettlement($settlement);
         }
     }
 
