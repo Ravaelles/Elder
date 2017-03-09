@@ -59,14 +59,14 @@ return [
 
         'mongodb-local' => [
             'driver' => 'mongodb',
-            'host' => env('DB_LOCAL_HOST', 'localhost'),
-            'port' => env('DB_LOCAL_PORT', 27017),
-            'database' => env('DB_LOCAL_DATABASE', ''),
-//            'username' => env('DB_LOCAL_USERNAME', ''),
-//            'password' => env('DB_LOCAL_PASSWORD', ''),
-            'options' => [
-                'db' => env('DB_LOCAL_DATABASE', ''), // sets the authentication database required by mongo 3
-            ]
+            'host' => env('MONGO_LOCAL_HOST', 'localhost'),
+            'port' => env('MONGO_LOCAL_PORT', 27017),
+            'database' => env('MONGO_LOCAL_DATABASE', ''),
+//            'username' => env('MONGO_LOCAL_USERNAME', ''),
+//            'password' => env('MONGO_LOCAL_PASSWORD', ''),
+//            'options' => [
+//                'db' => env('MONGO_LOCAL_DATABASE', ''), // sets the authentication database required by mongo 3
+//            ]
         ],
         'sqlite' => [
             'driver'   => 'sqlite',
