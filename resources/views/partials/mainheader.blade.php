@@ -30,7 +30,7 @@ if (!Auth::check()) {
 <header class="main-header no-select">
 
     <!-- Logo -->
-    <a href="{{ url('/home') }}" class="logo">
+    <a href="/" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><img src="/img/logo/logo.png" /></span>
         <!-- logo for regular state and mobile devices -->

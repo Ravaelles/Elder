@@ -12,7 +12,7 @@
 
     <!--<div class="login-box">-->
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><img src="/img/logo/logo.png" /></a>
+        <a href="/"><img src="/img/logo/logo.png" /></a>
     </div><!-- /.login-logo -->
 
     <div class="fallout-terminal-desk"></div>

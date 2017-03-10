@@ -22,7 +22,7 @@ Get in!
 
     <!--<div class="login-box">-->
     <div class="login-logo" style="opacity: 0; transition: all 1s;">
-        <a href="{{ url('/home') }}"><img src="/img/logo/logo.png" /></a>
+        <a href="/"><img src="/img/logo/logo.png" /></a>
     </div><!-- /.login-logo -->
 
     <div class="fallout-terminal-desk"></div>
