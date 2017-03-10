@@ -1,0 +1,130 @@
+/*==== Top bar (mainheader)) =====================================================*/
+
+.main-header {
+    
+    .logo-lg {
+        margin-left: -10px;
+    }
+
+    .logo-lg img {
+        max-height: 36px;
+        transition: all .9s;
+        
+        &:hover {
+            max-height: 48px;
+            transition: all .4s;
+        }
+    }
+
+    .logo-mini img {
+        width: 42px;
+    }
+
+    .user-image-mainmenu {
+        margin-top: 10px;
+        width: 40px !important;
+    }
+
+    .user-footer {
+        //background-color: #4070a0 !important;
+        background-color: lighten(#00a65a, 5%) !important;
+    }
+
+    .user-header img {
+        width: 100px;
+    }
+
+    .user-header a:hover {
+        background-color: transparent;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+
+}
+
+.content-header {
+    
+    font-size: 16px !important;
+    
+    .navigation-arrow {
+        font-size: 70%;
+        padding-left: 5px;
+        padding-right: 5px;
+        color: #999;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+}
+
+/*==== Sidebar =====================================================*/
+
+.sidebar-menu a span {
+    padding-left: 5px;
+}
+
+.sidebar-menu ul li {
+    padding-left: 8px;
+}
+
+.sidebar-menu li {
+    a {
+        height: 100%;
+        padding-left: 10px;
+        vertical-align: middle;
+        
+        i {
+            font-size: 170%;
+            vertical-align: middle;
+            text-align: left;
+        }
+
+        div:nth-child(1) {
+            display: inline-block;
+            width: 35px;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        div:nth-child(2) {
+            padding-left: 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}
+
+.sidebar-menu ul li span {
+    padding-left: 3px;
+}
+
+.sidebar .user-panel span {
+    padding-left: 3px;
+    font-size: 95%;
+}
+
+.sidebar a,
+.sidebar a:active, 
+.sidebar a:focus {
+    text-decoration: none;
+}
+
+/*==== Footer =====================================================*/
+
+.main-footer {
+    background-color: #222d32;
+}
+
+/*==== User image =====================================================*/
+
+.user-image {
+    width: auto !important;
+    height: 35px !important;
+    max-height: 35px !important;
+    border-radius: 0 !important;
+    margin-top: -10px !important;
+}

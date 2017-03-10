@@ -1,0 +1,39 @@
+/*==== User profile =====================================================*/
+
+.settings {
+    
+    background-color: rgba(255, 255, 255, 0.2);
+    
+    .nav-tabs {
+        padding-bottom: 5px;
+        background-color: rgba(255, 255, 255, 0.25);
+        border-bottom: none;
+        
+        li a {
+            background-color: rgba(0,0,0,0.1);
+            color: #222;
+            
+            &:hover {
+                background-color: rgba(255,255,255,0.1);
+            }
+        }
+    }
+    
+    .nav-tabs>li:first-of-type.active>a {
+        border-left-color: transparent;
+        background-color: rgba(0,255,0,.08);
+        border-right: none;
+        box-shadow: 2px 2px rgba(0,0,0,0.5);
+    }
+    
+    .tab-content {
+        background-color: rgba(255, 255, 255, 0.001);
+        
+        .box-footer {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-top: none;
+            border-radius: 5px;
+        }
+    }
+    
+}

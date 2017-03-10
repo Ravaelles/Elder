@@ -1,0 +1,149 @@
+/* 
+    Created on : 2015-11-13, 17:36:59
+    Author     : Rav
+*/
+
+/*==== Global changes =====================================================*/
+
+.btn {
+    transition: all .3s;
+}
+
+.alert {
+    border-radius: 15px;
+}
+
+.box {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #f0f0f0;
+}
+
+.table {
+    max-width: none;
+    /*table-layout: fixed;*/
+    word-wrap: break-word;
+}
+
+.table tbody > tr > td {
+    vertical-align: middle;
+}
+
+.form-control {
+    border-bottom-left-radius: 4px !important;
+    border-top-left-radius: 4px !important;
+}
+
+input[type="submit"] {
+    margin-top: 5px;
+}
+
+.headline {
+    font-size: 80px !important;
+}
+
+.error-content {
+    font-size: 120%;
+}
+
+/*==== Global input =====================================================*/
+
+.content input {
+    background-image: url('/img/terminal/terminal-background.jpg');
+    background-size: 100% 100%;
+    border: none;
+    border-radius: 5px !important;
+    color: #30da77;
+    font-family: VT323;
+    letter-spacing: 0.07em;
+}
+
+/*==== Generic =====================================================*/
+
+.centered {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.disabled-look {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn .disabled {
+    cursor: not-allowed !important;
+}
+
+.gray {
+    color: #aaa;
+}
+
+.input-marker {
+    position: absolute;
+    width: 96px;
+    padding: 2px 10px;
+    /*background-color: #f1931e;*/
+    /*color: white;*/
+    /*background-color: #53cbf1;*/
+    background-color: darkmagenta;
+    color: white;
+    font-weight: bold;
+    /*text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);*/
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-marker-content {
+    display: inline-block;
+}
+
+.input-marker-arrow {
+    position: absolute;
+    display: inline-block;
+    width: 0; 
+    height: 0; 
+    border-top: 13px solid transparent;
+    border-bottom: 14px solid transparent;
+
+    border-left: 20px solid #53cbf1;
+    border-left: 20px solid darkmagenta;
+/*    border-left: 20px solid #f1931e;*/
+}
+
+.no-records {
+    margin-top: 10px; 
+    margin-left: 10px;
+    padding: 5px; 
+    color: #933; 
+    font-weight: bold; 
+    letter-spacing: 0.06em;
+}
+
+body {
+background-color:blue !important;
+}

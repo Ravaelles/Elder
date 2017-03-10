@@ -1,0 +1,91 @@
+/* 
+    Created on : 2015-11-13, 17:38:03
+    Author     : Rav
+*/
+
+/*==== Layout =====================================================*/
+
+body {
+    min-width: 1064px;
+    min-height: 490px;
+    overflow-x: auto;
+    cursor: url(/img/cursor/engine-default.ico),default !important;
+}
+
+.content-wrapper {
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#439343+0,367836+17,2b5f2b+33,004a00+67,002e00+83,001400+100 */
+    background: #439343; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #439343 0%, #367836 17%, #2b5f2b 33%, #004a00 67%, #002e00 83%, #001400 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #439343 0%,#367836 17%,#2b5f2b 33%,#004a00 67%,#002e00 83%,#001400 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #439343 0%,#367836 17%,#2b5f2b 33%,#004a00 67%,#002e00 83%,#001400 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#439343', endColorstr='#001400',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    
+    .content-header {
+        
+        margin-left: 10px;
+        
+        h1 {
+            font-size: 18px !important;
+        }
+        
+        a {
+            color: darken(lime, 35%);
+        }
+        
+        .navigation-arrow {
+            color: darken(lime, 17%);
+            text-shadow: 1px 1px darken(yellow, 30%);
+        }
+        
+        a:hover {
+            color: darken(lime, 10%);
+            text-decoration: underline;
+        }
+        
+    }
+
+    .content {
+        margin-left: 5px;
+    }
+
+    .box {
+        padding: 20px;
+    }
+    
+}
+
+/*==== Nice box =====================================================*/
+
+//$nice-box-green-color: 
+
+.nice-box {
+    /**width: 250px */
+    width: 100%;
+}
+
+.nice-box .small-box {
+}
+
+.nice-box .small-box {
+    
+    h3 {
+        margin-top: 5px;
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    p {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+}
+
+.nice-box-green {
+    
+    h3, p {
+        color: white;
+    }
+
+}

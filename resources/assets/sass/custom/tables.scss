@@ -1,0 +1,34 @@
+$border-color: darken(#0f0, 10%);
+
+.table-fallout  {
+    
+    margin-top: 20px;
+    font-size: 12px;
+
+    td, th {
+        /*border: 1px solid $border-color;*/
+        //border-top: 1px solid $border-color !important;
+    }
+    
+    th {
+        color: white;
+    }
+    
+    td {
+        border-top: 1px solid #777;
+    }
+    
+}
+
+.table-borderless-header {
+    
+    th {
+        /*border: none !important;*/
+        /*border-top: none !important;*/
+    }
+    
+}
+
+.borderless-cell {
+    /*border: none !important;*/
+}

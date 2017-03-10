@@ -1,0 +1,117 @@
+$green: #1e1;
+$green-transparent: transparentize(#11FF11, 0.3);
+
+/*==== Notification =====================================================*/
+
+.notifications {
+    max-width: 600px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    /*    margin-left: 20px;
+        margin-right: 20px;*/
+    font-size: 110%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.notifications .callout {
+    margin: 20px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.notifications .close {
+    color: white;
+    opacity: 0.7;
+}
+
+/*==== Validation =====================================================*/
+
+.validation-errors {
+    font-size: 110%;
+    font-weight: bold;
+    box-shadow: 0 0 5px red;
+}
+
+.validation-errors i {
+    padding-right: 5px;
+}
+
+/*==== Popovers =====================================================*/
+
+.popover {
+    
+    max-width: 600px;
+    max-height: 400px;
+    background-color: rgba(0,0,0, 0.7);
+    color: $green;
+    border: 3px solid $green-transparent;
+    border-radius: 10px;
+    /*opacity: 0.85 !important;*/
+    
+    .popover-title {
+        background-color: transparent;
+        border-bottom-color: $green-transparent;
+    }
+
+    .popover-content {
+        background-color: transparent;
+    }
+    
+}
+
+.popover.right>.arrow:after {
+    border-right-color: $green-transparent !important;
+}
+
+
+/*==== Start of TOOLTIP =====================================================*/
+
+.tooltip {
+    width: 350px;
+    background-color: transparent;
+    text-shadow: none;
+    border-radius: 10px !important;
+    letter-spacing: 0.05em;
+}
+
+.tooltip.in {
+    opacity: 1 !important;
+}
+
+.tooltip-inner {
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    /*background-color: $green;*/
+    border: 3px solid $green-transparent;
+    color: $green;
+    border-radius: 10px !important;
+    text-align: justify !important;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    border-bottom-color: $green-transparent;
+}
+.tooltip.right .tooltip-arrow {
+    border-right-color: $green-transparent;
+}
+
+.tooltip-inner ul {
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+.tooltip-inner ul li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.tooltip-inner ul li b {
+    font-size: 105%;
+}
+
+/*==== End of TOOLTIP =====================================================*/

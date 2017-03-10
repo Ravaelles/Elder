@@ -85,11 +85,9 @@ Route::get('location', [
 // =========================================================================
 // Home
 
-Route::get('home', [
-    'middleware' => 'auth',
-    'uses' => 'BandController@index',
-    'as' => 'home'
-]);
+Route::get('home', 'VillageController@index')->name('home');
+Route::get('village', 'VillageController@index')->name('village');
+
 // =========================================================================
 // Person
 

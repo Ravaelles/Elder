@@ -121,7 +121,8 @@ class Person extends Eloquent {
     // =========================================================================
     // Scopes
 
-    public function scopeOur($query) {
+    public function scopeOur($query)
+    {
         return $query->where('user', \Auth::user()->id);
     }
 

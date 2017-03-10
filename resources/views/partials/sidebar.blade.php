@@ -33,8 +33,8 @@
             <li class="header">Command us, oh mighty Elder!</li>
 
             <!-- VILLAGE -->
-            <li class="{{ Request::is('band*') ? "active" : "" }}">
-                <a href="/band"><div><i class='ion-bonfire'></i></div> <div>Band</div></a>
+            <li class="{{ Request::is('village*') ? "active" : "" }}">
+                <a href="{!! route('village') !!}"><div><i class='ion-bonfire'></i></div> <div>Village</div></a>
             </li>
 
             <!-- encoun -->

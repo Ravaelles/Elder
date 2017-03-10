@@ -1,0 +1,188 @@
+/* 
+    Created on : 2015-11-19, 02:20:47
+    Author     : Rav
+*/
+
+$cursor:url('/img/cursor/engine-default.ico'), default !important;
+
+/*==== Theme modifications =====================================================*/
+
+.skin-green .main-header .navbar {
+    background-color: darken(#00a65a, 10%);
+}
+
+/*==== Game log =====================================================*/
+
+.game-log {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    padding: 5px;
+    font-family: monospace;
+    font-size: 11px;
+    background-color: #152328;
+    color: #3e3;
+    overflow-y: auto;
+    text-shadow: 0.5px 0.5px #272;
+
+    dot {
+        margin-left: -1px;
+        margin-right: -3px;
+    }
+    
+    p {
+        margin: 0;
+        margin-bottom: 3px;
+        text-align: left;
+        line-height: 1.05em;
+        letter-spacing: -0.05em;
+        word-spacing: -0.12em;
+        
+        span:not(.dot) {
+            color: white;
+        }
+    }
+}
+
+/*==== Scroll bars =====================================================*/
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    background-color: #555;
+    border-radius: 10px;
+    cursor: $cursor;
+}
+
+::-webkit-scrollbar
+{
+    width: 8px;
+    height: 8px;
+    background-color: #555;
+    cursor: $cursor;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #555;
+    background-image: -webkit-gradient(linear,
+        40% 0%,
+        75% 84%,
+        from(#3B8C31),
+        to(#19711D),
+        color-stop(.6,#4A4));
+    cursor: $cursor;
+}
+
+/*==== Box =====================================================*/
+
+.box-fallout {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    /*color: lime;*/
+    color: white;
+    border: 2px solid lime;
+    border-radius: 15px;
+    background-color: rgba(50,50,50,0.9);
+    font-size: 12px;
+
+    .box-header {
+        width: 110%;
+        margin-top: -20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-bottom: 15px;
+        padding: 5px 5px 4px 20px;
+        border-radius: 12px 12px 0 0;
+        font-size: 16px;
+        color: #0b0;
+        background-color: rgba(5,255,5,.15);
+        font-weight: bold;
+        border-bottom: 2px solid grey;
+        letter-spacing: 0.04em;
+    }
+}
+
+.box-shadow {
+    box-shadow: 15px 25px 15px rgba(0, 0, 0, 0.3);
+}
+
+/*==== Global UI =====================================================*/
+
+/* Filtering */
+
+.filter-options {
+    width: 300px;
+    padding: 3px !important;
+}
+
+.filter-options button[data-widget="collapse"] {
+    float: right; 
+    width: 270px;
+    text-align: right;
+}
+
+/* Text editor */
+
+.text-editor-toolbar {
+}
+
+.ql-toolbar select {
+    /*    margin-right: 10px;
+        background: url('nicer-bootstrap/modal/buttons.png') no-repeat;*/
+    display: inline-block;
+    margin-top: 5px;
+    background: url('nicer-bootstrap/modal/buttons.png') no-repeat;
+    color: white;
+    position: relative;
+    height: 33px;
+    font: 17px/33px 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    margin-right: 15px;
+    padding: 0 35px 0 40px;
+    text-decoration: none;
+    border: none;
+    transition: none;
+}
+
+.ql-toolbar option {
+    background-color: #469;
+}
+
+.text-editor-extra-desc {
+    margin-bottom: 20px;
+}
+
+.text-editor-content {
+    min-height: 124px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    background-color: white;
+    padding: 5px;
+    color: #555;
+    text-align: justify;
+    border: 1px solid #999;
+}
+
+/*==== Emoticons =====================================================*/
+
+.emoticon {
+    height: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/*==== Various =====================================================*/
+
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                    not supported by any browser */
+}

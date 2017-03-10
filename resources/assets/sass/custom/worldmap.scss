@@ -1,0 +1,28 @@
+.worldmap {
+    overflow: hidden;
+    width: 100%;
+    min-width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    /*        background-size: 250% 250%;
+            background-position-x: 10%;
+            background-position-y: 10%;*/
+}
+
+.game-messages {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    text-align: center;
+    
+    .game-message {
+        margin-bottom: 3px;
+        color: #9f9;
+        font-family: monospace;
+        line-height: 1.05em;
+        letter-spacing: -0.05em;
+        word-spacing: -0.05em;
+        text-shadow: 1px 1px black;
+    }
+}

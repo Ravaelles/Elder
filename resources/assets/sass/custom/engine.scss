@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-11-21, 13:34:45
+    Author     : Rav
+*/
+
+.engine-canvas {
+    position: fixed;
+    width: calc(100% - 230px);
+    margin: 0 !important;
+    padding: 0 !important;
+    /*border: 3px solid red;*/
+    border: none !important;
+    border-left: 1px solid black !important;
+    border-top: 1px solid #050 !important;
+    top: 50px;
+    bottom: 0px;
+    left: 230px;
+    background-image: url(/img/tiles/wasteland/wasteland2.jpg);
+    /*background-size: 100% 100%;*/
+    background-size: 60%;
+    border-radius: 0 !important;
+    cursor: url('/img/cursor/engine-default.ico'), default;
+    
+    &:active {
+        cursor: url('/img/cursor/engine-default.ico'), default;
+    }
+    
+    .engine-unit {
+        position: absolute;
+        user-select: none;
+        
+        * {
+            user-select: none;
+        }
+    }
+
+    .unit-alive {
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        /*border: 1px solid red;*/
+
+        &:hover {
+            transition: all .4s linear;
+            border-bottom: 2px dashed rgba(255, 255, 50, 0.8);
+            border-radius: 30%;
+        }
+    }
+    
+}
+
+.static-unit-image-wrapper {
+    width: 120px;
+    height: 90px;
+    max-width: 120px;
+    max-height: 90px;
+    vertical-align: middle;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    //vertical-align: bottom;
+
+    img {
+        vertical-align: middle;
+    }
+}
+
+

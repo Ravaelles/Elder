@@ -37,6 +37,7 @@ class LoginController extends Controller
     {
         //        http://fallout.dev/home?autologin
         $user = User::where('email', 'test@example.com')->get();
+//        dd($user);
         if (!empty($user[0])) {
             \Auth::login($user[0]);
         }
