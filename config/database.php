@@ -34,13 +34,13 @@ return [
     'connections' => [
         'mongodb' => [
             'driver' => 'mongodb',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE', ''),
-            'username' => env('DB_USERNAME', ''),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('MONGO_PRODUCTION_HOST', 'localhost'),
+            'port' => env('MONGO_PRODUCTION_PORT', 27017),
+            'database' => env('MONGO_PRODUCTION_DATABASE', ''),
+            'username' => env('MONGO_PRODUCTION_USERNAME', ''),
+            'password' => env('MONGO_PRODUCTION_PASSWORD', ''),
             'options' => [
-                'db' => env('DB_DATABASE', ''), // sets the authentication database required by mongo 3
+                'database' => env('MONGO_PRODUCTION_DATABASE', ''), // sets the authentication database required by mongo 3
             ]
         ],
         'mongodb-local' => [
@@ -51,7 +51,7 @@ return [
 //            'username' => env('MONGO_LOCAL_USERNAME', ''),
 //            'password' => env('MONGO_LOCAL_PASSWORD', ''),
 //            'options' => [
-//                'db' => env('MONGO_LOCAL_DATABASE', ''), // sets the authentication database required by mongo 3
+//                'database' => env('MONGO_LOCAL_DATABASE', ''), // sets the authentication database required by mongo 3
 //            ]
         ],
         'sqlite' => [

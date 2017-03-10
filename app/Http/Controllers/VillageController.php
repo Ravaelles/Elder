@@ -10,7 +10,9 @@ use App\Person;
 
 class VillageController extends Controller {
 
-    public function index() {
+    public function index()
+    {
+//        dd(config('database.connections.mongodb'));
 //        $persons = Person::truncate();
         $persons = Person::our()->get();
 
