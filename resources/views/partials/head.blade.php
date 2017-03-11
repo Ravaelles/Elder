@@ -21,6 +21,9 @@
     <!-- AdminLTE base styles. -->
     <link href="/css/admin-lte.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- All plugins -->
+    <link href="/css/plugins.min.css" rel="stylesheet" type="text/css" />
+
     <!-- All stylesheets merged into one file -->
     <link href="/css/project.min.css" rel="stylesheet" type="text/css" />
 

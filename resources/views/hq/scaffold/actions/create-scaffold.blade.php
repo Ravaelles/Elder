@@ -27,6 +27,20 @@
 
             @include('hq.scaffold.partials.display-object', ['mode' => 'create'])
 
+            <input id="basics" />
+
+            @push('scripts')
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var options = {
+                          data: ["blue", "green", "pink", "red", "yellow"]
+                    };
+
+                    $("#basics").easyAutocomplete(options);
+                });
+            </script>
+            @endpush
+
             <div class="well well-sm mx6">
 
                 <button type="submit" class="btn btn-primary">
