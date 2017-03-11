@@ -9,13 +9,13 @@
 @endsection
 
 @section('title')
-<a href="{{ route(config('laravel5-scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}">
+<a href="{{ route(config('scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}">
     {!! $modelName !!}s
 </a>
 
 <i class="fa fa-angle-right arrow"></i>
 
-<a href="{{ route(config('laravel5-scaffold.route-base-name') . '.edit', 
+<a href="{{ route(config('scaffold.route-base-name') . '.edit', 
             ['id' => $rawObject->getId(), 'scaffold' => $modelName]) }}">
     Edit
 </a>
@@ -26,7 +26,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form action="{{ route(config('laravel5-scaffold.route-base-name') . '.update', 
+        <form action="{{ route(config('scaffold.route-base-name') . '.update', 
                     ['id' => $rawObject->getId(), 'scaffold' => $modelName]) }}" method="POST">
 
             <input type="hidden" name="_method" value="PUT">
@@ -41,7 +41,7 @@
                 </button>
 
                 <a class="btn btn-default pull-right" 
-                   href="{{ route(config('laravel5-scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}">
+                   href="{{ route(config('scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}">
                     <i class="fa fa-rotate-left"></i> <span>Back</span>
                 </a>
 

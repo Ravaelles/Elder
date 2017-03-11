@@ -2,14 +2,21 @@
 
 namespace App;
 
-class ItemType extends Eloquent
+class Item extends Eloquent
 {
 
     use Traits\Scaffolded;
 
     public static $scaffoldFields = [
         'name' => 'text',
-        'image' => 'text',
+        'api' => [
+            'type' => 'select',
+            'values-from-model' => [
+                'model' => App\ItemType::class,
+                'field-option' => 'name',
+                'field-value' => 'value',
+            ],
+        ]
     ];
     public static $scaffoldOptions = [
         'actions' => [

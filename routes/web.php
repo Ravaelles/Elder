@@ -182,11 +182,11 @@ Route::get('hq/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
 
 // Scaffolding plugin for models
 Route::resource('hq/scaffold', 'Hq\ScaffoldController', ['names' => [
-        'index' => config('laravel5-scaffold.route-base-name') . '.index',
-        'show' => config('laravel5-scaffold.route-base-name') . '.show',
-        'create' => config('laravel5-scaffold.route-base-name') . '.create',
-        'store' => config('laravel5-scaffold.route-base-name') . '.store',
-        'edit' => config('laravel5-scaffold.route-base-name') . '.edit',
-        'update' => config('laravel5-scaffold.route-base-name') . '.update',
-        'destroy' => config('laravel5-scaffold.route-base-name') . '.destroy',
+        'index' => config('scaffold.route-base-name') . '.index',
+        'show' => config('scaffold.route-base-name') . '.show',
+        'create' => config('scaffold.route-base-name') . '.create',
+        'store' => config('scaffold.route-base-name') . '.store',
+        'edit' => config('scaffold.route-base-name') . '.edit',
+        'update' => config('scaffold.route-base-name') . '.update',
+        'destroy' => config('scaffold.route-base-name') . '.destroy',
 ]]);

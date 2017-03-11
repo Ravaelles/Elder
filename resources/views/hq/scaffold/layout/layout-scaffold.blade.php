@@ -43,6 +43,7 @@
                             </h3>
                         </div>
                         <div class="hq-content" style="opacity:0">
+                            <!--<div class="hq-content" style="">-->
                             <div class="hq-breadcrumbs mbs mls">
                                 @yield('title')
                             </div>
@@ -55,21 +56,7 @@
             </div>
         </div>
 
-        <!--        <div id="footer" class="background-tertiary">
-                    @ include('partials.Nav.footer')
-                </div>-->
-
-        <!--@ include('partials.scripts')-->
-
-        <!-- HQ scripts -->
-        <script src="/assets-hq/js/all.js" type="text/javascript"></script>
-
-        <!-- jQuery UI -->
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="/assets-hq/js/bootstrap.min.js" type="text/javascript"></script>
+        @include('hq.scaffold.layout.scripts')
 
     </body>
 </html>

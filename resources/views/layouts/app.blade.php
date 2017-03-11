@@ -8,7 +8,7 @@
 
         @include('partials.header')
 
-        @include('hq.scaffold.layout.sidebar')
+        @include('partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

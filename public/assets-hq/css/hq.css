@@ -6,7 +6,7 @@
  /* ========= Body ============================== */
  
  html, body {
-     background-color: white;
+     background-color: white !important;
  }
  
  /* ========= Content =========================== */
@@ -32,3 +32,14 @@
     margin-top: -19px !important;
 }
 
+/* ========= Buttons ============================ */
+
+.button-add {
+    margin-top: -5px !important;
+}
+
+/* ========= Various ============================ */
+
+.well {
+    min-height: 64px !important;
+}

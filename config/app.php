@@ -183,7 +183,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
         AdamWathan\BootForms\BootFormsServiceProvider::class,
-//        Laracasts\Flash\FlashServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
 //        Mitul\Generator\GeneratorServiceProvider::class,
 //        Gaaarfild\LaravelNotifications\LaravelNotificationsServiceProvider::class,
     ],

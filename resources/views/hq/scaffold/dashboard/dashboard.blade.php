@@ -8,7 +8,7 @@ Choose model to scaffold
 <div class="page-header clearfix">
     <h1>
         <i class="glyphicon glyphicon-align-justify"></i> Showing existing models
-        <a class="btn btn-success pull-right" href="{ route(config('laravel5-scaffold.route-base-name') . '.generate-model') } }"><i class="glyphicon glyphicon-plus"></i> Create</a>
+        <a class="btn btn-success pull-right" href="{ route(config('scaffold.route-base-name') . '.generate-model') } }"><i class="glyphicon glyphicon-plus"></i> Create</a>
     </h1>
 </div>
 
@@ -26,7 +26,7 @@ Choose model to scaffold
                 <tr>
                     <td>
                         <a class="btn btn-primary btn-app-blue"
-                           href="{{ route(config('laravel5-scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}"
+                           href="{{ route(config('scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}"
                            >{{ $modelName }}</a>
                     </td>
                 </tr>

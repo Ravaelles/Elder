@@ -9,13 +9,13 @@
 @endsection
 
 @section('title')
-<a href="{{ route(config('laravel5-scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}">
+<a href="{{ route(config('scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}">
     {{ $modelName }}s
 </a>
 
 <i class="fa fa-angle-right arrow"></i>
 
-<a href="{{ route(config('laravel5-scaffold.route-base-name') . '.show', 
+<a href="{{ route(config('scaffold.route-base-name') . '.show', 
             ['id' => $rawObject->getId(), 'scaffold' => $modelName]) }}">
     View
 </a>
@@ -32,7 +32,7 @@
         <div class="well well-sm mx6">
 
             <a class="btn btn-default pull-right" 
-               href="{{ route(config('laravel5-scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}">
+               href="{{ route(config('scaffold.route-base-name') . '.index', ['scaffold' => $modelName]) }}">
                 <i class="fa fa-rotate-left"></i> <span>Back</span>
             </a>
 
