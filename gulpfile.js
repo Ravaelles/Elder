@@ -2,6 +2,8 @@ const elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue-2');
 
+elixir.config.sourcemaps = false;
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -36,9 +38,15 @@ require('laravel-elixir-vue-2');
 
 elixir((mix) => {
 
+    // UI
     mix.sass([
         'custom/**'
-    ], 'public/css/all.css');
+    ], 'public/css/project.min.css');
+
+    // PLUGINS
+    mix.styles([
+        '../plugins/*/*.min.css'
+    ], 'public/css/plugins.min.css');
 
 });
 
@@ -54,12 +62,17 @@ elixir((mix) => {
 
 elixir((mix) => {
 
+    // Plugins
+    mix.scripts([
+        '../plugins/*/*.min.js'
+    ], 'public/js/compressed/plugins.min.js');
+
     // UI
     mix.scripts([
         'project.js'
     ], 'public/js/compressed/app.min.js');
 
-    // UI
+    // Engine
     mix.scripts([
         'engine/**'
     ], 'public/js/compressed/engine.min.js');

@@ -15,7 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- --- Fonts ---------------- -->
 
         <!-- Merged fonts styles -->
-        <link href="{{ asset('/css/fonts.css') }}" rel="stylesheet" type="text/css" />
+        <link href="/css/fonts.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Fallout terminal font -->
         <link href="http://fonts.googleapis.com/css?family=VT323" rel="stylesheet" type="text/css" />
@@ -27,10 +27,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- --- CSS ---------------- -->
 
         <!-- AdminLTE base styles. -->
-        <link href="{{ asset('/css/admin-lte.css') }}" rel="stylesheet" type="text/css" />
+        <link href="/css/admin-lte.min.css" rel="stylesheet" type="text/css" />
 
         <!-- All stylesheets merged into one file -->
-        <link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />
+        <link href="/css/project.min.css" rel="stylesheet" type="text/css" />
 
         <!-- --- Top priority JS ---------------- -->
 

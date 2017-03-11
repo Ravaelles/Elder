@@ -1,24 +1,24 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+  |--------------------------------------------------------------------------
+  | Web Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register web routes for your application. These
+  | routes are loaded by the RouteServiceProvider within a group which
+  | contains the "web" middleware group. Now create something great!
+  |
+ */
 
 Route::get('image/{path}', [
-//    'middleware' => 'auth',
+    //    
     'uses' => 'ImageController@get',
     'as' => 'image'
 ])->where(['path' => '.*']);
 
 Route::get('users', [
-//    'middleware' => 'auth',
+    //    
     'uses' => 'UsersController@index',
     'as' => 'users.index'
 ]);
@@ -46,139 +46,128 @@ $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
-// =========================================================================
-// Item types
+Route::group(['middleware' => ['auth']], function() {
 
-Route::resource('itemTypes', 'ItemTypeController');
+    // =========================================================================
+    // Item types
 
-Route::get('itemTypes/{id}/delete', [
-    'as' => 'itemTypes.delete',
-    'uses' => 'ItemTypeController@destroy',
-]);
+    Route::resource('itemTypes', 'ItemTypeController');
 
-// =========================================================================
-// Simulation
+    Route::get('itemTypes/{id}/delete', [
+        'as' => 'itemTypes.delete',
+        'uses' => 'ItemTypeController@destroy',
+    ]);
 
-Route::get('simulation', [
-    'as' => 'simulation',
-    'uses' => 'SimulationController@index',
-]);
+    // =========================================================================
+    // Simulation
 
-// =========================================================================
-// Worldmap
+    Route::get('simulation', [
+        'as' => 'simulation',
+        'uses' => 'SimulationController@index',
+    ]);
 
-Route::get('worldmap', 'WorldmapController@show')->name('worldmap');
+    // =========================================================================
+    // Worldmap
 
-// =========================================================================
-// Location
+    Route::get('worldmap', 'WorldmapController@show')->name('worldmap');
 
-Route::get('location', 'EngineController@engine')->name('engine');
+    // =========================================================================
+    // Location
 
-// =========================================================================
-// Home
+    Route::get('location', 'EngineController@engine')->name('engine');
 
-Route::get('home', 'VillageController@index')->name('home');
-Route::get('village', 'VillageController@index')->name('village');
+    // =========================================================================
+    // Home
 
-// =========================================================================
-// Person
+    Route::get('home', 'VillageController@index')->name('home');
+    Route::get('village', 'VillageController@index')->name('village');
 
-Route::get('band', [
-    'middleware' => 'auth',
-    'uses' => 'BandController@index',
-    'as' => 'band'
-]);
+    // =========================================================================
+    // Person
 
-Route::get('person/show/{id}', [
-    'middleware' => 'auth',
-    'uses' => 'PersonController@show',
-    'as' => 'person.show'
-]);
+    Route::get('band', [
+        'uses' => 'BandController@index',
+        'as' => 'band'
+    ]);
 
-Route::get('person/destroy/{id}', [
-    'middleware' => 'auth',
-    'uses' => 'PersonController@destroy',
-    'as' => 'person.destroy'
-]);
+    Route::get('person/show/{id}', [
+        'uses' => 'PersonController@show',
+        'as' => 'person.show'
+    ]);
 
-// =========================================================================
-// User
+    Route::get('person/destroy/{id}', [
+        'uses' => 'PersonController@destroy',
+        'as' => 'person.destroy'
+    ]);
 
-Route::get('users', [
-    'middleware' => 'auth',
-    'uses' => 'UserController@index',
-    'as' => 'user.index'
-]);
+    // =========================================================================
+    // User
 
-Route::get('user/settings', [
-    'middleware' => 'auth',
-    'uses' => 'UserController@settings',
-    'as' => 'user.settings'
-]);
+    Route::get('users', [
+        'uses' => 'UserController@index',
+        'as' => 'user.index'
+    ]);
 
-Route::get('user/create', [
-    'middleware' => 'auth',
-    'uses' => 'UserController@create',
-    'as' => 'user.create'
-]);
+    Route::get('user/settings', [
+        'uses' => 'UserController@settings',
+        'as' => 'user.settings'
+    ]);
 
-Route::post('user/create', [
-    'middleware' => 'auth',
-    'uses' => 'UserController@store',
-    'as' => 'user.store'
-]);
+    Route::get('user/create', [
+        'uses' => 'UserController@create',
+        'as' => 'user.create'
+    ]);
 
-Route::put('user', [
-    'uses' => 'UserController@update',
-    'as' => 'user'
-]);
+    Route::post('user/create', [
+        'uses' => 'UserController@store',
+        'as' => 'user.store'
+    ]);
 
-Route::get('user/first-time/{id}', [
-    'uses' => 'UserController@firstTime',
-    'as' => 'user.firstTime'
-]);
+    Route::put('user', [
+        'uses' => 'UserController@update',
+        'as' => 'user'
+    ]);
 
-Route::put('user/password', [
-    'uses' => 'UserController@changePassword',
-    'as' => 'user.password'
-]);
+    Route::get('user/first-time/{id}', [
+        'uses' => 'UserController@firstTime',
+        'as' => 'user.firstTime'
+    ]);
 
-Route::get('user/destroy/{id}', [
-    'uses' => 'UserController@destroy',
-    'as' => 'user.destroy'
-]);
+    Route::put('user/password', [
+        'uses' => 'UserController@changePassword',
+        'as' => 'user.password'
+    ]);
 
-Route::get('user/show/{id}/{name}', [
-    'middleware' => 'auth',
-    'uses' => 'UserController@show',
-    'as' => 'user.show'
-]);
+    Route::get('user/destroy/{id}', [
+        'uses' => 'UserController@destroy',
+        'as' => 'user.destroy'
+    ]);
 
-// =========================================================================
-// HQ (Admin stuff)
+    Route::get('user/show/{id}/{name}', [
+        'uses' => 'UserController@show',
+        'as' => 'user.show'
+    ]);
 
-Route::get('hq/logs', [
-    'middleware' => 'auth',
-    'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index',
-    'as' => 'logs'
-]);
+    // =========================================================================
+    // HQ (Admin stuff)
 
-Route::get('util/gif/{path}', [
-    'middleware' => 'auth',
-    'uses' => 'UtilController@gif',
-    'as' => 'logs'
-])->where(['path' => '.*']);
+    Route::get('hq/logs', [
+        'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index',
+        'as' => 'logs'
+    ]);
 
-// =========================================================================
-// Generator
-
-Route::get('generator', [
-    'middleware' => 'auth', 'uses' => 'GeneratorController@generateWorld'
-]);
+    Route::get('util/gif/{path}', [
+        'uses' => 'UtilController@gif',
+        'as' => 'logs'
+    ])->where(['path' => '.*']);
+});
 
 // === HQ ==================================================================
 
 Route::get('hq/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+// Scaffold dashboard
+Route::get('hq', 'Hq\ScaffoldController@dashboard')->name('scaffold.dashboard');
 
 // Scaffolding plugin for models
 Route::resource('hq/scaffold', 'Hq\ScaffoldController', ['names' => [
@@ -190,3 +179,8 @@ Route::resource('hq/scaffold', 'Hq\ScaffoldController', ['names' => [
         'update' => config('scaffold.route-base-name') . '.update',
         'destroy' => config('scaffold.route-base-name') . '.destroy',
 ]]);
+
+// Generator
+Route::get('hq/generator', [
+    'uses' => 'GeneratorController@generateWorld'
+]);

@@ -1,29 +1,29 @@
 <?php
 // Sometimes it happens we try to load page without middleware Auth. It returns weird error (template errors
 // after trying to get Auth-ed user name etc. here we display nicer error and die.
-if (!Auth::check()) {
-    ?>
-    <div class="error-page">
-        <h2 class="headline text-red">Error</h2>
-        <div class="error-content" style="color: white">
-            <h3><i class="fa fa-warning text-red"></i> Critical error has occured.</h3>
-            <p>
-                <b>User is not authenticated and trying to access page that requires Auth.</b><br />
-
-                Please <a href='{{ \URL::previous() }}'>go back</a>
-                <br />
-                or <a href='{{ url('/home') }}'>return to home page</a>
-                    </p>
-            </div>
-        <p>
-            <center>
-                <img src="http://thestarryeye.typepad.com/.a/6a00d8341cdd0d53ef014e86b9b561970d-800wi" class="" />
-            </center>
-        </p>
-        </div><!-- /.error-page -->
-        <?php
-    die;
-}
+//if (!Auth::check()) {
+//    ? >
+//    <div class="error-page">
+//        <h2 class="headline text-red">Error</h2>
+//        <div class="error-content" style="color: white">
+//            <h3><i class="fa fa-warning text-red"></i> Critical error has occured.</h3>
+//            <p>
+//                <b>User is not authenticated and trying to access page that requires Auth.</b><br />
+//
+//                Please <a href='{{ \URL::previous() }}'>go back</a>
+//                <br />
+//                or <a href='{{ url('/home') }}'>return to home page</a>
+//                    </p>
+//            </div>
+//        <p>
+//            <center>
+//                <img src="http://thestarryeye.typepad.com/.a/6a00d8341cdd0d53ef014e86b9b561970d-800wi" class="" />
+//            </center>
+//        </p>
+//        </div><!-- /.error-page -->
+//< ?php
+//    die;
+//}
 ?>
 
 <!-- Main Header -->

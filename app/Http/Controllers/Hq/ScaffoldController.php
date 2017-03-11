@@ -9,6 +9,41 @@ use Illuminate\Support\Facades\View;
 
 class ScaffoldController extends Controller {
 
+     public function dashboard(Request $request)
+    {
+        // Define list of allowed models
+//        dd($this->getModels(app_path() . "/"));
+        $models = [];
+        foreach (glob(app_path() . "/*.php") as $model) {
+            $model = str_replace(base_path(), "", $model);
+            $model = substr($model, 5, -4);
+            $models[] = $model;
+        }
+
+        return $this->view('dashboard.dashboard', [
+                'models' => $models,
+        ]);
+    }
+
+//    private function getModels($path)
+//    {
+//        $out = [];
+//        $results = scandir($path);
+//        foreach ($results as $result) {
+//            if ($result === '.' or $result === '..') {
+//                continue;
+//            }
+//            $filename = $path . '/' . $result;
+//            if (is_dir($filename)) {
+//                $out = array_merge($out, $this->getModels($filename));
+//            } else {
+//                $out[] = substr($filename, 0, -4);
+//            }
+//        }
+//        return $out;
+//    }
+    // =========================================================================
+
     /**
      * Display a listing of the resource.
      *

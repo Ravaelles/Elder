@@ -1,15 +1,14 @@
-<!--@extends('hq.scaffold.layout.rscaffold')
+@extends(config('scaffold.layout'))
 
-@section('htmlheader_title')
+@section('html-title')
 Choose model to scaffold
 @endsection
 
 @section('content')
 <div class="page-header clearfix">
-    <h1>
-        <i class="glyphicon glyphicon-align-justify"></i> Showing existing models
-        <a class="btn btn-success pull-right" href="{ route(config('scaffold.route-base-name') . '.generate-model') } }"><i class="glyphicon glyphicon-plus"></i> Create</a>
-    </h1>
+    <h4>
+        Showing models possible to scaffold
+    </h4>
 </div>
 
 <div class="row">
@@ -35,4 +34,4 @@ Choose model to scaffold
         </table>
     </div>
 </div>
-@endsection-->
+@endsection

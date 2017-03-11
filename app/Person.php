@@ -15,11 +15,15 @@ class Person extends Eloquent {
     // =========================================================================
     // Generator
 
-    public static function generateAndSave() {
+    public static function generateAndSave()
+    {
+        $userId = \Auth::user();
+        $userId = $userId != null ? $userId->id : null;
+
         $special = SPECIAL::generateSpecialForTribesman();
 
         $person = new Person;
-        $person->user = \Auth::user()->id;
+        $person->user = $userId;
         $person->sex = rand(0, 64) <= 31 ? "M" : "F";
         $person->name = Helpers\Names::randomName($person->sex);
         $person->save();
@@ -123,7 +127,10 @@ class Person extends Eloquent {
 
     public function scopeOur($query)
     {
-        return $query->where('user', \Auth::user()->id);
+        $userId = \Auth::user();
+        $userId = $userId != null ? $userId->id : null;
+
+        return $query->where('user', $userId);
     }
 
     // =========================================================================
