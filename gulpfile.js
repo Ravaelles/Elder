@@ -45,7 +45,7 @@ elixir((mix) => {
 
     // PLUGINS
     mix.styles([
-        '../plugins/*/*.min.css'
+        '../plugins/*/*.css'
     ], 'public/css/plugins.min.css');
 
 });
@@ -64,7 +64,7 @@ elixir((mix) => {
 
     // Plugins
     mix.scripts([
-        '../plugins/*/*.min.js'
+        '../plugins/*/*.js'
     ], 'public/js/compressed/plugins.min.js');
 
     // UI

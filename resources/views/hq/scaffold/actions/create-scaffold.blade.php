@@ -27,19 +27,16 @@
 
             @include('hq.scaffold.partials.display-object', ['mode' => 'create'])
 
-            <input id="basics" />
-
-            @push('scripts')
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    var options = {
-                          data: ["blue", "green", "pink", "red", "yellow"]
-                    };
-
-                    $("#basics").easyAutocomplete(options);
-                });
-            </script>
-            @endpush
+            <input class="awesomplete" list="mylist" />
+            <datalist id="mylist">
+                <option>Ada</option>
+                <option>Java</option>
+                <option>JavaScript</option>
+                <option>Brainfuck</option>
+                <option>LOLCODE</option>
+                <option>Node.js</option>
+                <option>Ruby on Rails</option>
+            </datalist>
 
             <div class="well well-sm mx6">
 
@@ -62,13 +59,12 @@
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 <script>
-$('.date-picker').datepicker({
-});
-</script>
+                $('.date-picker').datepicker({
+                });</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.form-control').get(0).focus();
+    $('.form-control').get(0).focus();
     });
 </script>
 @endsection
