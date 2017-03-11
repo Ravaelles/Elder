@@ -396,11 +396,32 @@ and open the template in the editor.
   vertical-align: middle;
 }
 
+.error-page .error-content {
+  word-break: break-word;
+}
+
 /* 
     Created on : 2015-11-13, 17:36:59
     Author     : Rav
 */
-/*==== Global changes =====================================================*/
+body {
+  background-color: #003103 !important;
+}
+
+/* ========= Cursor ================================= */
+body, ::-webkit-scrollbar {
+  cursor: url(/img/cursor/engine-default.ico), default !important;
+}
+
+.btn {
+  cursor: url(/img/cursor/engine-default.ico), default !important;
+}
+
+.btn:hover {
+  cursor: url(/img/cursor/engine-default.ico), default !important;
+}
+
+/* ========= UI elements ============================ */
 .btn {
   -webkit-transition: all .3s;
   transition: all .3s;
@@ -537,10 +558,6 @@ input[type="submit"] {
   letter-spacing: 0.06em;
 }
 
-body {
-  background-color: blue !important;
-}
-
 /* 
     Created on : 2015-11-13, 17:38:03
     Author     : Rav
@@ -550,7 +567,6 @@ body {
   min-width: 1064px;
   min-height: 490px;
   overflow-x: auto;
-  cursor: url(/img/cursor/engine-default.ico), default !important;
 }
 
 .content-wrapper {

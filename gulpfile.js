@@ -35,9 +35,11 @@ require('laravel-elixir-vue-2');
  ], 'public/css/fonts.css'); */
 
 elixir((mix) => {
-	mix.sass([
-		'custom/**'
-	], 'public/css/all.css');
+
+    mix.sass([
+        'custom/**'
+    ], 'public/css/all.css');
+
 });
 
 // === JS ==============================================================
@@ -50,11 +52,21 @@ elixir((mix) => {
  'public/js/app.min.js', // AdminLTE App
  ], 'public/js/compressed/base.min.js', 'public');*/
 
-// Game specific scripts
 elixir((mix) => {
-	mix.scripts([
-		'project.js',
-		'engine/**',
-		'worldmap/**',
-	], 'public/js/compressed/game.min.js');
+
+    // UI
+    mix.scripts([
+        'project.js'
+    ], 'public/js/compressed/app.min.js');
+
+    // UI
+    mix.scripts([
+        'engine/**'
+    ], 'public/js/compressed/engine.min.js');
+
+    // Worldmap
+    mix.scripts([
+        'worldmap/**'
+    ], 'public/js/compressed/worldmap.min.js');
+
 });

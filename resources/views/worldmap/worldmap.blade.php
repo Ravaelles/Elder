@@ -1,6 +1,7 @@
-@extends('app')
+@section('load-worldmap-script')  @endsection
+@section('disable-content-header') @endsection
 
-<?php $disableContentHeader = true; ?>
+@extends('app')
 
 @section('main-content')
 <div class="worldmap fill-content no-select">

@@ -2,8 +2,21 @@
 
 <!-- Layout & base scripts merged -->
 <script src="/js/compressed/base.min.js" type="text/javascript"></script>
+
+@if (array_key_exists('load-engine-script', View::getSections()))
+<!-- Engine scripts -->
+<script src="/js/compressed/engine.min.js" type="text/javascript"></script>
+@endif
+
+@if (array_key_exists('load-worldmap-script', View::getSections()))
+<!-- Worldmap scripts -->
+<script src="/js/compressed/worldmap.min.js" type="text/javascript"></script>
+@endif
+
 <!-- Engine & game scripts merged -->
-<script src="/js/compressed/game.min.js" type="text/javascript"></script>
+<script src="/js/compressed/app.min.js" type="text/javascript"></script>
+
+@stack('scripts')
 
 <!-- SHOULD BE MERGED -->
 

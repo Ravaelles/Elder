@@ -9,9 +9,11 @@ use App\Helpers\UnitImage as UnitImage;
 use App\Band;
 use App\Location;
 
-class WorldmapController extends Controller {
+class WorldmapController extends Controller
+{
 
-    public function index() {
+    public function show()
+    {
         $cities = Band::all();
 //        $locations = Location::all();
 //        return view('worldmap.map')->with(compact('locations'));

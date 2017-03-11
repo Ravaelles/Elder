@@ -3,7 +3,24 @@
     Author     : Rav
 */
 
-/*==== Global changes =====================================================*/
+body {
+    background-color: #003103 !important;
+}
+
+
+/* ========= Cursor ================================= */
+
+body, ::-webkit-scrollbar {
+    cursor: url(/img/cursor/engine-default.ico),default !important;
+}
+.btn {
+    cursor: url(/img/cursor/engine-default.ico),default !important;
+    &:hover {
+        cursor: url(/img/cursor/engine-default.ico),default !important;
+    }
+}
+
+/* ========= UI elements ============================ */
 
 .btn {
     transition: all .3s;
@@ -142,8 +159,4 @@ input[type="submit"] {
     color: #933; 
     font-weight: bold; 
     letter-spacing: 0.06em;
-}
-
-body {
-background-color:blue !important;
 }

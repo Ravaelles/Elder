@@ -13,15 +13,16 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-        @if(empty($disableContentHeader))
-        @include('partials.contentheader')
-        @else
+        <!-- Content header -->
+        @if (array_key_exists('disable-content-header', View::getSections()))
         <style>
             .content {
                 margin: 0 !important;
                 padding: 0 !important;
             }
         </style>
+        @else
+        @include('partials.contentheader')
         @endif
 
         <!-- Main content -->

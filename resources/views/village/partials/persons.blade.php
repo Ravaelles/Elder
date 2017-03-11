@@ -29,7 +29,7 @@
                 <td class="centered borderless-cell column-buttons" style="width: 120px;">
                     <a type="button" class="btn btn-green-dark" 
                        tabindex="0" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right"
-                       data-content='@include("person.missions")'>{!! empty($person->job) ? "In band" : $person->job !!}</a>
+                       data-content='@include("village.partials.missions")'>{!! empty($person->job) ? "In band" : $person->job !!}</a>
                 </td>
                 <td class="left column-name">
                     {{ $person->name }}

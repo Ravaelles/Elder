@@ -23,7 +23,7 @@ class VillageController extends Controller {
             $persons = Person::our()->get();
         }
 
-        return view('band.band')->with(compact('persons'));
+        return view('village.overview')->with(compact('persons'));
     }
 
 }

@@ -16,10 +16,11 @@
             generateMisc();
             generateTrees();
             generatePeople();
-        });</script>
+        });
+    </script>
 
     <script type="text/javascript">
-                function generatePeople() {
+        function generatePeople() {
 //                    for (var i = 0; i < 4; i++) {
 var i = 1;
 //                        var unit = new Unit({type: WARRIOR_MALE, action: SPEAR_IDLE, dir: DIR_E})

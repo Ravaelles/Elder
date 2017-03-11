@@ -67,20 +67,12 @@ Route::get('simulation', [
 // =========================================================================
 // Worldmap
 
-Route::get('worldmap', [
-    'middleware' => 'auth',
-    'uses' => 'WorldmapController@index',
-    'as' => 'worldmap'
-]);
+Route::get('worldmap', 'WorldmapController@show')->name('worldmap');
 
 // =========================================================================
 // Location
 
-Route::get('location', [
-    'middleware' => 'auth',
-    'uses' => 'LocationController@index',
-    'as' => 'Location'
-]);
+Route::get('location', 'EngineController@engine')->name('engine');
 
 // =========================================================================
 // Home

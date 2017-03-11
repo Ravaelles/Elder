@@ -9,13 +9,13 @@
     });</script>
 
 <script type="text/javascript">
-            function addMiscs() {
+    function addMiscs() {
             for (var i = 0; i < 10; i++) {
                         addMisc();
                         }
                         }
 
-                function addGrasses() {
+    function addGrasses() {
             for (var i = 0; i < 20; i++) {
                 addGrass();
             }

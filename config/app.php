@@ -182,8 +182,8 @@ return [
         Krucas\Notification\NotificationServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        AdamWathan\BootForms\BootFormsServiceProvider::class,
 //        Laracasts\Flash\FlashServiceProvider::class,
-//        Watson\BootstrapForm\BootstrapFormServiceProvider::class,
 //        Mitul\Generator\GeneratorServiceProvider::class,
 //        Gaaarfild\LaravelNotifications\LaravelNotificationsServiceProvider::class,
     ],
@@ -235,6 +235,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // Custom
         'Notification' => Krucas\Notification\Facades\Notification::class,
+        'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
     ],
 
 ];

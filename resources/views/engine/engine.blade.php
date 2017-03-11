@@ -6,6 +6,8 @@
 @section('contentheader_title')
 @endsection
 
+@section('load-engine-script') @endsection
+
 @section('main-content')
 <div class="row">
     <div class="col-md-12">
@@ -14,7 +16,7 @@
                 engineView = new EngineView(2000, 1500);
             });
         </script>
-        @include ('location.engine')
+        @include('engine.partials.init-engine')
     </div>
 </div>
 @endsection

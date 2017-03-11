@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class LocationController extends Controller {
+class EngineController extends Controller
+{
 
-    public function index($show = null) {
-        return view('location.view');
+    public function engine($show = null)
+    {
+        return view('engine.engine');
     }
 
 }
