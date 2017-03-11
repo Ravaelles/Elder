@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-@include('partials.htmlheader')
+    @include('partials.head')
 
 <body class="skin-green sidebar-mini">
     <div class="wrapper">
 
-    @include('partials.mainheader')
+        @include('partials.header')
 
-    @include('partials.sidebar')
+        @include('hq.scaffold.layout.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

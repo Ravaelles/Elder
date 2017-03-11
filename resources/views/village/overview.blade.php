@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('htmlheader_title')
 - Band
@@ -11,6 +11,7 @@
 @section('load-engine-script') @endsection
 
 @section('main-content')
+
 <div class="row">
     <div class="col-md-12">
         @include('village.partials.resources')
@@ -19,7 +20,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        @include('village.partials.persons')
+        @include('village.partials.people')
     </div>
 </div>
 @endsection

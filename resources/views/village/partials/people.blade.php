@@ -1,4 +1,6 @@
 <div class="box box-fallout box-shadow">
+    <div class="box-header">People</div>
+
     @if (count($persons) > 0)
     <table class="table table-borderless-header table-fallout persons tablesorter">
         <thead>

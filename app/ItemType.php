@@ -1,43 +1,30 @@
-<?php namespace App;
+<?php
 
-use App\Eloquent as Model;
+namespace App;
 
-class ItemType extends Model
+class ItemType extends Eloquent
 {
-    
-	public $table = "itemTypes";
-    
 
-	public $fillable = [
-	    "name",
-		"description",
-		"base_value",
-		"image",
-		"dmg_low",
-		"dmg_hi",
-		"item_type"
-	];
+    use Traits\Scaffolded;
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        "name" => "string",
-		"description" => "string",
-		"base_value" => "string",
-		"image" => "string",
-		"item_type" => "string"
+    public static $scaffoldFields = [
+        'name' => 'text',
+        'api' => [
+            'type' => 'select',
+            'values-from-model' => [
+                'model' => 'App\Api',
+                'field-option' => 'name',
+                'field-value' => 'value',
+            ],
+        ]
     ];
-
-	public static $rules = [
-	    "name" => "required",
-		"base_value" => "required|numeric",
-		"image" => "required",
-		"dmg_low" => "sometimes|numeric",
-		"dmg_hi" => "sometimes|numeric",
-		"item_type" => "required"
-	];
+    public static $scaffoldOptions = [
+        'actions' => [
+//            'show' => true,
+        ],
+        'sort' => [
+            'name' => 'ASC'
+        ]
+    ];
 
 }

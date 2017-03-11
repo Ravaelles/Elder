@@ -1,4 +1,4 @@
-@extends('error')
+@extends('layouts.error')
 
 @section('htmlheader_title')
 Server error
