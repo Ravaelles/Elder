@@ -26,7 +26,7 @@ Route::get('users', [
 // =========================================================================
 // Authentication routes...
 
-Route::get('/', 'Auth\LoginController@login')->name('mainpage');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('mainpage');
 
 //Route::get('login', 'Auth\AuthController@getLogin');
 //Route::get('logout', 'Auth\AuthController@getLogout');

@@ -19,7 +19,7 @@ class Handler extends ExceptionHandler
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
-        \Illuminate\Validation\ValidationException::class,
+//        \Illuminate\Validation\ValidationException::class,
     ];
 
     /**
@@ -44,6 +44,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+//        dd($e);
+//        if (in_array(get_class($e), $this->dontReport)) {
+//            return redirect();
+//        }
+        // =========================================================================
+
         if ($e instanceof AuthenticationException) {
             return $this->unauthenticated($request, $e);
         }

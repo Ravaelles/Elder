@@ -35,7 +35,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        //        http://fallout.dev/home?autologin
+//        $user = \Auth::user();
+//        //        http://fallout.dev/home?autologin
 //        $user = User::where('email', 'test@example.com')->get();
 ////        dd($user);
 //        if (!empty($user[0])) {
