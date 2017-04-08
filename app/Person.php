@@ -5,13 +5,15 @@ namespace App;
 use App\Helpers\UnitImage as UnitImage;
 use App\Unit as Unit;
 use App\Stats;
+use App\Traits\PersonJob;
 
 //use Illuminate\Database\Eloquent\Model;
 
 class Person extends Eloquent
 {
 
-    use Stats;
+    use Stats,
+        PersonJob;
 
 //    protected $sortable = [
 //        'strength'
