@@ -17,28 +17,24 @@ class Names {
         }
     }
 
-    public static function randomMale() {
-        return self::getMaleNames()[array_rand(self::getMaleNames())];
-    }
-
-    public static function randomFemale() {
-        return self::getFemaleNames()[array_rand(self::getFemaleNames())];
-    }
-
-    // =========================================================================
-
-    private static function getMaleNames() {
+    public static function randomMale()
+    {
         if (empty(self::$namesMale)) {
             self::$namesMale = file(base_path() . "/resources/assets/names/names_male.txt");
+            shuffle(self::$namesMale);
         }
-        return self::$namesMale;
+
+        return array_shift(self::$namesMale);
     }
 
-    private static function getFemaleNames() {
+    public static function randomFemale()
+    {
         if (empty(self::$namesFemale)) {
             self::$namesFemale = file(base_path() . "/resources/assets/names/names_female.txt");
+            shuffle(self::$namesFemale);
         }
-        return self::$namesFemale;
+
+        return array_shift(self::$namesFemale);
     }
 
 }

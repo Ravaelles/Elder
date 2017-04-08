@@ -12,7 +12,6 @@ class VillageController extends Controller {
 
     public function index()
     {
-//        dd(config('database.connections.mongodb'));
 //        $persons = Person::truncate();
         $persons = Person::our()->get();
 

@@ -72,16 +72,16 @@
                     {!! $person->descriptionAmong($persons) !!}
                 </td>
                 <td class="td-special-stat">
-                    {!! $person->SPECIAL->S !!}
+                    {!! $person->getS() !!}
                 </td>
                 <td class="td-special-stat">
-                    {!! $person->SPECIAL->A !!}
+                    {!! $person->getA() !!}
                 </td>
                 <td class="td-special-stat">
-                    {!! $person->SPECIAL->I !!}
+                    {!! $person->getI() !!}
                 </td>
                 <td class="td-special-stat">
-                    {!! $person->SPECIAL->C !!}
+                    {!! $person->getC() !!}
                 </td>
             </tr>
             @endforeach

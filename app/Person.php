@@ -4,10 +4,14 @@ namespace App;
 
 use App\Helpers\UnitImage as UnitImage;
 use App\Unit as Unit;
-use App\SPECIAL;
+use App\Stats;
+
 //use Illuminate\Database\Eloquent\Model;
 
-class Person extends Eloquent {
+class Person extends Eloquent
+{
+
+    use Stats;
 
 //    protected $sortable = [
 //        'strength'
@@ -20,14 +24,12 @@ class Person extends Eloquent {
         $userId = \Auth::user();
         $userId = $userId != null ? $userId->id : null;
 
-        $special = SPECIAL::generateSpecialForTribesman();
-
         $person = new Person;
         $person->user = $userId;
         $person->sex = rand(0, 64) <= 31 ? "M" : "F";
         $person->name = Helpers\Names::randomName($person->sex);
+        $person->setStats($person->generateStatsForTribesman());
         $person->save();
-        $person->SPECIAL()->save($special);
 
         return $person;
     }
@@ -82,10 +84,10 @@ class Person extends Eloquent {
         $higherI = 0;
         $higherC = 0;
         foreach ($persons as $otherPerson) {
-            $higherS += ($this->S < $otherPerson->S);
-            $higherA += ($this->A < $otherPerson->A);
-            $higherI += ($this->I < $otherPerson->I);
-            $higherC += ($this->C < $otherPerson->C);
+            $higherS += ($this->getS() < $otherPerson->getS());
+            $higherA += ($this->getA() < $otherPerson->getA());
+            $higherI += ($this->getI() < $otherPerson->getI());
+            $higherC += ($this->getC() < $otherPerson->getC());
         }
 
         // =========================================================================
@@ -151,44 +153,11 @@ class Person extends Eloquent {
         return $value;
     }
 
-    public function getSAttribute($value) {
-        return $this->SPECIAL->strength;
-    }
-
-    public function getPAttribute($value) {
-        return $this->SPECIAL->perception;
-    }
-
-    public function getEAttribute($value) {
-        return $this->SPECIAL->endurance;
-    }
-
-    public function getCAttribute($value) {
-        return $this->SPECIAL->charisma;
-    }
-
-    public function getIAttribute($value) {
-        return $this->SPECIAL->intelligence;
-    }
-
-    public function getAAttribute($value) {
-        return $this->SPECIAL->agility;
-    }
-
-    public function getLAttribute($value) {
-        return $this->SPECIAL->luck;
-    }
-
     // =========================================================================
     // Relations
 
     public function user() {
         return $this->belongsTo(\App\User::class);
-    }
-
-    public function SPECIAL() {
-        return $this->embedsOne(\App\SPECIAL::class);
-//        return $this->hasOne(\App\SPECIAL::class);
     }
 
 }
