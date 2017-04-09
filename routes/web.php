@@ -184,3 +184,7 @@ Route::resource('hq/scaffold', 'Hq\ScaffoldController', ['names' => [
 Route::get('hq/generator', [
     'uses' => 'GeneratorController@generateWorld'
 ]);
+
+Route::get('person/assign-job-idle/{id}', 'PersonController@assignJobIdle')->name('person.assign-job.idle');
+Route::get('person/assign-job-craft/{id}', 'PersonController@assignJobCraft')->name('person.assign-job.craft');
+Route::get('person/assign-job-explore/{id}', 'PersonController@assignJobExplore')->name('person.assign-job.explore');

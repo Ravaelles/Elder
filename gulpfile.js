@@ -71,6 +71,7 @@ elixir((mix) => {
     mix.scripts([
         'rplugins/rfunctions.js',
         'rplugins/**',
+        'functions.js',
         'project.js'
     ], 'public/js/compressed/app.min.js');
 

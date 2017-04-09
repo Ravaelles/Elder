@@ -1,0 +1,48 @@
+@import "resources/assets/sass/variables";
+
+/*==== Start of TOOLTIP =====================================================*/
+
+.tooltip {
+    width: 350px;
+    background-color: transparent;
+    text-shadow: none;
+    border-radius: 10px !important;
+    letter-spacing: 0.05em;
+}
+
+.tooltip.in {
+    opacity: 1 !important;
+}
+
+.tooltip-inner {
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    /*background-color: $green;*/
+    border: 3px solid $green-transparent;
+    color: $green;
+    border-radius: 10px !important;
+    text-align: justify !important;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    border-bottom-color: $green-transparent;
+}
+.tooltip.right .tooltip-arrow {
+    border-right-color: $green-transparent;
+}
+
+.tooltip-inner ul {
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+.tooltip-inner ul li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.tooltip-inner ul li b {
+    font-size: 105%;
+}

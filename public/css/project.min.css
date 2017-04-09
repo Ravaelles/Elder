@@ -1066,8 +1066,8 @@ ul.pagination {
 }
 
 .pagination .active {
-  background: -webkit-linear-gradient(top, #4488cc 0%, #efefef 100%);
-  background: linear-gradient(top, #4488cc 0%, #efefef 100%);
+  background: -webkit-linear-gradient(bottom, #4488cc 0%, #efefef 100%);
+  background: linear-gradient(to top, #4488cc 0%, #efefef 100%);
 }
 
 .pagination .ellipse {
@@ -1089,13 +1089,7 @@ ul.pagination {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d0e4f7+0,73b1e7+24,0a77d5+50,539fe1+79,87bcea+100;Blue+Pipe+%231 */
   background: #d0e4f7;
   /* Old browsers */
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d0e4f7), color-stop(24%, #73b1e7), color-stop(50%, #0a77d5), color-stop(79%, #539fe1), color-stop(100%, #87bcea));
-  /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, #d0e4f7 0%, #73b1e7 24%, #0a77d5 50%, #539fe1 79%, #87bcea 100%);
-  /* Chrome10+,Safari5.1+ */
-  /* Opera 11.10+ */
-  /* IE10+ */
   background: linear-gradient(to bottom, #d0e4f7 0%, #73b1e7 24%, #0a77d5 50%, #539fe1 79%, #87bcea 100%);
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0e4f7', endColorstr='#87bcea',GradientType=0 );
@@ -1167,6 +1161,33 @@ ul.pagination {
 
 .persons .person-trait-good {
   color: #292;
+}
+
+/* ===================================== */
+.popover, .webui-popover {
+  max-width: 600px;
+  max-height: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #1e1;
+  border: 3px solid rgba(17, 255, 17, 0.7);
+  border-radius: 10px;
+  /*opacity: 0.85 !important;*/
+}
+
+.popover .popover-title, .popover .webui-popover-title, .webui-popover .popover-title, .webui-popover .webui-popover-title {
+  background-color: transparent;
+  border-bottom-color: rgba(17, 255, 17, 0.7);
+}
+
+.popover .popover-content, .popover .webui-popover-content, .webui-popover .popover-content, .webui-popover .webui-popover-content {
+  background-color: transparent;
+}
+
+.popover.right > .arrow:after,
+.webui-popover.right > .webui-arrow:after,
+.webui-popover.right-top > .webui-arrow:after,
+.webui-popover.right-bottom > .webui-arrow:after {
+  border-right-color: rgba(17, 255, 17, 0.7) !important;
 }
 
 .fs-50 {
@@ -1673,66 +1694,6 @@ ul.pagination {
     box-shadow: 20px 30px 20px 10px rgba(0, 0, 0, 0.7);
 }*/
 
-/*==== Notification =====================================================*/
-.notifications {
-  max-width: 600px;
-  margin-top: -20px;
-  margin-bottom: 10px;
-  /*    margin-left: 20px;
-        margin-right: 20px;*/
-  font-size: 110%;
-  font-weight: bold;
-  text-align: center;
-}
-
-.notifications .callout {
-  margin: 20px;
-  margin-top: 25px;
-  margin-bottom: 5px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.notifications .close {
-  color: white;
-  opacity: 0.7;
-}
-
-/*==== Validation =====================================================*/
-.validation-errors {
-  font-size: 110%;
-  font-weight: bold;
-  box-shadow: 0 0 5px red;
-}
-
-.validation-errors i {
-  padding-right: 5px;
-}
-
-/*==== Popovers =====================================================*/
-.popover {
-  max-width: 600px;
-  max-height: 400px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #1e1;
-  border: 3px solid rgba(17, 255, 17, 0.7);
-  border-radius: 10px;
-  /*opacity: 0.85 !important;*/
-}
-
-.popover .popover-title {
-  background-color: transparent;
-  border-bottom-color: rgba(17, 255, 17, 0.7);
-}
-
-.popover .popover-content {
-  background-color: transparent;
-}
-
-.popover.right > .arrow:after {
-  border-right-color: rgba(17, 255, 17, 0.7) !important;
-}
-
 /*==== Start of TOOLTIP =====================================================*/
 .tooltip {
   width: 350px;
@@ -1780,12 +1741,42 @@ ul.pagination {
   font-size: 105%;
 }
 
-/*==== End of TOOLTIP =====================================================*/
+/*==== Notification =====================================================*/
+.notifications {
+  max-width: 600px;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  /*    margin-left: 20px;
+        margin-right: 20px;*/
+  font-size: 110%;
+  font-weight: bold;
+  text-align: center;
+}
 
-/* 
-    Created on : 2015-11-19, 02:20:47
-    Author     : Rav
-*/
+.notifications .callout {
+  margin: 20px;
+  margin-top: 25px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.notifications .close {
+  color: white;
+  opacity: 0.7;
+}
+
+/*==== Validation =====================================================*/
+.validation-errors {
+  font-size: 110%;
+  font-weight: bold;
+  box-shadow: 0 0 5px red;
+}
+
+.validation-errors i {
+  padding-right: 5px;
+}
+
 /*==== Theme modifications =====================================================*/
 .skin-green .main-header .navbar {
   background-color: #00733e;

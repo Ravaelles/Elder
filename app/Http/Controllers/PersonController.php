@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Job;
 use App\Person;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PersonController extends Controller {
-
+class PersonController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -32,27 +32,31 @@ class PersonController extends Controller {
 ////        exit;
 //        return view('person.index')->with(compact('persons'));
 //    }
+    
+    // === Jobs ===========================================================
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function assignJobIdle($id)
     {
-        //
+        $this->assignJob($id, Job::IDLE);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function assignJobCraft($id)
     {
-        //
+        $this->assignJob($id, Job::CRAFT);
     }
+
+    public function assignJobExplore($id)
+    {
+        $this->assignJob($id, Job::EXPLORE);
+    }
+
+    private function assignJob($id, $job)
+    {
+        $person = Person::findOrFail($id);
+        $person->setJob($job);
+        $person->save();
+
+        $this->jsonResponse($person->getJobToString());
+    }
+
 }

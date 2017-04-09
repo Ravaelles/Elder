@@ -1,9 +1,14 @@
 <tr class="">
     <td class="centered borderless-cell column-buttons" style="width: 120px;">
+        <!--        <a type="button" class="btn btn-green-dark" 
+                   tabindex="0" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right"
+                   data-content='@include("village.partials.jobs")'>
+                    {!! $person->getJobToString() !!}
+                </a>-->
         <a type="button" class="btn btn-green-dark" 
-           tabindex="0" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right"
+           data-toggle="popover" data-title="Title" data-placement="right"
            data-content='@include("village.partials.jobs")'>
-            {!! $person->getJobToString() !!}
+            Test me
         </a>
     </td>
     <td class="left column-name">
@@ -57,3 +62,11 @@
         {!! $person->getC() !!}
     </td>
 </tr>
+
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+//        $('*:not[data-title!=""]').webuiPopover();
+    });
+</script>
+@endpush

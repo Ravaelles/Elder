@@ -10,4 +10,14 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+
+    public function jsonResponse($value, $error = false)
+    {
+        echo json_encode([
+            'status' => $error == false ? 'ok' : 'error',
+            'result' => $value
+        ], JSON_PRETTY_PRINT);
+    }
+
 }

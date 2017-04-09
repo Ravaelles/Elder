@@ -148,13 +148,6 @@ class Person extends Eloquent
 //        );
     }
 
-    public function getJobAttribute($value) {
-        if (empty($value)) {
-            return "";
-        }
-        return $value;
-    }
-
     // =========================================================================
     // Relations
 

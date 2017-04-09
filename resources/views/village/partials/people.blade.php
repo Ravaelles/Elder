@@ -40,7 +40,7 @@
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function() {
-        ajaxButtonStatusClicked($("button").first());
+//        ajaxButtonStatusClicked($("button").first());
     });
 </script>
 @endpush
