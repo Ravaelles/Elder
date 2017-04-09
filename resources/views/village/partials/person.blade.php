@@ -6,7 +6,7 @@
                     {!! $person->getJobToString() !!}
                 </a>-->
         <a type="button" class="btn btn-green-dark" 
-           data-toggle="popover" data-title="Title" data-placement="right"
+           data-toggle="popover" data-title="" data-placement="right"
            data-content='@include("village.partials.jobs")'>
             Test me
         </a>

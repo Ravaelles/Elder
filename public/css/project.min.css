@@ -1180,6 +1180,7 @@ ul.pagination {
 }
 
 .popover .popover-content, .popover .webui-popover-content, .webui-popover .popover-content, .webui-popover .webui-popover-content {
+  overflow: visible;
   background-color: transparent;
 }
 
