@@ -1,7 +1,5 @@
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- Layout & base scripts merged -->
 <script src="/js/compressed/base.min.js" type="text/javascript"></script>
+<!--<script src="/js/compressed/rplugins.min.js" type="text/javascript"></script>-->
 
 @if (array_key_exists('load-engine-script', View::getSections()))
 <!-- Engine scripts -->

@@ -1,4 +1,4 @@
-8const elixir = require('laravel-elixir');
+const elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue-2');
 
@@ -69,17 +69,19 @@ elixir((mix) => {
 
     // UI
     mix.scripts([
+        'rplugins/rfunctions.js',
+        'rplugins/**',
         'project.js'
     ], 'public/js/compressed/app.min.js');
 
     // Engine
-    mix.scripts([
-        'engine/**'
-    ], 'public/js/compressed/engine.min.js');
+    /**    mix.scripts([
+     'engine/**'
+     ], 'public/js/compressed/engine.min.js');*/
 
     // Worldmap
-    mix.scripts([
-        'worldmap/**'
-    ], 'public/js/compressed/worldmap.min.js');
+    /**mix.scripts([
+     'worldmap/**'
+     ], 'public/js/compressed/worldmap.min.js');*/
 
 });

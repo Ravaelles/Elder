@@ -36,3 +36,11 @@
     All of your tribemen are extinct like damned mammoths <img src="/img/emots/sad.png" class="emoticon" />
     @endif
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        ajaxButtonStatusClicked($("button").first());
+    });
+</script>
+@endpush
