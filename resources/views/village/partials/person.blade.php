@@ -5,10 +5,16 @@
                    data-content='@include("village.partials.jobs")'>
                     {!! $person->getJobToString() !!}
                 </a>-->
-        <a type="button" class="btn btn-green-dark" 
+        <a class="btn btn-green-dark" 
            data-toggle="popover" data-title="" data-placement="right"
            data-content='@include("village.partials.jobs")'>
             Test me
+        </a>
+
+        <button type="button" class="btn btn-primary rmodal"></button>
+
+        <a class="btn btn-custom rmodal" href="{{ route('person.job.assign-explore', ['id' => $person->getId())]) }}">
+            The Grand Functionality
         </a>
     </td>
     <td class="left column-name">
